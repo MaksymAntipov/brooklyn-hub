@@ -1,178 +1,255 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brooklyn Hub | Кав'ярня, Коворкінг та Події у Львові</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
 
-  <!-- ====== Базовое SEO ====== -->
-  <title>Brooklyn Hub — кав’ярня у Львові | Сніданки цілий день, кава з собою, події</title>
-  <meta name="description" content="Brooklyn Hub — кав’ярня у Львові на Малоголосківській: сніданки цілий день, specialty кава, кава з собою, десерти, мітинг-руми та події (кіно, жива музика). Заходьте або замовляйте онлайн." />
-  <meta name="keywords" content="кав’ярня Львів, кав'ярня у Львові, сніданки Львів, кава з собою Львів, coffee Lviv, Brooklyn Hub" />
+    <style>
+        /* ================================================= */
+        /* 1. ПАЛІТРА ТА ГЛОБАЛЬНІ СТИЛІ                    */
+        /* ================================================= */
+        :root {
+            --color-black: #000000;
+            --color-emerald: #1D5D51;
+            --color-white: #F5F5F5;
+            --color-gray-bg: #0A0A0A;
+            --transition-time: 0.5s ease-in-out;
+        }
 
-  <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="Brooklyn Hub — кав’ярня у Львові | Сніданки цілий день" />
-  <meta property="og:description" content="Сніданки цілий день, specialty кава, мітинг-руми та події. Заходьте до Brooklyn Hub у Львові." />
-  <meta property="og:image" content="images/og-hero-brooklyn-hub.jpg" />
-  <meta property="og:url" content="https://YOUR_GH_USERNAME.github.io/brooklyn-hub/" />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        body { background-color: var(--color-black); color: var(--color-white); line-height: 1.6; overflow-x: hidden; scroll-behavior: smooth; }
 
-  <!-- Favicon -->
-  <link rel="icon" href="images/favicon.png" type="image/png" />
+        section { padding: 100px 5%; min-height: 90vh; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
 
-  <!-- Canonical -->
-  <link rel="canonical" href="https://YOUR_GH_USERNAME.github.io/brooklyn-hub/" />
+        a { text-decoration: none; transition: 0.3s; color: var(--color-black); }
+        .header-item a:hover { color: var(--color-emerald) !important; text-shadow: 0 0 1px var(--color-emerald); }
+        
+        h2 { font-size: clamp(2.5rem, 6vw, 4.5rem); text-align: center; margin-bottom: 5rem; color: var(--color-emerald); font-weight: 700; letter-spacing: 3px; text-transform: uppercase; }
 
-  <!-- ====== Стилі (мінімалізм, чорний + ізумрудний) ====== -->
-  <style>
-    :root{
-      --bg:#0d0d0d;        /* чорний */
-      --emerald:#046A38;   /* ізумрудний */
-      --text:#ffffff;
-      --muted:#d0d5dd;
-    }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-    a{color:var(--text)}
-    header.hero{min-height:82vh;display:grid;place-items:center;text-align:center;background:linear-gradient(0deg,rgba(13,13,13,.55),rgba(13,13,13,.55)),url('images/hero-coffee-breakfast.jpg') center/cover no-repeat;padding:24px}
-    .hero h1{font-size:clamp(32px,6vw,56px);margin:0 0 8px}
-    .hero p{margin:0 0 18px;color:#e7eaee}
-    .btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-    .btn{display:inline-block;padding:12px 18px;border-radius:14px;border:1px solid var(--muted);text-decoration:none}
-    .btn.primary{background:var(--emerald);border-color:var(--emerald)}
-    .wrap{max-width:1080px;margin:0 auto;padding:48px 20px}
-    section h2{font-size:clamp(24px,3vw,32px);margin:0 0 10px}
-    .sub{color:#cbd2da;margin:0 0 28px}
-    .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
-    .card{background:#121212;border:1px solid #1f1f1f;border-radius:16px;overflow:hidden}
-    .card img{width:100%;height:200px;object-fit:cover}
-    .card .p{padding:14px}
-    .pill{display:inline-block;font-size:12px;padding:6px 10px;border-radius:999px;background:rgba(4,106,56,.18);border:1px solid rgba(4,106,56,.45);color:#dff7ea;margin-right:8px}
-    .cta{background:linear-gradient(180deg,#0f0f0f,#0a0a0a);border-top:1px solid #1c1c1c}
-    footer{border-top:1px solid #1c1c1c;padding:24px 20px;color:#aab1b9}
-    .map{width:100%;border:0;height:360px;border-radius:16px}
-    /* дрібні покращення доступності */
-    .sr-only{position:absolute;left:-9999px}
-  </style>
+        /* ================================================= */
+        /* 2. ХЕДЕР (HEADER)                                 */
+        /* ================================================= */
+        .header {
+            position: fixed; width: 100%; display: flex; justify-content: space-between; align-items: center; 
+            padding: 1.2rem 5%; z-index: 1000; 
+            background: transparent;
+            border-bottom: none;
+            font-weight: 400; text-transform: uppercase;
+            transition: background var(--transition-time), border-bottom var(--transition-time);
+        }
 
-  <!-- ====== LocalBusiness + FAQ Schema (JSON-LD) ====== -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "CafeOrCoffeeShop",
-    "name": "Brooklyn Hub",
-    "image": "https://YOUR_GH_USERNAME.github.io/brooklyn-hub/images/og-hero-brooklyn-hub.jpg",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "вул. Малоголосківська, 19",
-      "addressLocality": "Львів",
-      "postalCode": "79061",
-      "addressCountry": "UA"
-    },
-    "telephone": "+380633883737",
-    "openingHours": "Mo-Su 09:00-21:00",
-    "servesCuisine": "Coffee, Breakfast, Desserts",
-    "priceRange": "$$",
-    "url": "https://YOUR_GH_USERNAME.github.io/brooklyn-hub/",
-    "sameAs": ["https://instagram.com/brooklynhublviv","https://YOUR_EXPZ_MENU_URL"]
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {"@type":"Question","name":"Чи є сніданки цілий день?","acceptedAnswer":{"@type":"Answer","text":"Так, у Brooklyn Hub сніданки подаємо протягом усього дня."}},
-      {"@type":"Question","name":"Чи можна взяти каву з собою?","acceptedAnswer":{"@type":"Answer","text":"Так, кава з собою доступна щодня. Також працює онлайн-замовлення."}},
-      {"@type":"Question","name":"Де ви знаходитесь у Львові?","acceptedAnswer":{"@type":"Answer","text":"Ми на вул. Малоголосківська, 19. Натисніть «Прокласти маршрут» для зручної навігації."}}
-    ]
-  }
-  </script>
+        .header-item a, .header-item span { color: var(--color-white); font-size: 15px; letter-spacing: 1px; font-weight: 400; transition: color var(--transition-time); }
+        .header-logo img { filter: invert(1) brightness(150%); transition: filter var(--transition-time), transform 0.3s; } 
+        
+        .header.scrolled { background: var(--color-white); border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+        .header.scrolled .header-item a, .header.scrolled .header-item span { color: var(--color-black); } 
+        .header.scrolled .header-logo img { filter: none; }
+        .header.scrolled .phone a { color: var(--color-black); }
+        .header.scrolled .route-button { color: var(--color-black); } 
+
+        .header-item { display: flex; align-items: center; height: 50px; }
+        .header-logo { position: absolute; left: 50%; transform: translateX(-50%); z-index: 10; text-align: center; }
+        
+        .header-logo img { height: 40px; }
+        .header-left { order: 1; }
+        .header-right { order: 3; margin-left: auto; }
+        
+        .nav-links-main, .route-button, .phone { display: none; }
+        .mobile-icon-circle { display: flex; }
+
+        @media (min-width: 1024px) {
+            .header-logo img { height: 55px; }
+            .header-left { order: 1; width: 50%; justify-content: flex-start; padding-right: 20%; }
+            .header-right { order: 3; width: 50%; justify-content: flex-end; padding-left: 20%; margin-left: 0; gap: 40px; }
+            .nav-links-main { display: flex; gap: 25px; }
+            .route-button, .phone { display: flex; align-items: center; gap: 10px; }
+            .mobile-icon-circle { display: none; }
+        }
+        
+        .nav-links-main a.active-link { color: var(--color-emerald) !important; text-shadow: 0 0 1px var(--color-emerald); }
+
+        /* ================================================= */
+        /* 3. ГОЛОВНИЙ ЕКРАН (HERO SECTION)                  */
+        /* ================================================= */
+        .hero {
+            height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2047&q=80') center center no-repeat;
+            background-size: cover; background-attachment: fixed; 
+        }
+        .cta-button-hero { padding: 1rem 3rem; margin-top: 2rem; background-color: var(--color-emerald); color: var(--color-white) !important; border: 2px solid var(--color-emerald); font-weight: 700; text-transform: uppercase; letter-spacing: 1px;}
+        
+        /* ================================================= */
+        /* 4. СЕКЦІЇ КОНТЕНТУ                              */
+        /* ================================================= */
+        .menu, .rooms, .delivery, .events { min-height: 100vh; }
+        .menu { background-color: var(--color-black); color: var(--color-white); }
+        .rooms { background-color: var(--color-white); color: var(--color-black); }
+
+        /* ================================================= */
+        /* 5. ПІДВАЛ (FOOTER)                                */
+        /* ================================================= */
+        .main-footer { background-color: var(--color-black); padding: 80px 5% 20px; color: var(--color-white); font-size: 0.9rem; }
+        .footer-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px; max-width: 1400px; margin: 0 auto; }
+        .footer-logo-block img { height: 60px; filter: invert(1) brightness(150%); margin-bottom: 20px; }
+        .social-links { display: flex; gap: 15px; margin: 20px 0; }
+        .social-icon { width: 35px; height: 35px; border: 1px solid #444; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: var(--color-white); transition: all 0.3s; }
+        .social-icon:hover { background-color: var(--color-emerald); border-color: var(--color-emerald); }
+        .footer-contact-grid strong { font-size: 1.5rem; display: block; margin-bottom: 5px; color: var(--color-white); }
+        .footer-bottom { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; text-align: center; color: #555; display: flex; justify-content: space-between; flex-wrap: wrap; }
+        
+        .footer-nav-col ul { list-style: none; padding: 0; margin: 0; }
+        .footer-nav-col ul li { margin-bottom: 10px; }
+        .footer-nav-col ul li a { color: var(--color-white); text-decoration: none; font-weight: 400; transition: color 0.3s ease; }
+        .footer-nav-col ul li a:hover { color: var(--color-emerald); }
+
+    </style>
 </head>
 <body>
+    
+    <header class="header">
+        <div class="header-item header-left">
+            <a href="#" class="mobile-icon-circle"> <i class="fas fa-bars"></i> </a>
+            <nav class="nav-links-main">
+                <a href="#menu">МЕНЮ</a>
+                <a href="#delivery">ДОСТАВКА</a>
+                <a href="#rooms" style="white-space: nowrap;">MEETING ROOM</a>
+                <a href="#events">ПОДІЇ</a>
+            </nav>
+        </div>
+        <div class="header-item header-logo">
+            <a href="#home">
+                <img src="media/Безымянный-2.svg" alt="Brooklyn Hub | Coffee & Community">
+            </a>
+        </div>
+        <div class="header-item header-right">
+            <div class="phone">
+                <a href="tel:+380633883737">+38 (063) 388 37 37</a>
+            </div>
+            <a href="http://googleusercontent.com/maps.google.com/9" target="_blank" class="route-button">
+                ПРОКЛАСТИ МАРШРУТ <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="tel:+380633883737" class="mobile-icon-circle"> <i class="fas fa-phone"></i> </a>
+        </div>
+    </header>
 
-  <!-- ====== HERO ====== -->
-  <header class="hero" role="banner" aria-label="Brooklyn Hub — кав’ярня у Львові">
-    <div>
-      <span class="pill">Кав’ярня у Львові</span>
-      <span class="pill">Сніданки цілий день</span>
-      <h1>Brooklyn Hub</h1>
-      <p>Specialty кава, сніданки та події: кіно, жива музика, мітинг-руми для зустрічей.</p>
-      <div class="btns">
-        <a class="btn primary" href="https://YOUR_EXPZ_MENU_URL" target="_blank" rel="noopener">Замовити онлайн</a>
-        <a class="btn" href="https://maps.google.com/?q=Brooklyn+Hub+Львів" target="_blank" rel="noopener">Прокласти маршрут</a>
-        <a class="btn" href="https://instagram.com/brooklynhublviv" target="_blank" rel="noopener">Instagram</a>
-      </div>
-    </div>
-  </header>
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1>ТВОЄ МІСЦЕ СИЛИ У ЛЬВОВІ</h1>
+                <p>КАВ'ЯРНЯ. КОВОРКІНГ. ПОДІЇ. СНІДАНКИ ВЕСЬ ДЕНЬ.</p>
+                <a href="#menu" class="cta-button-hero">ОЗНАЙОМИТИСЬ</a>
+            </div>
+        </section>
 
-  <!-- ====== ПРО НАС ====== -->
-  <section class="wrap" id="about">
-    <h2>Кав’ярня у Львові з атмосферою та сніданками</h2>
-    <p class="sub">Brooklyn Hub — це місце, де поєдналися ароматна кава, **сніданки цілий день**, затишок для роботи та **події** для сусідів: перегляд кінофільмів, жива музика, тематичні вечори.</p>
-  </section>
+        <section id="menu" class="menu">
+            <h2>МЕНЮ</h2>
+        </section>
 
-  <!-- ====== МЕНЮ (хіти) ====== -->
-  <section class="wrap" id="menu">
-    <h2>Хіти меню</h2>
-    <p class="sub">Спробуйте наші найпопулярніші страви та напої. Повне меню — у кілька кліків.</p>
-    <div class="grid" aria-label="Популярні позиції меню">
-      <article class="card">
-        <img src="images/breakfast-avocado-salmon.jpg" alt="Сніданок з авокадо та лососем — хіт кав’ярні у Львові">
-        <div class="p"><strong>Сніданок з авокадо та лососем</strong></div>
-      </article>
-      <article class="card">
-        <img src="images/syrnyky-berries.jpg" alt="Сирники з ягодами — десерт у Brooklyn Hub">
-        <div class="p"><strong>Сирники з ягодами</strong></div>
-      </article>
-      <article class="card">
-        <img src="images/cappuccino-specialty.jpg" alt="Капучино specialty — кава з собою у Львові">
-        <div class="p"><strong>Капучино</strong></div>
-      </article>
-      <article class="card">
-        <img src="images/croissant-brioche.jpg" alt="Круасан Брiош — свіжа випічка">
-        <div class="p"><strong>Круасан Брiош</strong></div>
-      </article>
-    </div>
-    <p style="margin-top:16px">
-      <a class="btn" href="menu.pdf" target="_blank" rel="noopener">Переглянути повне меню (PDF)</a>
-      <a class="btn primary" href="https://YOUR_EXPZ_MENU_URL" target="_blank" rel="noopener">Замовити онлайн</a>
-    </p>
-  </section>
+        <section id="delivery" class="delivery">
+            <h2>ДОСТАВКА</h2>
+        </section>
 
-  <!-- ====== МІТИНГ-РУМИ / ПОДІЇ ====== -->
-  <section class="wrap" id="spaces">
-    <h2>Мітинг-руми та події</h2>
-    <div class="grid">
-      <article class="card">
-        <img src="images/meeting-room.jpg" alt="Мітинг-рум у кав’ярні Brooklyn Hub у Львові">
-        <div class="p"><strong>Мітинг-руми</strong><br/>Затишні переговорні кабінки для зустрічей, онлайн-колів та роботи.</div>
-      </article>
-      <article class="card">
-        <img src="images/events-movie-live-music.jpg" alt="Події у Brooklyn Hub — перегляди кіно та жива музика">
-        <div class="p"><strong>Події</strong><br/>Кіносеанси, жива музика, зустрічі з сусідами — слідкуйте за афішею.</div>
-      </article>
-    </div>
-  </section>
+        <section id="rooms" class="rooms">
+            <h2 style="color: var(--color-black);">MEETING ROOM</h2>
+        </section>
 
-  <!-- ====== CTA ====== -->
-  <section class="wrap cta" id="visit">
-    <h2>Завітайте до Brooklyn Hub у Львові</h2>
-    <p class="sub">вул. Малоголосківська, 19 • Пн-Нд 09:00–21:00 • Тел: <a href="tel:+380633883737">+38 (063) 388-37-37</a></p>
-    <div class="btns">
-      <a class="btn primary" href="https://maps.google.com/?q=Brooklyn+Hub+Львів" target="_blank" rel="noopener">Прокласти маршрут</a>
-      <a class="btn" href="https://YOUR_EXPZ_MENU_URL" target="_blank" rel="noopener">Замовити онлайн</a>
-    </div>
-    <div style="margin-top:18px">
-      <!-- Вбудована карта (можеш замінити на статичне зображення для швидкості) -->
-      <iframe class="map" loading="lazy" allowfullscreen
-        src="https://www.google.com/maps?q=Brooklyn%20Hub%20Львів&output=embed"></iframe>
-    </div>
-  </section>
+        <section id="events" class="events">
+            <h2>ПОДІЇ</h2>
+        </section>
 
-  <footer>
-    © <span id="y"></span> Brooklyn Hub — кав’ярня у Львові. Сніданки цілий день, кава з собою, події.
-  </footer>
-  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-grid">
+            <div class="footer-col footer-logo-block">
+                <img src="media/Безымянный-2.svg" alt="Brooklyn Hub Logo">
+                <p>м. Львів, вул. Малоголосківська, 19, Україна, 79061</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/brooklynhublviv" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/brooklynhublviv/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="https://t.me/brooklynhublviv" target="_blank" class="social-icon"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="#" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <div class="footer-contact-grid">
+                    <div class="contact-item">
+                        <p>Коворкінг та Кав'ярня</p>
+                        <strong>+38 (063) 388 37 37</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-col footer-nav-col">
+                <h4>Загальні розділи</h4>
+                <ul>
+                    <li><a href="#menu">МЕНЮ</a></li>
+                    <li><a href="#delivery">ДОСТАВКА</a></li>
+                    <li><a href="#rooms">MEETING ROOM</a></li>
+                    <li><a href="#events">ПОДІЇ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col footer-nav-col">
+                <h4>Інформація</h4>
+                <ul>
+                    <li><a href="#">Вакансії</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 Brooklyn Hub. Всі права захищені.</p>
+            <p>Designed in Lviv</p>
+        </div>
+    </footer>
+
+
+    <script>
+        // 1. "Розумний" хедер (зміна фону при скролі)
+        const header = document.querySelector('.header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 5) { 
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // 2. Підсвічування активного пункту меню в навігації
+        const sections = document.querySelectorAll('main section');
+        const navLinks = document.querySelectorAll('.nav-links-main a');
+        const options = { root: null, threshold: 0.35, rootMargin: '0px 0px -50% 0px' };
+        const sectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const targetId = entry.target.id;
+                    navLinks.forEach(link => {
+                        link.classList.remove('active-link');
+                        if (link.getAttribute('href') === `#${targetId}`) {
+                            link.classList.add('active-link');
+                        }
+                    });
+                }
+            });
+        }, options);
+        sections.forEach(section => { sectionObserver.observe(section); });
+
+        // 3. Плавний скрол до якорів
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href').length > 1) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+        
+    </script>
 </body>
 </html>
