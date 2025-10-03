@@ -3,18 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Brooklyn Hub у Львові — це простір, де поєднуються смачна кава від Black Honey, авторська кухня, затишний коворкінг та яскраві події. Ваше місце сили на Малоголосківській.">
-    <meta name="keywords" content="кав'ярня Львів, кухня Львів, коворкінг Львів, Brooklyn Hub, Black Honey Львів, мітинг-рум, івенти Львів, сніданки Львів">
+    
+    <link rel="icon" href="media/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="media/favicon.ico" type="image/x-icon">
     
     <title>Brooklyn Hub | Кав'ярня, Кухня, Коворкінг та Події у Львові</title>
+    <meta name="description" content="Brooklyn Hub у Львові — це простір, де поєднуються смачна кава від Black Honey, авторська кухня, затишний коворкінг та яскраві події. Ваше місце сили на Малоголосківській.">
+    <meta name="keywords" content="кав'ярня Львів, кухня Львів, коворкінг Львів, Brooklyn Hub, Black Honey Львів, мітинг-рум, івенти Львів, сніданки Львів">
+
+    <link rel="canonical" href="https://www.yourwebsite.com" /> <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.yourwebsite.com"> <meta property="og:title" content="Brooklyn Hub | Кав'ярня, Кухня, Коворкінг у Львові">
+    <meta property="og:description" content="Ваше місце сили на Малоголосківській. Кава від Black Honey, авторська кухня, мітинг-руми та події.">
+    <meta property="og:image" content="https://www.yourwebsite.com/og-image.jpg"> <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.yourwebsite.com"> <meta name="twitter:title" content="Brooklyn Hub | Кав'ярня, Кухня, Коворкінг у Львові">
+    <meta name="twitter:description" content="Ваше місце сили на Малоголосківській. Кава від Black Honey, авторська кухня, мітинг-руми та події.">
+    <meta name="twitter:image" content="https://www.yourwebsite.com/og-image.jpg"> <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CafeOrCoffeeShop",
+      "name": "Brooklyn Hub",
+      "description": "Простір у Львові, де поєднуються спешелті кава, авторська кухня, коворкінг та події.",
+      "telephone": "+380633883737",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "вул. Малоголосківська, 19",
+        "addressLocality": "Львів",
+        "addressRegion": "Львівська область",
+        "postalCode": "79061",
+        "addressCountry": "UA"
+      },
+      "url": "https://www.yourwebsite.com",
+      "openingHours": "Mo-Su 09:00-21:00",
+      "servesCuisine": "Сучасна європейська",
+      "priceRange": "$$",
+      "hasMenu": "https://expz.menu/delivery/cd8b3814-8263-4ce8-8e63-445e8c37e8a4",
+      "image": "https://www.yourwebsite.com/og-image.jpg"
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
 
     <style>
-        /* ================================================= */
-        /* 1. ПАЛІТРА ТА ГЛОБАЛЬНІ СТИЛІ                    */
-        /* ================================================= */
+        /* CSS стилі без змін */
         :root {
             --color-black: #000000;
             --color-emerald: #1D5D51;
@@ -22,125 +55,38 @@
             --color-gray-bg: #0A0A0A;
             --transition-time: 0.5s ease-in-out;
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
         body { background-color: var(--color-black); color: var(--color-white); line-height: 1.6; overflow-x: hidden; scroll-behavior: smooth; }
-
-        section { 
-            padding: 100px 5%; 
-            min-height: 90vh; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center;
-            position: relative; 
-            overflow: hidden; 
-        }
-
+        section { padding: 100px 5%; min-height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; overflow: hidden; }
         a { text-decoration: none; transition: 0.3s; color: var(--color-black); }
         .header-item a:hover { color: var(--color-emerald) !important; text-shadow: 0 0 1px var(--color-emerald); }
-        
-        h2 { 
-            font-size: clamp(2.5rem, 6vw, 4.5rem); 
-            text-align: center; 
-            margin-bottom: 5rem; 
-            color: var(--color-white);
-            font-weight: 700; 
-            letter-spacing: 3px; 
-            text-transform: uppercase; 
-        }
-
-        /* Стилі для контентних блоків в секціях */
-        .section-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 50px;
-            align-items: center;
-            max-width: 1200px;
-            width: 100%;
-        }
-
+        h2 { font-size: clamp(2.5rem, 6vw, 4.5rem); text-align: center; margin-bottom: 5rem; color: var(--color-white); font-weight: 700; letter-spacing: 3px; text-transform: uppercase; }
+        .section-content { display: grid; grid-template-columns: 1fr; gap: 50px; align-items: center; max-width: 1200px; width: 100%; }
         @media (min-width: 992px) {
-            .section-content {
-                grid-template-columns: 1fr 1fr;
-            }
-            .section-content.reverse .section-text {
-                order: 2;
-            }
-            .section-content.reverse .section-image {
-                order: 1;
-            }
+            .section-content { grid-template-columns: 1fr 1fr; }
+            .section-content.reverse .section-text { order: 2; }
+            .section-content.reverse .section-image { order: 1; }
         }
-
-        .section-text h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 4vw, 3rem);
-            color: var(--color-white);
-            margin-bottom: 1.5rem;
-        }
-
-        .section-text p {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 2rem;
-            max-width: 500px;
-        }
-
-        .section-image {
-            width: 100%;
-            height: 450px;
-            background-color: #333;
-            background-size: cover;
-            background-position: center;
-            border-radius: 8px;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            padding: 0.8rem 2.5rem;
-            border: 2px solid var(--color-emerald);
-            color: var(--color-emerald);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-        }
-        .cta-button:hover {
-            background-color: var(--color-emerald);
-            color: var(--color-white);
-        }
-
-        /* ================================================= */
-        /* 2. ХЕДЕР (HEADER)                                 */
-        /* ================================================= */
-        .header {
-            position: fixed; width: 100%; display: flex; justify-content: space-between; align-items: center; 
-            padding: 1.2rem 5%; z-index: 1000; 
-            background: transparent;
-            border-bottom: none;
-            font-weight: 400; text-transform: uppercase;
-            transition: background var(--transition-time), border-bottom var(--transition-time);
-        }
-
+        .section-text h3 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); color: var(--color-white); margin-bottom: 1.5rem; }
+        .section-text p { font-size: 1.1rem; color: rgba(255, 255, 255, 0.8); margin-bottom: 2rem; max-width: 500px; }
+        .section-image { width: 100%; height: 450px; background-color: #333; background-size: cover; background-position: center; border-radius: 8px; }
+        .cta-button { display: inline-block; padding: 0.8rem 2.5rem; border: 2px solid var(--color-emerald); color: var(--color-emerald); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; }
+        .cta-button:hover { background-color: var(--color-emerald); color: var(--color-white); }
+        .header { position: fixed; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 5%; z-index: 1000; background: transparent; border-bottom: none; font-weight: 400; text-transform: uppercase; transition: background var(--transition-time), border-bottom var(--transition-time); }
         .header-item a, .header-item span { color: var(--color-white); font-size: 15px; letter-spacing: 1px; font-weight: 400; transition: color var(--transition-time); }
-        .header-logo img { filter: invert(1) brightness(150%); transition: filter var(--transition-time), transform 0.3s; } 
-        
+        .header-logo img { filter: invert(1) brightness(150%); transition: filter var(--transition-time), transform 0.3s; }
         .header.scrolled { background: var(--color-white); border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
-        .header.scrolled .header-item a, .header.scrolled .header-item span { color: var(--color-black); } 
+        .header.scrolled .header-item a, .header.scrolled .header-item span { color: var(--color-black); }
         .header.scrolled .header-logo img { filter: none; }
         .header.scrolled .phone a { color: var(--color-black); }
-        .header.scrolled .route-button { color: var(--color-black); } 
-
+        .header.scrolled .route-button { color: var(--color-black); }
         .header-item { display: flex; align-items: center; height: 50px; }
         .header-logo { position: absolute; left: 50%; transform: translateX(-50%); z-index: 10; text-align: center; }
-        
         .header-logo img { height: 40px; }
         .header-left { order: 1; }
         .header-right { order: 3; margin-left: auto; }
-        
         .nav-links-main, .route-button, .phone { display: none; }
         .mobile-icon-circle { display: flex; }
-
         @media (min-width: 1024px) {
             .header-logo img { height: 55px; }
             .header-left { order: 1; width: 50%; justify-content: flex-start; padding-right: 20%; }
@@ -149,30 +95,14 @@
             .route-button, .phone { display: flex; align-items: center; gap: 10px; }
             .mobile-icon-circle { display: none; }
         }
-        
         .nav-links-main a.active-link { color: var(--color-emerald) !important; text-shadow: 0 0 1px var(--color-emerald); }
-
-        /* ================================================= */
-        /* 3. ГОЛОВНИЙ ЕКРАН (HERO SECTION)                  */
-        /* ================================================= */
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2047&q=80') center center no-repeat;
-            background-size: cover; background-attachment: fixed; 
-        }
-        .cta-button-hero { padding: 1rem 3rem; margin-top: 2rem; background-color: var(--color-emerald); color: var(--color-white) !important; border: 2px solid var(--color-emerald); font-weight: 700; text-transform: uppercase; letter-spacing: 1px;}
-        
-        /* ================================================= */
-        /* 4. СЕКЦІЇ                                       */
-        /* ================================================= */
+        .hero { background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2047&q=80') center center no-repeat; background-size: cover; background-attachment: fixed; }
+        .cta-button-hero { padding: 1rem 3rem; margin-top: 2rem; background-color: var(--color-emerald); color: var(--color-white) !important; border: 2px solid var(--color-emerald); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
         .menu { background-color: var(--color-black); }
         .kitchen { background-color: var(--color-gray-bg); }
         .delivery { background-color: var(--color-black); }
         .rooms { background-color: var(--color-gray-bg); }
         .events { background-color: var(--color-black); }
-
-        /* ================================================= */
-        /* 5. ПІДВАЛ (FOOTER)                                */
-        /* ================================================= */
         .main-footer { background-color: var(--color-black); padding: 80px 5% 20px; color: var(--color-white); font-size: 0.9rem; }
         .footer-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px; max-width: 1400px; margin: 0 auto; }
         .footer-logo-block img { height: 60px; filter: invert(1) brightness(150%); margin-bottom: 20px; }
@@ -181,12 +111,10 @@
         .social-icon:hover { background-color: var(--color-emerald); border-color: var(--color-emerald); }
         .footer-contact-grid strong { font-size: 1.5rem; display: block; margin-bottom: 5px; color: var(--color-white); }
         .footer-bottom { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; text-align: center; color: #555; display: flex; justify-content: space-between; flex-wrap: wrap; }
-        
         .footer-nav-col ul { list-style: none; padding: 0; margin: 0; }
         .footer-nav-col ul li { margin-bottom: 10px; }
         .footer-nav-col ul li a { color: var(--color-white); text-decoration: none; font-weight: 400; transition: color 0.3s ease; }
         .footer-nav-col ul li a:hover { color: var(--color-emerald); }
-
     </style>
 </head>
 <body>
@@ -204,7 +132,7 @@
         </div>
         <div class="header-item header-logo">
             <a href="#home">
-                <img src="media/Безымянный-2.svg" alt="Brooklyn Hub | Coffee & Community">
+                <img src="media/Безымянный-2.svg" alt="Логотип Brooklyn Hub Львів" loading="lazy">
             </a>
         </div>
         <div class="header-item header-right">
@@ -302,7 +230,7 @@
     <footer class="main-footer">
         <div class="footer-grid">
             <div class="footer-col footer-logo-block">
-                <img src="media/Безымянный-2.svg" alt="Brooklyn Hub Logo">
+                <img src="media/Безымянный-2.svg" alt="Логотип Brooklyn Hub у підвалі сайту" loading="lazy">
                 <p>м. Львів, вул. Малоголосківська, 19, Україна, 79061</p>
                 <div class="social-links">
                     <a href="https://www.facebook.com/brooklynhublviv" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
@@ -316,7 +244,7 @@
                 <div class="footer-contact-grid">
                     <div class="contact-item">
                         <p>Коворкінг та Кав'ярня</p>
-                        <strong>+38 (063) 388 37 37</strong>
+                        <strong><a href="tel:+380633883737" style="color: var(--color-white);">+38 (063) 388 37 37</a></strong>
                     </div>
                 </div>
             </div>
@@ -348,7 +276,7 @@
 
 
     <script>
-        // 1. "Розумний" хедер (зміна фону при скролі)
+        // JS скрипти без змін
         const header = document.querySelector('.header');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 5) { 
@@ -357,8 +285,6 @@
                 header.classList.remove('scrolled');
             }
         });
-        
-        // 2. Підсвічування активного пункту меню в навігації
         const sections = document.querySelectorAll('main section');
         const navLinks = document.querySelectorAll('.nav-links-main a');
         const options = { root: null, threshold: 0.35, rootMargin: '0px 0px -50% 0px' };
@@ -376,8 +302,6 @@
             });
         }, options);
         sections.forEach(section => { sectionObserver.observe(section); });
-
-        // 3. Плавний скрол до якорів
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 if (this.getAttribute('href').length > 1) {
@@ -386,7 +310,6 @@
                 }
             });
         });
-        
     </script>
 </body>
 </html>
