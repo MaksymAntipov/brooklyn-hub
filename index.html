@@ -11,13 +11,18 @@
     <meta name="description" content="Brooklyn Hub у Львові — це простір, де поєднуються смачна кава від Black Honey, авторська кухня, затишний коворкінг та яскраві події. Ваше місце сили на Малоголосківській.">
     <meta name="keywords" content="кав'ярня Львів, кухня Львів, коворкінг Львів, Brooklyn Hub, Black Honey Львів, мітинг-рум, івенти Львів, сніданки Львів">
 
-    <link rel="canonical" href="https://www.yourwebsite.com" /> <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.yourwebsite.com"> <meta property="og:title" content="Brooklyn Hub | Кав'ярня, Кухня, Коворкінг у Львові">
+    <link rel="canonical" href="https://www.yourwebsite.com" />
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.yourwebsite.com">
+    <meta property="og:title" content="Brooklyn Hub | Кав'ярня, Кухня, Коворкінг у Львові">
     <meta property="og:description" content="Ваше місце сили на Малоголосківській. Кава від Black Honey, авторська кухня, мітинг-руми та події.">
-    <meta property="og:image" content="https://www.yourwebsite.com/og-image.jpg"> <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://www.yourwebsite.com"> <meta name="twitter:title" content="Brooklyn Hub | Кав'ярня, Кухня, Коворкінг у Львові">
+    <meta property="og:image" content="https://www.yourwebsite.com/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.yourwebsite.com">
+    <meta name="twitter:title" content="Brooklyn Hub | Кав'ярня, Кухня, Коворкінг у Львові">
     <meta name="twitter:description" content="Ваше місце сили на Малоголосківській. Кава від Black Honey, авторська кухня, мітинг-руми та події.">
-    <meta name="twitter:image" content="https://www.yourwebsite.com/og-image.jpg"> <script type="application/ld+json">
+    <meta name="twitter:image" content="https://www.yourwebsite.com/og-image.jpg">
+    <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "CafeOrCoffeeShop",
@@ -47,39 +52,117 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
 
     <style>
-        /* CSS стилі без змін */
         :root {
             --color-black: #000000;
-            --color-emerald: #1D5D51;
             --color-white: #FFFFFF;
             --color-gray-bg: #0A0A0A;
-            --transition-time: 0.5s ease-in-out;
+            --color-text-secondary: rgba(255, 255, 255, 0.7);
+            --transition-time: 0.3s;
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
         body { background-color: var(--color-black); color: var(--color-white); line-height: 1.6; overflow-x: hidden; scroll-behavior: smooth; }
-        section { padding: 100px 5%; min-height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; overflow: hidden; }
-        a { text-decoration: none; transition: 0.3s; color: var(--color-black); }
-        .header-item a:hover { color: var(--color-emerald) !important; text-shadow: 0 0 1px var(--color-emerald); }
-        h2 { font-size: clamp(2.5rem, 6vw, 4.5rem); text-align: center; margin-bottom: 5rem; color: var(--color-white); font-weight: 700; letter-spacing: 3px; text-transform: uppercase; }
-        .section-content { display: grid; grid-template-columns: 1fr; gap: 50px; align-items: center; max-width: 1200px; width: 100%; }
+
+        section { 
+            padding: 120px 5%; 
+            min-height: 90vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center;
+            position: relative; 
+            overflow: hidden; 
+        }
+
+        a { text-decoration: none; transition: color var(--transition-time) ease; }
+        
+        h2 { 
+            font-size: clamp(2.5rem, 6vw, 4.5rem); 
+            text-align: center; 
+            margin-bottom: 5rem; 
+            color: var(--color-white);
+            font-weight: 700; 
+            letter-spacing: 3px; 
+            text-transform: uppercase; 
+        }
+
+        .section-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1200px;
+            width: 100%;
+        }
+
         @media (min-width: 992px) {
-            .section-content { grid-template-columns: 1fr 1fr; }
+            .section-content {
+                grid-template-columns: 1fr 1fr;
+            }
             .section-content.reverse .section-text { order: 2; }
             .section-content.reverse .section-image { order: 1; }
         }
-        .section-text h3 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); color: var(--color-white); margin-bottom: 1.5rem; }
-        .section-text p { font-size: 1.1rem; color: rgba(255, 255, 255, 0.8); margin-bottom: 2rem; max-width: 500px; }
-        .section-image { width: 100%; height: 450px; background-color: #333; background-size: cover; background-position: center; border-radius: 8px; }
-        .cta-button { display: inline-block; padding: 0.8rem 2.5rem; border: 2px solid var(--color-emerald); color: var(--color-emerald); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; }
-        .cta-button:hover { background-color: var(--color-emerald); color: var(--color-white); }
-        .header { position: fixed; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 5%; z-index: 1000; background: transparent; border-bottom: none; font-weight: 400; text-transform: uppercase; transition: background var(--transition-time), border-bottom var(--transition-time); }
-        .header-item a, .header-item span { color: var(--color-white); font-size: 15px; letter-spacing: 1px; font-weight: 400; transition: color var(--transition-time); }
-        .header-logo img { filter: invert(1) brightness(150%); transition: filter var(--transition-time), transform 0.3s; }
+
+        .section-text h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            color: var(--color-white);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-text p {
+            font-size: 1.1rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+        }
+
+        .section-image {
+            width: 100%;
+            height: 450px;
+            background-color: #333;
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+        }
+        
+        /* --- НОВИЙ СТИЛЬ КНОПОК --- */
+        .cta-button {
+            display: inline-block;
+            background-color: var(--color-white);
+            color: var(--color-black) !important;
+            padding: 0.9rem 2.8rem;
+            border-radius: 5px;
+            border: 2px solid var(--color-white);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all var(--transition-time) ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .cta-button:hover {
+            background-color: transparent;
+            color: var(--color-white) !important;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            position: fixed; width: 100%; display: flex; justify-content: space-between; align-items: center; 
+            padding: 1.2rem 5%; z-index: 1000; 
+            background: transparent;
+            border-bottom: none;
+            font-weight: 400; text-transform: uppercase;
+            transition: background 0.5s ease-in-out, border-bottom 0.5s ease-in-out;
+        }
+        .header-item a, .header-item span { color: var(--color-white); font-size: 15px; letter-spacing: 1px; font-weight: 400; transition: color 0.5s ease-in-out; }
+        .header-logo img { filter: invert(1) brightness(150%); transition: filter 0.5s ease-in-out, transform 0.3s; }
         .header.scrolled { background: var(--color-white); border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
         .header.scrolled .header-item a, .header.scrolled .header-item span { color: var(--color-black); }
         .header.scrolled .header-logo img { filter: none; }
-        .header.scrolled .phone a { color: var(--color-black); }
-        .header.scrolled .route-button { color: var(--color-black); }
         .header-item { display: flex; align-items: center; height: 50px; }
         .header-logo { position: absolute; left: 50%; transform: translateX(-50%); z-index: 10; text-align: center; }
         .header-logo img { height: 40px; }
@@ -87,34 +170,78 @@
         .header-right { order: 3; margin-left: auto; }
         .nav-links-main, .route-button, .phone { display: none; }
         .mobile-icon-circle { display: flex; }
+        
         @media (min-width: 1024px) {
             .header-logo img { height: 55px; }
             .header-left { order: 1; width: 50%; justify-content: flex-start; padding-right: 20%; }
             .header-right { order: 3; width: 50%; justify-content: flex-end; padding-left: 20%; margin-left: 0; gap: 40px; }
-            .nav-links-main { display: flex; gap: 25px; }
+            .nav-links-main { display: flex; gap: 40px; }
             .route-button, .phone { display: flex; align-items: center; gap: 10px; }
             .mobile-icon-circle { display: none; }
         }
-        .nav-links-main a.active-link { color: var(--color-emerald) !important; text-shadow: 0 0 1px var(--color-emerald); }
-        .hero { background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2047&q=80') center center no-repeat; background-size: cover; background-attachment: fixed; }
-        .cta-button-hero { padding: 1rem 3rem; margin-top: 2rem; background-color: var(--color-emerald); color: var(--color-white) !important; border: 2px solid var(--color-emerald); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+
+        .nav-links-main a {
+            position: relative;
+            padding-bottom: 8px;
+        }
+        .nav-links-main a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-white);
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform var(--transition-time) ease;
+        }
+        .nav-links-main a:hover::after {
+            transform: scaleX(1);
+        }
+        .header.scrolled .nav-links-main a::after {
+            background-color: var(--color-black);
+        }
+        
+        .nav-links-main a.active-link {
+            border-bottom: 2px solid var(--color-white);
+        }
+        .header.scrolled .nav-links-main a.active-link {
+            border-bottom-color: var(--color-black);
+        }
+        
+        /* --- ХОВЕР-ЕФЕКТИ ДЛЯ ШАПКИ --- */
+        .phone a:hover, .route-button:hover {
+            color: var(--color-text-secondary) !important;
+        }
+        .header.scrolled .phone a:hover, .header.scrolled .route-button:hover {
+            color: rgba(0, 0, 0, 0.6) !important;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2047&q=80') center center no-repeat;
+            background-size: cover; background-attachment: fixed; 
+        }
+        
         .menu { background-color: var(--color-black); }
         .kitchen { background-color: var(--color-gray-bg); }
         .delivery { background-color: var(--color-black); }
         .rooms { background-color: var(--color-gray-bg); }
         .events { background-color: var(--color-black); }
+
         .main-footer { background-color: var(--color-black); padding: 80px 5% 20px; color: var(--color-white); font-size: 0.9rem; }
         .footer-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px; max-width: 1400px; margin: 0 auto; }
         .footer-logo-block img { height: 60px; filter: invert(1) brightness(150%); margin-bottom: 20px; }
         .social-links { display: flex; gap: 15px; margin: 20px 0; }
         .social-icon { width: 35px; height: 35px; border: 1px solid #444; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: var(--color-white); transition: all 0.3s; }
-        .social-icon:hover { background-color: var(--color-emerald); border-color: var(--color-emerald); }
+        .social-icon:hover { background-color: var(--color-text-secondary); border-color: var(--color-text-secondary); }
         .footer-contact-grid strong { font-size: 1.5rem; display: block; margin-bottom: 5px; color: var(--color-white); }
         .footer-bottom { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; text-align: center; color: #555; display: flex; justify-content: space-between; flex-wrap: wrap; }
         .footer-nav-col ul { list-style: none; padding: 0; margin: 0; }
         .footer-nav-col ul li { margin-bottom: 10px; }
         .footer-nav-col ul li a { color: var(--color-white); text-decoration: none; font-weight: 400; transition: color 0.3s ease; }
-        .footer-nav-col ul li a:hover { color: var(--color-emerald); }
+        .footer-nav-col ul li a:hover { color: var(--color-text-secondary); }
+
     </style>
 </head>
 <body>
@@ -151,7 +278,7 @@
             <div class="hero-content">
                 <h1>ТВОЄ МІСЦЕ СИЛИ У ЛЬВОВІ</h1>
                 <p>КАВ'ЯРНЯ. КУХНЯ. КОВОРКІНГ. ПОДІЇ.</p>
-                <a href="#menu" class="cta-button-hero">ДІЗНАТИСЯ БІЛЬШЕ</a>
+                <a href="#menu" class="cta-button">ДІЗНАТИСЯ БІЛЬШЕ</a>
             </div>
         </section>
 
@@ -160,7 +287,7 @@
              <div class="section-content">
                  <div class="section-text">
                      <h3>Якість Black Honey у кожній чашці</h3>
-                     <p>Ми віримо, що досконалість починається з зерна. Саме тому ми з гордістю співпрацюємо з **Black Honey** — лідерами української кавової сцени. Це партнерство гарантує безкомпромісну якість та найвищі стандарти обсмаження.</p>
+                     <p>Ми віримо, що досконалість починається з зерна. Саме тому ми з гордістю співпрацюємо з Black Honey — лідерами української кавової сцени. Це партнерство гарантує безкомпромісну якість та найвищі стандарти обсмаження.</p>
                      <p>Від ідеально збалансованого еспресо та класичних напоїв до альтернативних методів заварювання — кожен ковток розкриває багатство смаку та нашу відданість кавовій культурі.</p>
                      <a href="https://expz.menu/delivery/cd8b3814-8263-4ce8-8e63-445e8c37e8a4" target="_blank" rel="noopener noreferrer" class="cta-button">Переглянути повне меню</a>
                  </div>
@@ -276,7 +403,6 @@
 
 
     <script>
-        // JS скрипти без змін
         const header = document.querySelector('.header');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 5) { 
