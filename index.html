@@ -8,6 +8,8 @@
     <link rel="shortcut icon" href="media/favicon.ico" type="image/x-icon">
     
     <title>Brooklyn Hub | Кав'ярня, Кухня, Коворкінг та Події у Львові</title>
+    
+    <meta name="robots" content="noindex, nofollow">
     <meta name="description" content="Brooklyn Hub у Львові — це простір, де поєднуються смачна кава від Black Honey, авторська кухня, затишний коворкінг та яскраві події. Ваше місце сили на Малоголосківській.">
     <meta name="keywords" content="кав'ярня Львів, кухня Львів, коворкінг Львів, Brooklyn Hub, Black Honey Львів, мітинг-рум, івенти Львів, сніданки Львів">
 
@@ -129,7 +131,6 @@
             border-radius: 8px;
         }
         
-        /* --- НОВИЙ СТИЛЬ КНОПОК --- */
         .cta-button {
             display: inline-block;
             background-color: var(--color-white);
@@ -166,18 +167,22 @@
         .header-item { display: flex; align-items: center; height: 50px; }
         .header-logo { position: absolute; left: 50%; transform: translateX(-50%); z-index: 10; text-align: center; }
         .header-logo img { height: 40px; }
-        .header-left { order: 1; }
-        .header-right { order: 3; margin-left: auto; }
+        .header-left { order: 1; flex: 1; justify-content: flex-start; }
+        .header-right { order: 3; flex: 1; justify-content: flex-end; }
         .nav-links-main, .route-button, .phone { display: none; }
         .mobile-icon-circle { display: flex; }
         
         @media (min-width: 1024px) {
-            .header-logo img { height: 55px; }
-            .header-left { order: 1; width: 50%; justify-content: flex-start; padding-right: 20%; }
-            .header-right { order: 3; width: 50%; justify-content: flex-end; padding-left: 20%; margin-left: 0; gap: 40px; }
-            .nav-links-main { display: flex; gap: 40px; }
-            .route-button, .phone { display: flex; align-items: center; gap: 10px; }
+            .header-left, .header-right { display: flex; }
             .mobile-icon-circle { display: none; }
+            .nav-links-main { display: flex; gap: 25px; }
+            .route-button, .phone { display: flex; align-items: center; gap: 10px; }
+            .header-right { gap: 30px; }
+        }
+
+        @media (min-width: 1200px) {
+            .nav-links-main { gap: 40px; }
+            .header-right { gap: 40px; }
         }
 
         .nav-links-main a {
@@ -210,7 +215,6 @@
             border-bottom-color: var(--color-black);
         }
         
-        /* --- ХОВЕР-ЕФЕКТИ ДЛЯ ШАПКИ --- */
         .phone a:hover, .route-button:hover {
             color: var(--color-text-secondary) !important;
         }
@@ -219,7 +223,7 @@
         }
 
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2047&q=80') center center no-repeat;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%D%D&auto=format&fit=crop&w=2047&q=80') center center no-repeat;
             background-size: cover; background-attachment: fixed; 
         }
         
