@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brooklyn Hub | Кав'ярня, Коворкінг та Події у Львові</title>
+    <meta name="description" content="Brooklyn Hub у Львові — це простір, де поєднуються смачна кава від Black Honey, авторська кухня, затишний коворкінг та яскраві події. Ваше місце сили на Малоголосківській.">
+    <meta name="keywords" content="кав'ярня Львів, кухня Львів, коворкінг Львів, Brooklyn Hub, Black Honey Львів, мітинг-рум, івенти Львів, сніданки Львів">
+    
+    <title>Brooklyn Hub | Кав'ярня, Кухня, Коворкінг та Події у Львові</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
@@ -15,7 +18,7 @@
         :root {
             --color-black: #000000;
             --color-emerald: #1D5D51;
-            --color-white: #F5F5F5;
+            --color-white: #FFFFFF;
             --color-gray-bg: #0A0A0A;
             --transition-time: 0.5s ease-in-out;
         }
@@ -23,12 +26,89 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
         body { background-color: var(--color-black); color: var(--color-white); line-height: 1.6; overflow-x: hidden; scroll-behavior: smooth; }
 
-        section { padding: 100px 5%; min-height: 90vh; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
+        section { 
+            padding: 100px 5%; 
+            min-height: 90vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center;
+            position: relative; 
+            overflow: hidden; 
+        }
 
         a { text-decoration: none; transition: 0.3s; color: var(--color-black); }
         .header-item a:hover { color: var(--color-emerald) !important; text-shadow: 0 0 1px var(--color-emerald); }
         
-        h2 { font-size: clamp(2.5rem, 6vw, 4.5rem); text-align: center; margin-bottom: 5rem; color: var(--color-emerald); font-weight: 700; letter-spacing: 3px; text-transform: uppercase; }
+        h2 { 
+            font-size: clamp(2.5rem, 6vw, 4.5rem); 
+            text-align: center; 
+            margin-bottom: 5rem; 
+            color: var(--color-white);
+            font-weight: 700; 
+            letter-spacing: 3px; 
+            text-transform: uppercase; 
+        }
+
+        /* Стилі для контентних блоків в секціях */
+        .section-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 50px;
+            align-items: center;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        @media (min-width: 992px) {
+            .section-content {
+                grid-template-columns: 1fr 1fr;
+            }
+            .section-content.reverse .section-text {
+                order: 2;
+            }
+            .section-content.reverse .section-image {
+                order: 1;
+            }
+        }
+
+        .section-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--color-white);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-text p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .section-image {
+            width: 100%;
+            height: 450px;
+            background-color: #333;
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 0.8rem 2.5rem;
+            border: 2px solid var(--color-emerald);
+            color: var(--color-emerald);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: var(--color-emerald);
+            color: var(--color-white);
+        }
 
         /* ================================================= */
         /* 2. ХЕДЕР (HEADER)                                 */
@@ -76,18 +156,19 @@
         /* 3. ГОЛОВНИЙ ЕКРАН (HERO SECTION)                  */
         /* ================================================= */
         .hero {
-            height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2047&q=80') center center no-repeat;
             background-size: cover; background-attachment: fixed; 
         }
         .cta-button-hero { padding: 1rem 3rem; margin-top: 2rem; background-color: var(--color-emerald); color: var(--color-white) !important; border: 2px solid var(--color-emerald); font-weight: 700; text-transform: uppercase; letter-spacing: 1px;}
         
         /* ================================================= */
-        /* 4. СЕКЦІЇ КОНТЕНТУ                              */
+        /* 4. СЕКЦІЇ                                       */
         /* ================================================= */
-        .menu, .rooms, .delivery, .events { min-height: 100vh; }
-        .menu { background-color: var(--color-black); color: var(--color-white); }
-        .rooms { background-color: var(--color-white); color: var(--color-black); }
+        .menu { background-color: var(--color-black); }
+        .kitchen { background-color: var(--color-gray-bg); }
+        .delivery { background-color: var(--color-black); }
+        .rooms { background-color: var(--color-gray-bg); }
+        .events { background-color: var(--color-black); }
 
         /* ================================================= */
         /* 5. ПІДВАЛ (FOOTER)                                */
@@ -114,7 +195,8 @@
         <div class="header-item header-left">
             <a href="#" class="mobile-icon-circle"> <i class="fas fa-bars"></i> </a>
             <nav class="nav-links-main">
-                <a href="#menu">МЕНЮ</a>
+                <a href="#menu">КАВА</a>
+                <a href="#kitchen">КУХНЯ</a>
                 <a href="#delivery">ДОСТАВКА</a>
                 <a href="#rooms" style="white-space: nowrap;">MEETING ROOM</a>
                 <a href="#events">ПОДІЇ</a>
@@ -129,7 +211,7 @@
             <div class="phone">
                 <a href="tel:+380633883737">+38 (063) 388 37 37</a>
             </div>
-            <a href="http://googleusercontent.com/maps.google.com/9" target="_blank" class="route-button">
+            <a href="https://maps.app.goo.gl/yourlink" target="_blank" class="route-button">
                 ПРОКЛАСТИ МАРШРУТ <i class="fas fa-arrow-right"></i>
             </a>
             <a href="tel:+380633883737" class="mobile-icon-circle"> <i class="fas fa-phone"></i> </a>
@@ -140,25 +222,79 @@
         <section class="hero" id="home">
             <div class="hero-content">
                 <h1>ТВОЄ МІСЦЕ СИЛИ У ЛЬВОВІ</h1>
-                <p>КАВ'ЯРНЯ. КОВОРКІНГ. ПОДІЇ. СНІДАНКИ ВЕСЬ ДЕНЬ.</p>
-                <a href="#menu" class="cta-button-hero">ОЗНАЙОМИТИСЬ</a>
+                <p>КАВ'ЯРНЯ. КУХНЯ. КОВОРКІНГ. ПОДІЇ.</p>
+                <a href="#menu" class="cta-button-hero">ДІЗНАТИСЯ БІЛЬШЕ</a>
             </div>
         </section>
 
         <section id="menu" class="menu">
-            <h2>МЕНЮ</h2>
+             <h2>НАША КАВА</h2>
+             <div class="section-content">
+                 <div class="section-text">
+                     <h3>Якість Black Honey у кожній чашці</h3>
+                     <p>Ми віримо, що досконалість починається з зерна. Саме тому ми з гордістю співпрацюємо з **Black Honey** — лідерами української кавової сцени. Це партнерство гарантує безкомпромісну якість та найвищі стандарти обсмаження.</p>
+                     <p>Від ідеально збалансованого еспресо та класичних напоїв до альтернативних методів заварювання — кожен ковток розкриває багатство смаку та нашу відданість кавовій культурі.</p>
+                     <a href="https://expz.menu/delivery/cd8b3814-8263-4ce8-8e63-445e8c37e8a4" target="_blank" rel="noopener noreferrer" class="cta-button">Переглянути повне меню</a>
+                 </div>
+                 <div class="section-image" style="background-image: url('https://images.unsplash.com/photo-1511920183353-3c13545ab3a9?auto=format&fit=crop&w=800&q=80');">
+                 </div>
+             </div>
         </section>
+
+        <section id="kitchen" class="kitchen">
+            <h2>НАША КУХНЯ</h2>
+            <div class="section-content reverse">
+                <div class="section-text">
+                    <h3>Сніданки весь день та авторські страви</h3>
+                    <p>Наша кухня — це ідеальний супровід до вашої улюбленої кави. Ми готуємо сніданки протягом усього дня, бо знаємо, що натхнення не живе за розкладом. </p>
+                    <p>В основі меню — свіжі локальні продукти, збалансовані смаки та сучасний підхід. Скуштуйте наші фірмові сирники, поживні боули або хрусткі сендвічі. Це більше, ніж просто їжа — це енергія для ваших ідей.</p>
+                    <a href="https://expz.menu/delivery/cd8b3814-8263-4ce8-8e63-445e8c37e8a4" target="_blank" rel="noopener noreferrer" class="cta-button">Переглянути меню кухні</a>
+                </div>
+                <div class="section-image" style="background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80');">
+                </div>
+            </div>
+       </section>
 
         <section id="delivery" class="delivery">
             <h2>ДОСТАВКА</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <h3>Смак Brooklyn Hub у вас вдома</h3>
+                    <p>Немає часу завітати? Не проблема. Насолоджуйтесь улюбленими стравами та напоями, де б ви не були. Все наше меню доступне для замовлення через провідні сервіси доставки.</p>
+                    <p>Обирайте зручний для вас і будьте певні: якість, свіжість та смак залишаться незмінними, наче ви сидите за столиком у нашому закладі.</p>
+                    <a href="#" class="cta-button">Замовити доставку</a>
+                </div>
+                <div class="section-image" style="background-image: url('https://images.unsplash.com/photo-1559329022-137353597fe9?auto=format&fit=crop&w=800&q=80');">
+                </div>
+            </div>
         </section>
 
         <section id="rooms" class="rooms">
-            <h2 style="color: var(--color-black);">MEETING ROOM</h2>
+            <h2>MEETING ROOM</h2>
+            <div class="section-content reverse">
+                <div class="section-text">
+                    <h3>Простір для ваших ідей</h3>
+                    <p>Шукаєте ідеальне місце для ділової зустрічі, брейншторму чи важливих переговорів? Наші мітинг-руми — це поєднання комфорту, функціональності та стилю.</p>
+                    <p>Ми забезпечимо вас усім необхідним: від швидкісного Wi-Fi та зручних меблів до професійного обслуговування та, звісно, найкращої кави. Створюйте майбутнє у просторі, що надихає.</p>
+                    <a href="#" class="cta-button">Забронювати</a>
+                </div>
+                <div class="section-image" style="background-image: url('https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=800&q=80');">
+                </div>
+            </div>
         </section>
 
         <section id="events" class="events">
             <h2>ПОДІЇ</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <h3>Центр спільноти та натхнення</h3>
+                    <p>Brooklyn Hub — це не просто кав'ярня, а точка тяжіння для креативних та активних людей. Ми регулярно проводимо лекції, воркшопи, презентації та неформальні зустрічі, що об'єднують нашу спільноту.</p>
+                    <p>Слідкуйте за нашими анонсами в соціальних мережах, щоб не пропустити найцікавіше. Станьте частиною ком'юніті, що розвивається та надихає.</p>
+                     <a href="#" class="cta-button">Календар подій</a>
+                </div>
+                <div class="section-image" style="background-image: url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80');">
+                </div>
+            </div>
         </section>
 
     </main>
@@ -188,7 +324,8 @@
             <div class="footer-col footer-nav-col">
                 <h4>Загальні розділи</h4>
                 <ul>
-                    <li><a href="#menu">МЕНЮ</a></li>
+                    <li><a href="#menu">КАВА</a></li>
+                    <li><a href="#kitchen">КУХНЯ</a></li>
                     <li><a href="#delivery">ДОСТАВКА</a></li>
                     <li><a href="#rooms">MEETING ROOM</a></li>
                     <li><a href="#events">ПОДІЇ</a></li>
