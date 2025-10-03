@@ -11,6 +11,7 @@
     <meta name="description" content="Brooklyn Hub у Львові — це простір, де поєднуються смачна кава від Black Honey, авторська кухня, затишний коворкінг та яскраві події. Ваше місце сили на Малоголосківській.">
     <meta name="keywords" content="кав'ярня Львів, кухня Львів, коворкінг Львів, Brooklyn Hub, Black Honey Львів, мітинг-рум, івенти Львів, сніданки Львів">
 
+    <meta name="robots" content="noindex, nofollow">
     <link rel="canonical" href="https://www.yourwebsite.com" />
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.yourwebsite.com">
@@ -45,6 +46,7 @@
       "image": "https://www.yourwebsite.com/og-image.jpg"
     }
     </script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
@@ -62,7 +64,7 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
         body { background-color: var(--color-black); color: var(--color-white); line-height: 1.6; overflow-x: hidden; scroll-behavior: smooth; }
-        body.no-scroll { overflow: hidden; } /* Клас для блокування скролу */
+        body.no-scroll { overflow: hidden; }
 
         section { 
             padding: 120px 5%; 
@@ -217,49 +219,27 @@
         .phone a:hover, .route-button:hover { color: var(--color-text-secondary) !important; }
         .header.scrolled .phone a:hover, .header.scrolled .route-button:hover { color: rgba(0, 0, 0, 0.6) !important; }
 
-        /* --- СТИЛІ ДЛЯ МОБІЛЬНОГО МЕНЮ --- */
         .mobile-nav-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
             background-color: rgba(10, 10, 10, 0.98);
             z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            visibility: hidden;
+            display: flex; justify-content: center; align-items: center;
+            opacity: 0; visibility: hidden;
             transition: opacity 0.5s ease, visibility 0s 0.5s linear;
         }
-        .mobile-nav-overlay.open {
-            opacity: 1;
-            visibility: visible;
-            transition: opacity 0.5s ease;
-        }
-        .mobile-nav-close {
-            position: absolute;
-            top: 25px;
-            right: 5%;
-            font-size: 2rem;
-            color: var(--color-white);
-            cursor: pointer;
-        }
+        .mobile-nav-overlay.open { opacity: 1; visibility: visible; transition: opacity 0.5s ease; }
+        .mobile-nav-close { position: absolute; top: 25px; right: 5%; font-size: 2rem; color: var(--color-white); cursor: pointer; }
         .mobile-nav-links a {
-            display: block;
-            color: var(--color-white);
+            display: block; color: var(--color-white);
             font-size: clamp(1.5rem, 6vw, 2rem);
-            text-transform: uppercase;
-            text-align: center;
+            text-transform: uppercase; text-align: center;
             margin: 25px 0;
             transition: color 0.3s ease;
         }
-        .mobile-nav-links a:hover {
-            color: var(--color-text-secondary);
-        }
+        .mobile-nav-links a:hover { color: var(--color-text-secondary); }
 
-        .hero { background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2047&q=80') center center no-repeat; background-size: cover; background-attachment: fixed; }
+        .hero { background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1497515114629-48644e54800b?auto=format&fit=crop&w=1740&q=80') center center no-repeat; background-size: cover; }
         .menu { background-color: var(--color-black); }
         .kitchen { background-color: var(--color-gray-bg); }
         .delivery { background-color: var(--color-black); }
@@ -301,10 +281,10 @@
             <div class="phone">
                 <a href="tel:+380633883737">+38 (063) 388 37 37</a>
             </div>
-            <a href="https://maps.app.goo.gl/uX3L5hY8gWhn2b2o9" target="_blank" class="route-button">
+            <a href="https://maps.app.goo.gl/FnrBnZLPMEKzx9RLA" target="_blank" class="route-button">
                 ПРОКЛАСТИ МАРШРУТ <i class="fas fa-arrow-right"></i>
             </a>
-            <a href="https://maps.app.goo.gl/uX3L5hY8gWhn2b2o9" target="_blank" rel="noopener noreferrer" class="mobile-icon-circle"> <i class="fas fa-directions"></i> </a>
+            <a href="https://maps.app.goo.gl/FnrBnZLPMEKzx9RLA" target="_blank" rel="noopener noreferrer" class="mobile-icon-circle"> <i class="fas fa-directions"></i> </a>
             <a href="tel:+380633883737" class="mobile-icon-circle"> <i class="fas fa-phone"></i> </a>
         </div>
     </header>
@@ -338,7 +318,7 @@
                      <p>Від ідеально збалансованого еспресо та класичних напоїв до альтернативних методів заварювання — кожен ковток розкриває багатство смаку та нашу відданість кавовій культурі.</p>
                      <a href="https://expz.menu/delivery/cd8b3814-8263-4ce8-8e63-445e8c37e8a4" target="_blank" rel="noopener noreferrer" class="cta-button">Переглянути повне меню</a>
                  </div>
-                 <div class="section-image" style="background-image: url('https://images.unsplash.com/photo-1511920183353-3c13545ab3a9?auto=format&fit=crop&w=800&q=80');">
+                 <div class="section-image" style="background-image: url('https://images.unsplash.com/photo-1572442382424-9484074c7425?auto=format&fit=crop&w=800&q=80');">
                  </div>
              </div>
         </section>
@@ -352,7 +332,7 @@
                     <p>В основі меню — свіжі локальні продукти, збалансовані смаки та сучасний підхід. Скуштуйте наші фірмові сирники, поживні боули або хрусткі сендвічі. Це більше, ніж просто їжа — це енергія для ваших ідей.</p>
                     <a href="https://expz.menu/delivery/cd8b3814-8263-4ce8-8e63-445e8c37e8a4" target="_blank" rel="noopener noreferrer" class="cta-button">Переглянути меню кухні</a>
                 </div>
-                <div class="section-image" style="background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80');">
+                <div class="section-image" style="background-image: url('https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80');">
                 </div>
             </div>
        </section>
@@ -366,7 +346,7 @@
                     <p>Обирайте зручний для вас і будьте певні: якість, свіжість та смак залишаться незмінними, наче ви сидите за столиком у нашому закладі.</p>
                     <a href="#" class="cta-button">Замовити доставку</a>
                 </div>
-                <div class="section-image" style="background-image: url('https://images.unsplash.com/photo-1559329022-137353597fe9?auto=format&fit=crop&w=800&q=80');">
+                <div class="section-image" style="background-image: url('https://images.unsplash.com/photo-1611239920159-4447e5b56b29?auto=format&fit=crop&w=800&q=80');">
                 </div>
             </div>
         </section>
@@ -380,7 +360,7 @@
                     <p>Ми забезпечимо вас усім необхідним: від швидкісного Wi-Fi та зручних меблів до професійного обслуговування та, звісно, найкращої кави. Створюйте майбутнє у просторі, що надихає.</p>
                     <a href="#" class="cta-button">Забронювати</a>
                 </div>
-                <div class="section-image" style="background-image: url('https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=800&q=80');">
+                <div class="section-image" style="background-image: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80');">
                 </div>
             </div>
         </section>
@@ -394,7 +374,7 @@
                     <p>Слідкуйте за нашими анонсами в соціальних мережах, щоб не пропустити найцікавіше. Станьте частиною ком'юніті, що розвивається та надихає.</p>
                      <a href="#" class="cta-button">Календар подій</a>
                 </div>
-                <div class="section-image" style="background-image: url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80');">
+                <div class="section-image" style="background-image: url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=800&q=80');">
                 </div>
             </div>
         </section>
@@ -407,10 +387,9 @@
                 <img src="media/Безымянный-2.svg" alt="Логотип Brooklyn Hub у підвалі сайту" loading="lazy">
                 <p>м. Львів, вул. Малоголосківська, 19, Україна, 79061</p>
                 <div class="social-links">
-                    <a href="https://www.facebook.com/brooklynhublviv" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
                     <a href="https://www.instagram.com/brooklynhublviv/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
                     <a href="https://t.me/brooklynhublviv" target="_blank" class="social-icon"><i class="fab fa-telegram-plane"></i></a>
-                    <a href="#" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.tiktok.com/@brooklynhublviv" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
                 </div>
             </div>
 
@@ -450,7 +429,6 @@
 
 
     <script>
-        // "Розумний" хедер
         const header = document.querySelector('.header');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 5) { 
@@ -459,8 +437,6 @@
                 header.classList.remove('scrolled');
             }
         });
-        
-        // Активна навігація при скролі
         const sections = document.querySelectorAll('main section');
         const navLinks = document.querySelectorAll('.nav-links-main a');
         const options = { root: null, threshold: 0.35, rootMargin: '0px 0px -50% 0px' };
@@ -478,8 +454,6 @@
             });
         }, options);
         sections.forEach(section => { sectionObserver.observe(section); });
-
-        // Плавний скрол
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 if (this.getAttribute('href').length > 1 && document.querySelector(this.getAttribute('href'))) {
@@ -489,7 +463,6 @@
             });
         });
 
-        // --- НОВА ЛОГІКА ДЛЯ МОБІЛЬНОГО МЕНЮ ---
         const openNavBtn = document.getElementById('open-nav-btn');
         const closeNavBtn = document.getElementById('close-nav-btn');
         const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
@@ -510,7 +483,6 @@
         mobileNavLinks.forEach(link => {
             link.addEventListener('click', closeNav);
         });
-
     </script>
 </body>
 </html>
