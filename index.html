@@ -18,11 +18,6 @@
     <meta property="og:title" content="Brooklyn Hub | Кав'ярня, Кухня, Коворкінг у Львові">
     <meta property="og:description" content="Ваше місце сили на Малоголосківській. Кава від Black Honey, авторська кухня, мітинг-руми та події.">
     <meta property="og:image" content="https://www.yourwebsite.com/og-image.jpg">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://www.yourwebsite.com">
-    <meta name="twitter:title" content="Brooklyn Hub | Кав'ярня, Кухня, Коворкінг у Львові">
-    <meta name="twitter:description" content="Ваше місце сили на Малоголосківській. Кава від Black Honey, авторська кухня, мітинг-руми та події.">
-    <meta name="twitter:image" content="https://www.yourwebsite.com/og-image.jpg">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -53,6 +48,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
     <style>
         :root {
             --color-black: #000000;
@@ -67,98 +64,35 @@
         body.no-scroll { overflow: hidden; }
 
         section { 
-            padding: 120px 5%; 
-            min-height: 90vh; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center;
-            position: relative; 
-            overflow: hidden; 
+            padding: 120px 5%; min-height: 90vh; display: flex; flex-direction: column; 
+            justify-content: center; align-items: center; position: relative; overflow: hidden; 
         }
 
         a { text-decoration: none; transition: color var(--transition-time) ease; }
-        
-        h2 { 
-            font-size: clamp(2.5rem, 6vw, 4.5rem); 
-            text-align: center; 
-            margin-bottom: 5rem; 
-            color: var(--color-white);
-            font-weight: 700; 
-            letter-spacing: 3px; 
-            text-transform: uppercase; 
-        }
+        h2 { font-size: clamp(2.5rem, 6vw, 4.5rem); text-align: center; margin-bottom: 5rem; color: var(--color-white); font-weight: 700; letter-spacing: 3px; text-transform: uppercase; }
 
-        .section-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 60px;
-            align-items: center;
-            max-width: 1200px;
-            width: 100%;
-        }
+        .section-content { display: grid; grid-template-columns: 1fr; gap: 60px; align-items: center; max-width: 1200px; width: 100%; }
 
         @media (min-width: 992px) {
-            .section-content {
-                grid-template-columns: 1fr 1fr;
-            }
+            .section-content { grid-template-columns: 1fr 1fr; }
             .section-content.reverse .section-text { order: 2; }
-            .section-content.reverse .section-image { order: 1; }
+            .section-content.reverse .section-image-wrapper { order: 1; }
         }
 
-        .section-text h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            color: var(--color-white);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1.5rem;
-        }
-
-        .section-text p {
-            font-size: 1.1rem;
-            color: var(--color-text-secondary);
-            margin-bottom: 2.5rem;
-            max-width: 500px;
-        }
-
-        .section-image {
-            width: 100%;
-            height: 450px;
-            background-color: #333;
-            background-size: cover;
-            background-position: center;
-            border-radius: 8px;
-        }
+        .section-text h3 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.5rem, 4vw, 2rem); color: var(--color-white); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; }
+        .section-text p { font-size: 1.1rem; color: var(--color-text-secondary); margin-bottom: 2.5rem; max-width: 500px; }
         
         .cta-button {
-            display: inline-block;
-            background-color: var(--color-white);
-            color: var(--color-black) !important;
-            padding: 0.9rem 2.8rem;
-            border-radius: 5px;
-            border: 2px solid var(--color-white);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            transition: all var(--transition-time) ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: inline-block; background-color: var(--color-white); color: var(--color-black) !important; padding: 0.9rem 2.8rem;
+            border-radius: 5px; border: 2px solid var(--color-white); font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1.5px; transition: all var(--transition-time) ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
-        .cta-button:hover {
-            background-color: transparent;
-            color: var(--color-white) !important;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-        }
+        .cta-button:hover { background-color: transparent; color: var(--color-white) !important; transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); }
 
         .header {
             position: fixed; width: 100%; display: flex; align-items: center; 
-            padding: 1.2rem 5%; z-index: 1000; 
-            background: transparent;
-            border-bottom: none;
-            font-weight: 400; text-transform: uppercase;
-            transition: background 0.5s ease-in-out, border-bottom 0.5s ease-in-out;
+            padding: 1.2rem 5%; z-index: 1000; background: transparent; border-bottom: none;
+            font-weight: 400; text-transform: uppercase; transition: background 0.5s ease-in-out, border-bottom 0.5s ease-in-out;
         }
         .header-item { display: flex; align-items: center; height: 50px; }
         .header-item a, .header-item span { color: var(--color-white); font-size: 15px; letter-spacing: 1px; font-weight: 400; transition: color 0.5s ease-in-out; }
@@ -168,17 +102,16 @@
         .header.scrolled .header-logo img { filter: none; }
         
         .header { justify-content: space-between; }
+        .header-left, .header-right { flex-basis: 30%; }
+        .header-left { display: flex; justify-content: flex-start; }
+        .header-right { display: flex; justify-content: flex-end; gap: 20px; }
         .header-logo {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-            text-align: center;
+            position: absolute; left: 50%; transform: translateX(-50%);
+            z-index: 10; text-align: center;
         }
         .header-logo img { height: 40px; }
-        .header-right { gap: 15px; }
         .nav-links-main, .route-button, .phone { display: none; }
-        .mobile-icon-circle { display: flex; font-size: 1.2rem; cursor: pointer; }
+        .mobile-icon-circle { display: flex; font-size: 1.5rem; cursor: pointer; }
 
         @media (min-width: 1024px) {
             .header {
@@ -187,7 +120,7 @@
                 gap: 20px;
             }
             .header-logo { position: static; transform: none; }
-            .header-left, .header-right { display: flex; }
+            .header-left, .header-right { display: flex; flex-basis: auto; }
             .header-left { justify-content: flex-start; }
             .header-right { justify-content: flex-end; }
             .mobile-icon-circle { display: none; }
@@ -201,17 +134,8 @@
             .header-right { gap: 40px; }
         }
 
-        .nav-links-main a {
-            position: relative;
-            padding-bottom: 8px;
-            border-bottom: 2px solid transparent;
-        }
-        .nav-links-main a::after {
-            content: ''; position: absolute; bottom: -2px; left: 0;
-            width: 100%; height: 2px; background-color: var(--color-white);
-            transform: scaleX(0); transform-origin: center;
-            transition: transform var(--transition-time) ease;
-        }
+        .nav-links-main a { position: relative; padding-bottom: 8px; border-bottom: 2px solid transparent; }
+        .nav-links-main a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 100%; height: 2px; background-color: var(--color-white); transform: scaleX(0); transform-origin: center; transition: transform var(--transition-time) ease; }
         .nav-links-main a:not(.active-link):hover::after { transform: scaleX(1); }
         .header.scrolled .nav-links-main a::after { background-color: var(--color-black); }
         .nav-links-main a.active-link { border-bottom-color: var(--color-white); }
@@ -219,24 +143,10 @@
         .phone a:hover, .route-button:hover { color: var(--color-text-secondary) !important; }
         .header.scrolled .phone a:hover, .header.scrolled .route-button:hover { color: rgba(0, 0, 0, 0.6) !important; }
 
-        .mobile-nav-overlay {
-            position: fixed; top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-color: rgba(10, 10, 10, 0.98);
-            z-index: 9999;
-            display: flex; justify-content: center; align-items: center;
-            opacity: 0; visibility: hidden;
-            transition: opacity 0.5s ease, visibility 0s 0.5s linear;
-        }
+        .mobile-nav-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(10, 10, 10, 0.98); z-index: 9999; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: opacity 0.5s ease, visibility 0s 0.5s linear; }
         .mobile-nav-overlay.open { opacity: 1; visibility: visible; transition: opacity 0.5s ease; }
         .mobile-nav-close { position: absolute; top: 25px; right: 5%; font-size: 2rem; color: var(--color-white); cursor: pointer; }
-        .mobile-nav-links a {
-            display: block; color: var(--color-white);
-            font-size: clamp(1.5rem, 6vw, 2rem);
-            text-transform: uppercase; text-align: center;
-            margin: 25px 0;
-            transition: color 0.3s ease;
-        }
+        .mobile-nav-links a { display: block; color: var(--color-white); font-size: clamp(1.5rem, 6vw, 2rem); text-transform: uppercase; text-align: center; margin: 25px 0; transition: color 0.3s ease; }
         .mobile-nav-links a:hover { color: var(--color-text-secondary); }
 
         .hero { background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1497515114629-48644e54800b?auto=format&fit=crop&w=1740&q=80') center center no-repeat; background-size: cover; }
@@ -245,6 +155,7 @@
         .delivery { background-color: var(--color-black); }
         .rooms { background-color: var(--color-gray-bg); }
         .events { background-color: var(--color-black); }
+        
         .main-footer { background-color: var(--color-black); padding: 80px 5% 20px; color: var(--color-white); font-size: 0.9rem; }
         .footer-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px; max-width: 1400px; margin: 0 auto; }
         .footer-logo-block img { height: 60px; filter: invert(1) brightness(150%); margin-bottom: 20px; }
@@ -257,6 +168,67 @@
         .footer-nav-col ul li { margin-bottom: 10px; }
         .footer-nav-col ul li a { color: var(--color-white); text-decoration: none; font-weight: 400; transition: color 0.3s ease; }
         .footer-nav-col ul li a:hover { color: var(--color-text-secondary); }
+
+        .section-image-wrapper {
+            width: 100%;
+            min-height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .section-image {
+            width: 100%;
+            height: 450px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+        }
+        .swiper {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            position: relative;
+        }
+        .product-card {
+            background-color: var(--color-gray-bg);
+            border: 1px solid #222;
+            border-radius: 8px;
+            overflow: hidden;
+            color: var(--color-white);
+        }
+        .card-image img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+        .card-content {
+            padding: 25px;
+        }
+        .card-content h4 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .card-content p {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+        }
+        .card-price {
+            display: block;
+            margin-top: 15px;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .swiper-pagination-bullet {
+            background-color: rgba(255, 255, 255, 0.5);
+            width: 10px;
+            height: 10px;
+            opacity: 1;
+        }
+        .swiper-pagination-bullet-active {
+            background-color: var(--color-white);
+        }
     </style>
 </head>
 <body>
@@ -314,11 +286,46 @@
              <div class="section-content">
                  <div class="section-text">
                      <h3>Якість Black Honey у кожній чашці</h3>
-                     <p>Ми віримо, що досконалість починається з зерна. Саме тому ми з гордістю співпрацюємо з Black Honey — лідерами української кавової сцени. Це партнерство гарантує безкомпромісну якість та найвищі стандарти обсмаження.</p>
-                     <p>Від ідеально збалансованого еспресо та класичних напоїв до альтернативних методів заварювання — кожен ковток розкриває багатство смаку та нашу відданість кавовій культурі.</p>
-                     <a href="https://expz.menu/delivery/cd8b3814-8263-4ce8-8e63-445e8c37e8a4" target="_blank" rel="noopener noreferrer" class="cta-button">Переглянути повне меню</a>
+                     <p>Ми віримо, що досконалість починається з зерна. Саме тому ми з гордістю співпрацюємо з Black Honey — лідерами української кавової сцени.</p>
+                     <p>Наші бариста розкривають багатство смаку в кожному напої: від класики до альтернативних методів заварювання. Поруч ви можете побачити декілька наших хітів.</p>
+                     <a href="https://expz.menu/delivery/cd8b3814-8263-4ce8-8e63-445e8c37e8a4" target="_blank" rel="noopener noreferrer" class="cta-button">Повне меню</a>
                  </div>
-                 <div class="section-image" style="background-image: url('https://images.unsplash.com/photo-1572442382424-9484074c7425?auto=format&fit=crop&w=800&q=80');">
+                 <div class="section-image-wrapper">
+                    <div class="swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="product-card">
+                                    <div class="card-image"><img src="https://static.shaketopay.com.ua/menu-prod/dish-1423579.jpg?t=1757509761631" alt="Капучино"></div>
+                                    <div class="card-content">
+                                        <h4>Капучино</h4>
+                                        <p>Ідеальний баланс еспресо, молока та ніжної молочної піни.</p>
+                                        <span class="card-price">85 грн</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="product-card">
+                                    <div class="card-image"><img src="https://static.shaketopay.com.ua/menu-prod/dish-1426763.jpg?t=1757509982676" alt="Флет-вайт"></div>
+                                    <div class="card-content">
+                                        <h4>Флет-вайт</h4>
+                                        <p>Подвійний шот еспресо та оксамитова текстура молока.</p>
+                                        <span class="card-price">95 грн</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="product-card">
+                                    <div class="card-image"><img src="https://static.shaketopay.com.ua/menu-prod/dish-1426984.jpg?t=1757584583789" alt="V60"></div>
+                                    <div class="card-content">
+                                        <h4>V60</h4>
+                                        <p>Чистий та багатогранний смак кави, завареної вручну.</p>
+                                        <span class="card-price">120 грн</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
                  </div>
              </div>
         </section>
@@ -329,10 +336,45 @@
                 <div class="section-text">
                     <h3>Сніданки весь день та авторські страви</h3>
                     <p>Наша кухня — це ідеальний супровід до вашої улюбленої кави. Ми готуємо сніданки протягом усього дня, бо знаємо, що натхнення не живе за розкладом. </p>
-                    <p>В основі меню — свіжі локальні продукти, збалансовані смаки та сучасний підхід. Скуштуйте наші фірмові сирники, поживні боули або хрусткі сендвічі. Це більше, ніж просто їжа — це енергія для ваших ідей.</p>
+                    <p>В основі меню — свіжі локальні продукти, збалансовані смаки та сучасний підхід. Скуштуйте наші фірмові страви, що стали хітами.</p>
                     <a href="https://expz.menu/delivery/cd8b3814-8263-4ce8-8e63-445e8c37e8a4" target="_blank" rel="noopener noreferrer" class="cta-button">Переглянути меню кухні</a>
                 </div>
-                <div class="section-image" style="background-image: url('https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80');">
+                <div class="section-image-wrapper">
+                    <div class="swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="product-card">
+                                    <div class="card-image"><img src="https://static.shaketopay.com.ua/menu-prod/dish-1408790.jpg?t=1757327759419" alt="Сніданок з авокадо та лососем"></div>
+                                    <div class="card-content">
+                                        <h4>Сніданок з авокадо та лососем</h4>
+                                        <p>Класичний ситний сніданок, що надасть енергії на весь день.</p>
+                                        <span class="card-price">270 грн</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="product-card">
+                                    <div class="card-image"><img src="https://static.shaketopay.com.ua/menu-prod/dish-1417882.jpg?t=1757327642157" alt="Сирники з ягодами"></div>
+                                    <div class="card-content">
+                                        <h4>Сирники з ягодами</h4>
+                                        <p>Ніжні сирники з домашнім ягідним соусом та сметаною.</p>
+                                        <span class="card-price">255 грн</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="product-card">
+                                    <div class="card-image"><img src="https://static.shaketopay.com.ua/menu-prod/dish-1408785.jpg?t=1758369951111" alt="Паста з креветками"></div>
+                                    <div class="card-content">
+                                        <h4>Паста з креветками</h4>
+                                        <p>Вершкова паста з тигровими креветками та ноткою часнику.</p>
+                                        <span class="card-price">355 грн</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
                 </div>
             </div>
        </section>
@@ -346,7 +388,8 @@
                     <p>Обирайте зручний для вас і будьте певні: якість, свіжість та смак залишаться незмінними, наче ви сидите за столиком у нашому закладі.</p>
                     <a href="#" class="cta-button">Замовити доставку</a>
                 </div>
-                <div class="section-image" style="background-image: url('https://images.unsplash.com/photo-1611239920159-4447e5b56b29?auto=format&fit=crop&w=800&q=80');">
+                <div class="section-image-wrapper">
+                    <div class="section-image" style="background-image: url('https://ibf.ua//uploads/fm/images/rthrt.png');"></div>
                 </div>
             </div>
         </section>
@@ -360,7 +403,8 @@
                     <p>Ми забезпечимо вас усім необхідним: від швидкісного Wi-Fi та зручних меблів до професійного обслуговування та, звісно, найкращої кави. Створюйте майбутнє у просторі, що надихає.</p>
                     <a href="#" class="cta-button">Забронювати</a>
                 </div>
-                <div class="section-image" style="background-image: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80');">
+                <div class="section-image-wrapper">
+                    <div class="section-image" style="background-image: url('https://blog.spacematrix.com/wp-content/uploads/2024/06/phone-booths-office-design.jpg');"></div>
                 </div>
             </div>
         </section>
@@ -371,10 +415,41 @@
                 <div class="section-text">
                     <h3>Центр спільноти та натхнення</h3>
                     <p>Brooklyn Hub — це не просто кав'ярня, а точка тяжіння для креативних та активних людей. Ми регулярно проводимо лекції, воркшопи, презентації та неформальні зустрічі, що об'єднують нашу спільноту.</p>
-                    <p>Слідкуйте за нашими анонсами в соціальних мережах, щоб не пропустити найцікавіше. Станьте частиною ком'юніті, що розвивається та надихає.</p>
                      <a href="#" class="cta-button">Календар подій</a>
                 </div>
-                <div class="section-image" style="background-image: url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=800&q=80');">
+                <div class="section-image-wrapper">
+                    <div class="swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="product-card">
+                                    <div class="card-image"><img src="https://images.unsplash.com/photo-1535016120720-40c646be5580?auto=format&fit=crop&w=800&q=80" alt="Показ фільму"></div>
+                                    <div class="card-content">
+                                        <h4>Показ фільму</h4>
+                                        <p>Затишні вечори з класикою кіно та авторськими коктейлями.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="product-card">
+                                    <div class="card-image"><img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80" alt="Жива музика"></div>
+                                    <div class="card-content">
+                                        <h4>Жива музика</h4>
+                                        <p>Акустичні вечори з місцевими та запрошеними виконавцями.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="product-card">
+                                    <div class="card-image"><img src="https://static.probusiness.io/n/0f/0/andrey_fedoriv_bid_2.jpg" alt="Майстер-класи"></div>
+                                    <div class="card-content">
+                                        <h4>Майстер-класи</h4>
+                                        <p>Навчальні воркшопи від експертів у різних сферах — від кави до IT.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -428,6 +503,7 @@
     </footer>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         const header = document.querySelector('.header');
         window.addEventListener('scroll', () => {
@@ -480,8 +556,23 @@
 
         openNavBtn.addEventListener('click', openNav);
         closeNavBtn.addEventListener('click', closeNav);
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', closeNav);
+        mobileNavLinks.forEach(link => { link.addEventListener('click', closeNav); });
+
+        // Ініціалізація всіх слайдерів на сторінці
+        document.querySelectorAll('.swiper').forEach(function(swiperElement) {
+            new Swiper(swiperElement, {
+                loop: true,
+                slidesPerView: 1,
+                spaceBetween: 30,
+                pagination: {
+                    el: swiperElement.querySelector('.swiper-pagination'),
+                    clickable: true,
+                },
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+            });
         });
     </script>
 </body>
