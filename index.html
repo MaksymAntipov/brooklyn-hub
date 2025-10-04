@@ -63,6 +63,10 @@
         body { background-color: var(--color-black); color: var(--color-white); line-height: 1.6; overflow-x: hidden; scroll-behavior: smooth; }
         body.no-scroll { overflow: hidden; }
 
+        body, a, button, .swiper-pagination-bullet, .mobile-icon-circle {
+             cursor: none;
+        }
+
         section { 
             padding: 120px 5%; min-height: 90vh; display: flex; flex-direction: column; 
             justify-content: center; align-items: center; position: relative; overflow: hidden; 
@@ -221,9 +225,66 @@
         .card-price { display: block; margin-top: 15px; font-size: 1.5rem; font-weight: 700; }
         .swiper-pagination-bullet { background-color: rgba(255, 255, 255, 0.5); width: 10px; height: 10px; opacity: 1; }
         .swiper-pagination-bullet-active { background-color: var(--color-white); }
+        
+        /* === СТИЛИ ДЛЯ КАСТОМНОГО КУРСОРА - НАЧАЛО === */
+        .cursor-dot, .cursor-outline {
+            pointer-events: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            border-radius: 50%;
+            opacity: 0;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+            transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--color-white);
+            transition-property: transform, background-color;
+            transition-duration: 0.2s;
+            transition-timing-function: ease-out;
+        }
+
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            transition-property: top, left, transform, opacity, border-color;
+            /* ИЗМЕНЕНО: Уменьшено время для еще более быстрого следования */
+            transition-duration: 0.03s, 0.03s, 0.2s, 0.2s, 0.2s;
+            transition-timing-function: ease-out;
+        }
+        
+        body.cursor-hover .cursor-outline {
+            transform: translate(-50%, -50%) scale(1.5);
+            border-color: rgba(255, 255, 255, 0.8);
+        }
+        
+        body.cursor-hover .cursor-dot {
+            transform: translate(-50%, -50%) scale(0.5);
+        }
+
+        body.cursor-inverted .cursor-dot {
+            background-color: var(--color-black);
+        }
+        
+        body.cursor-inverted .cursor-outline {
+            border-color: rgba(0, 0, 0, 0.5);
+        }
+
+        body.cursor-inverted.cursor-hover .cursor-outline {
+            border-color: rgba(0, 0, 0, 0.8);
+        }
+        /* === СТИЛИ ДЛЯ КАСТОМНОГО КУРСОРА - КОНЕЦ === */
     </style>
 </head>
 <body>
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
     
     <header class="header">
         <div class="header-item header-left">
@@ -232,7 +293,7 @@
                 <a href="#menu">КАВА</a>
                 <a href="#kitchen">КУХНЯ</a>
                 <a href="#delivery">ДОСТАВКА</a>
-                <a href="#rooms" style="white-space: nowrap;">MEETING ROOM</a>
+                <a href="#rooms">MEETING ROOM</a>
                 <a href="#events">ПОДІЇ</a>
             </nav>
         </div>
@@ -450,7 +511,6 @@
                 </div>
             </div>
         </section>
-
     </main>
 
     <footer class="main-footer">
@@ -498,14 +558,19 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
+        // === ОСНОВНОЙ СКРИПТ САЙТА - НАЧАЛО ===
         const header = document.querySelector('.header');
+        const body = document.body; 
+
         window.addEventListener('scroll', () => {
             if (window.scrollY > 5) { 
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
+                body.classList.remove('cursor-inverted');
             }
         });
+
         const sections = document.querySelectorAll('main section');
         const navLinks = document.querySelectorAll('.nav-links-main a');
         const options = { root: null, threshold: 0.35, rootMargin: '0px 0px -50% 0px' };
@@ -523,6 +588,7 @@
             });
         }, options);
         sections.forEach(section => { sectionObserver.observe(section); });
+        
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 if (this.getAttribute('href').length > 1 && document.querySelector(this.getAttribute('href'))) {
@@ -531,6 +597,7 @@
                 }
             });
         });
+        
         const openNavBtn = document.getElementById('open-nav-btn');
         const closeNavBtn = document.getElementById('close-nav-btn');
         const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
@@ -561,6 +628,59 @@
                 },
             });
         });
+        // === ОСНОВНОЙ СКРИПТ САЙТА - КОНЕЦ ===
+
+
+        // === СКРИПТ ДЛЯ КАСТОМНОГО КУРСОРА - НАЧАЛО ===
+        document.addEventListener('DOMContentLoaded', () => {
+            if ('ontouchstart' in window) {
+                return;
+            }
+
+            const cursorDot = document.querySelector('.cursor-dot');
+            const cursorOutline = document.querySelector('.cursor-outline');
+
+            window.addEventListener('mousemove', (e) => {
+                const posX = e.clientX;
+                const posY = e.clientY;
+
+                cursorDot.style.left = `${posX}px`;
+                cursorDot.style.top = `${posY}px`;
+                cursorOutline.style.left = `${posX}px`;
+                cursorOutline.style.top = `${posY}px`;
+
+                cursorDot.style.opacity = '1';
+                cursorOutline.style.opacity = '1';
+            });
+
+            const interactiveElements = document.querySelectorAll('a, button, .cta-button, .swiper-pagination-bullet, .mobile-icon-circle, .social-icon, .mobile-nav-close');
+            
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseover', () => body.classList.add('cursor-hover'));
+                el.addEventListener('mouseout', () => body.classList.remove('cursor-hover'));
+            });
+
+            header.addEventListener('mouseenter', () => {
+                if(header.classList.contains('scrolled')) {
+                    body.classList.add('cursor-inverted');
+                }
+            });
+            header.addEventListener('mouseleave', () => {
+                body.classList.remove('cursor-inverted');
+            });
+
+            document.addEventListener('mouseleave', () => {
+                cursorDot.style.opacity = '0';
+                cursorOutline.style.opacity = '0';
+            });
+
+            document.addEventListener('mouseenter', () => {
+                cursorDot.style.opacity = '1';
+                cursorOutline.style.opacity = '1';
+            });
+        });
+        // === СКРИПТ ДЛЯ КАСТОМНОГО КУРСОРА - КОНЕЦ ===
+
     </script>
 </body>
 </html>
