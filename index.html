@@ -149,7 +149,48 @@
         .mobile-nav-links a { display: block; color: var(--color-white); font-size: clamp(1.5rem, 6vw, 2rem); text-transform: uppercase; text-align: center; margin: 25px 0; transition: color 0.3s ease; }
         .mobile-nav-links a:hover { color: var(--color-text-secondary); }
 
-        .hero { background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1497515114629-48644e54800b?auto=format&fit=crop&w=1740&q=80') center center no-repeat; background-size: cover; }
+        .hero { text-align: center; position: relative; }
+        .hero-background-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: cover;
+            z-index: 1;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 2;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 3;
+        }
+        .hero-content h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.75rem, 5.6vw, 3.5rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        .hero-content p {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-text-secondary);
+            margin-bottom: 3rem;
+        }
+        
         .menu { background-color: var(--color-black); }
         .kitchen { background-color: var(--color-gray-bg); }
         .delivery { background-color: var(--color-black); }
@@ -169,66 +210,17 @@
         .footer-nav-col ul li a { color: var(--color-white); text-decoration: none; font-weight: 400; transition: color 0.3s ease; }
         .footer-nav-col ul li a:hover { color: var(--color-text-secondary); }
 
-        .section-image-wrapper {
-            width: 100%;
-            min-height: 450px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .section-image {
-            width: 100%;
-            height: 450px;
-            background-size: cover;
-            background-position: center;
-            border-radius: 8px;
-        }
-        .swiper {
-            width: 100%;
-            max-width: 400px;
-            height: auto;
-            position: relative;
-        }
-        .product-card {
-            background-color: var(--color-gray-bg);
-            border: 1px solid #222;
-            border-radius: 8px;
-            overflow: hidden;
-            color: var(--color-white);
-        }
-        .card-image img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            display: block;
-        }
-        .card-content {
-            padding: 25px;
-        }
-        .card-content h4 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-        .card-content p {
-            font-size: 0.9rem;
-            color: var(--color-text-secondary);
-        }
-        .card-price {
-            display: block;
-            margin-top: 15px;
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-        .swiper-pagination-bullet {
-            background-color: rgba(255, 255, 255, 0.5);
-            width: 10px;
-            height: 10px;
-            opacity: 1;
-        }
-        .swiper-pagination-bullet-active {
-            background-color: var(--color-white);
-        }
+        .section-image-wrapper { width: 100%; min-height: 450px; display: flex; align-items: center; justify-content: center; }
+        .section-image { width: 100%; height: 450px; background-size: cover; background-position: center; border-radius: 8px; }
+        .swiper { width: 100%; max-width: 400px; height: auto; position: relative; }
+        .product-card { background-color: var(--color-gray-bg); border: 1px solid #222; border-radius: 8px; overflow: hidden; color: var(--color-white); }
+        .card-image img { width: 100%; height: 250px; object-fit: cover; display: block; }
+        .card-content { padding: 25px; }
+        .card-content h4 { font-size: 1.4rem; font-weight: 700; margin-bottom: 10px; }
+        .card-content p { font-size: 0.9rem; color: var(--color-text-secondary); }
+        .card-price { display: block; margin-top: 15px; font-size: 1.5rem; font-weight: 700; }
+        .swiper-pagination-bullet { background-color: rgba(255, 255, 255, 0.5); width: 10px; height: 10px; opacity: 1; }
+        .swiper-pagination-bullet-active { background-color: var(--color-white); }
     </style>
 </head>
 <body>
@@ -274,9 +266,14 @@
 
     <main>
         <section class="hero" id="home">
+            <video autoplay loop muted playsinline class="hero-background-video">
+                <source src="https://www.emilyresort.com.ua/wp-content/uploads/2025/08/video.mp4" type="video/mp4">
+                Ваш браузер не підтримує тег video.
+            </video>
+            <div class="hero-overlay"></div>
             <div class="hero-content">
-                <h1>ТВОЄ МІСЦЕ СИЛИ У ЛЬВОВІ</h1>
-                <p>КАВ'ЯРНЯ. КУХНЯ. КОВОРКІНГ. ПОДІЇ.</p>
+                <h1>Більше ніж просто кавʼярня</h1>
+                <p>КАВА • КУХНЯ • ПЛЕЙС ДЛЯ РОБОТИ Й ВІДПОЧИНКУ</p>
                 <a href="#menu" class="cta-button">ДІЗНАТИСЯ БІЛЬШЕ</a>
             </div>
         </section>
@@ -467,16 +464,14 @@
                     <a href="https://www.tiktok.com/@brooklynhublviv" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
                 </div>
             </div>
-
             <div class="footer-col">
                 <div class="footer-contact-grid">
                     <div class="contact-item">
-                        <p>Коворкінг та Кав'ярня</p>
+                        <p>Быльше ніж кавʼярня</p>
                         <strong><a href="tel:+380633883737" style="color: var(--color-white);">+38 (063) 388 37 37</a></strong>
                     </div>
                 </div>
             </div>
-
             <div class="footer-col footer-nav-col">
                 <h4>Загальні розділи</h4>
                 <ul>
@@ -487,7 +482,6 @@
                     <li><a href="#events">ПОДІЇ</a></li>
                 </ul>
             </div>
-
             <div class="footer-col footer-nav-col">
                 <h4>Інформація</h4>
                 <ul>
@@ -495,7 +489,6 @@
                 </ul>
             </div>
         </div>
-
         <div class="footer-bottom">
             <p>© 2025 Brooklyn Hub. Всі права захищені.</p>
             <p>Designed in Lviv</p>
@@ -538,27 +531,21 @@
                 }
             });
         });
-
         const openNavBtn = document.getElementById('open-nav-btn');
         const closeNavBtn = document.getElementById('close-nav-btn');
         const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
         const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
-
         const openNav = () => {
             mobileNavOverlay.classList.add('open');
             document.body.classList.add('no-scroll');
         };
-
         const closeNav = () => {
             mobileNavOverlay.classList.remove('open');
             document.body.classList.remove('no-scroll');
         };
-
         openNavBtn.addEventListener('click', openNav);
         closeNavBtn.addEventListener('click', closeNav);
         mobileNavLinks.forEach(link => { link.addEventListener('click', closeNav); });
-
-        // Ініціалізація всіх слайдерів на сторінці
         document.querySelectorAll('.swiper').forEach(function(swiperElement) {
             new Swiper(swiperElement, {
                 loop: true,
