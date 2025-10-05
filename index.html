@@ -45,11 +45,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <noscript>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    </noscript>
 
     <style>
+        /* Весь ваш CSS-код остается здесь без изменений */
         :root {
             --color-black: #000000;
             --color-white: #FFFFFF;
@@ -57,86 +63,40 @@
             --color-text-secondary: rgba(255, 255, 255, 0.7);
             --transition-time: 0.3s;
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
         body { background-color: var(--color-black); color: var(--color-white); line-height: 1.6; overflow-x: hidden; scroll-behavior: smooth; }
         body.no-scroll { overflow: hidden; }
-
-        body, a, button, .swiper-pagination-bullet, .mobile-icon-circle {
-             cursor: none;
-        }
-
-        section { 
-            padding: 120px 5%; min-height: 90vh; display: flex; flex-direction: column; 
-            justify-content: center; align-items: center; position: relative; overflow: hidden; 
-        }
-
+        body, a, button, .swiper-pagination-bullet, .mobile-icon-circle { cursor: none; }
+        section { padding: 120px 5%; min-height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; overflow: hidden; }
         a { text-decoration: none; transition: color var(--transition-time) ease; }
         h2 { font-size: clamp(2.5rem, 6vw, 4.5rem); text-align: center; margin-bottom: 5rem; color: var(--color-white); font-weight: 700; letter-spacing: 3px; text-transform: uppercase; }
-
         .section-content { display: grid; grid-template-columns: 1fr; gap: 60px; align-items: center; max-width: 1200px; width: 100%; }
-
         @media (min-width: 992px) {
             .section-content { grid-template-columns: 1fr 1fr; }
             .section-content.reverse .section-text { order: 2; }
             .section-content.reverse .section-image-wrapper { order: 1; }
         }
-
         .section-text h3 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.5rem, 4vw, 2rem); color: var(--color-white); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; }
         .section-text p { font-size: 1.1rem; color: var(--color-text-secondary); margin-bottom: 2.5rem; max-width: 500px; }
-        
-        .cta-button {
-            display: inline-block; background-color: var(--color-white); color: var(--color-black) !important; padding: 0.9rem 2.8rem;
-            border-radius: 5px; border: 2px solid var(--color-white); font-weight: 700; text-transform: uppercase;
-            letter-spacing: 1.5px; transition: all var(--transition-time) ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
+        .cta-button { display: inline-block; background-color: var(--color-white); color: var(--color-black) !important; padding: 0.9rem 2.8rem; border-radius: 5px; border: 2px solid var(--color-white); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; transition: all var(--transition-time) ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); }
         .cta-button:hover { background-color: transparent; color: var(--color-white) !important; transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); }
-
-        .header {
-            position: fixed; width: 100%; display: flex; align-items: center; 
-            padding: 1.2rem 5%; z-index: 1000; background: transparent; border-bottom: none;
-            font-weight: 400; text-transform: uppercase; transition: background 0.5s ease-in-out, border-bottom 0.5s ease-in-out;
-        }
+        .header { position: fixed; width: 100%; display: flex; align-items: center; padding: 1.2rem 5%; z-index: 1000; background: transparent; border-bottom: none; font-weight: 400; text-transform: uppercase; transition: background 0.5s ease-in-out, border-bottom 0.5s ease-in-out; }
         .header-item { display: flex; align-items: center; height: 50px; }
         .header-item a, .header-item span { color: var(--color-white); font-size: 15px; letter-spacing: 1px; font-weight: 400; transition: color 0.5s ease-in-out; }
         .header-logo img { filter: invert(1) brightness(150%); transition: filter 0.5s ease-in-out, transform 0.3s; }
         .header.scrolled { background: var(--color-white); border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
         .header.scrolled .header-item a, .header.scrolled .header-item span { color: var(--color-black); }
         .header.scrolled .header-logo img { filter: none; }
-        
         .header { justify-content: space-between; }
         .header-left, .header-right { flex-basis: 30%; }
         .header-left { display: flex; justify-content: flex-start; }
         .header-right { display: flex; justify-content: flex-end; gap: 20px; }
-        .header-logo {
-            position: absolute; left: 50%; transform: translateX(-50%);
-            z-index: 10; text-align: center;
-        }
+        .header-logo { position: absolute; left: 50%; transform: translateX(-50%); z-index: 10; text-align: center; }
         .header-logo img { height: 40px; }
         .nav-links-main, .route-button, .phone { display: none; }
         .mobile-icon-circle { display: flex; font-size: 1.5rem; cursor: pointer; }
-
-        @media (min-width: 1024px) {
-            .header {
-                display: grid;
-                grid-template-columns: 1fr auto 1fr;
-                gap: 20px;
-            }
-            .header-logo { position: static; transform: none; }
-            .header-left, .header-right { display: flex; flex-basis: auto; }
-            .header-left { justify-content: flex-start; }
-            .header-right { justify-content: flex-end; }
-            .mobile-icon-circle { display: none; }
-            .nav-links-main { display: flex; gap: 25px; }
-            .route-button, .phone { display: flex; align-items: center; gap: 10px; }
-            .header-right { gap: 30px; }
-        }
-
-        @media (min-width: 1200px) {
-            .nav-links-main { gap: 40px; }
-            .header-right { gap: 40px; }
-        }
-
+        @media (min-width: 1024px) { .header { display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; } .header-logo { position: static; transform: none; } .header-left, .header-right { display: flex; flex-basis: auto; } .header-left { justify-content: flex-start; } .header-right { justify-content: flex-end; } .mobile-icon-circle { display: none; } .nav-links-main { display: flex; gap: 25px; } .route-button, .phone { display: flex; align-items: center; gap: 10px; } .header-right { gap: 30px; } }
+        @media (min-width: 1200px) { .nav-links-main { gap: 40px; } .header-right { gap: 40px; } }
         .nav-links-main a { position: relative; padding-bottom: 8px; border-bottom: 2px solid transparent; }
         .nav-links-main a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 100%; height: 2px; background-color: var(--color-white); transform: scaleX(0); transform-origin: center; transition: transform var(--transition-time) ease; }
         .nav-links-main a:not(.active-link):hover::after { transform: scaleX(1); }
@@ -145,26 +105,22 @@
         .header.scrolled .nav-links-main a.active-link { border-bottom-color: var(--color-black); }
         .phone a:hover, .route-button:hover { color: var(--color-text-secondary) !important; }
         .header.scrolled .phone a:hover, .header.scrolled .route-button:hover { color: rgba(0, 0, 0, 0.6) !important; }
-
         .mobile-nav-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(10, 10, 10, 0.98); z-index: 9999; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: opacity 0.5s ease, visibility 0s 0.5s linear; }
         .mobile-nav-overlay.open { opacity: 1; visibility: visible; transition: opacity 0.5s ease; }
         .mobile-nav-close { position: absolute; top: 25px; right: 5%; font-size: 2rem; color: var(--color-white); cursor: pointer; }
         .mobile-nav-links a { display: block; color: var(--color-white); font-size: clamp(1.5rem, 6vw, 2rem); text-transform: uppercase; text-align: center; margin: 25px 0; transition: color 0.3s ease; }
         .mobile-nav-links a:hover { color: var(--color-text-secondary); }
-
         .hero { text-align: center; position: relative; }
         .hero-background-video { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); min-width: 100%; min-height: 100%; width: auto; height: auto; object-fit: cover; z-index: 1; }
         .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); z-index: 2; }
         .hero-content { position: relative; z-index: 3; }
         .hero-content h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.75rem, 5.6vw, 3.5rem); font-weight: 700; text-transform: uppercase; line-height: 1.2; margin-bottom: 1.5rem; }
         .hero-content p { font-size: clamp(1rem, 2.5vw, 1.2rem); text-transform: uppercase; letter-spacing: 2px; color: var(--color-text-secondary); margin-bottom: 3rem; }
-        
         .menu { background-color: var(--color-black); }
         .kitchen { background-color: var(--color-gray-bg); }
         .delivery { background-color: var(--color-black); }
         .rooms { background-color: var(--color-gray-bg); }
         .events { background-color: var(--color-black); }
-        
         .main-footer { background-color: var(--color-black); padding: 80px 5% 20px; color: var(--color-white); font-size: 0.9rem; }
         .footer-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px; max-width: 1400px; margin: 0 auto; }
         .footer-logo-block img { height: 60px; filter: invert(1) brightness(150%); margin-bottom: 20px; }
@@ -173,21 +129,11 @@
         .social-icon:hover { background-color: var(--color-text-secondary); border-color: var(--color-text-secondary); transform: translateY(-3px); }
         .footer-contact-grid strong { font-size: 1.5rem; display: block; margin-bottom: 5px; color: var(--color-white); }
         .footer-bottom { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; text-align: center; color: #555; display: flex; justify-content: space-between; flex-wrap: wrap; }
-        
-        /* === НОВИЙ КОД: Стилі для заголовків та списків у футері === */
-        .footer-nav-col h4 {
-            font-size: 1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 20px; /* Додано відступ знизу */
-            color: var(--color-white);
-        }
+        .footer-nav-col h4 { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; color: var(--color-white); }
         .footer-nav-col ul { list-style: none; padding: 0; margin: 0; }
         .footer-nav-col ul li { margin-bottom: 10px; }
         .footer-nav-col ul li a { display: inline-block; color: var(--color-white); text-decoration: none; font-weight: 400; transition: color 0.3s ease, padding-left 0.3s ease; }
         .footer-nav-col ul li a:hover { color: var(--color-text-secondary); padding-left: 5px; }
-
         .section-image-wrapper { width: 100%; min-height: 450px; display: flex; align-items: center; justify-content: center; }
         .section-image { width: 100%; height: 450px; background-size: cover; background-position: center; border-radius: 8px; }
         .swiper { width: 100%; max-width: 400px; height: auto; position: relative; }
@@ -199,28 +145,9 @@
         .card-price { display: block; margin-top: 15px; font-size: 1.5rem; font-weight: 700; }
         .swiper-pagination-bullet { background-color: rgba(255, 255, 255, 0.5); width: 10px; height: 10px; opacity: 1; }
         .swiper-pagination-bullet-active { background-color: var(--color-white); }
-        
-        @media (max-width: 991px) {
-            section {
-                padding: 80px 5%;
-            }
-
-            .section-content, .section-content.reverse {
-                display: flex; flex-direction: column; gap: 40px; 
-            }
-            .section-text {
-                text-align: center; display: flex; flex-direction: column; align-items: center;
-            }
-            .section-content .section-image-wrapper, .section-content.reverse .section-image-wrapper { order: 1; }
-            .section-content .section-text, .section-content.reverse .section-text { order: 2; }
-        }
-        
-        .fade-in-up {
-            opacity: 0; transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
+        @media (max-width: 991px) { section { padding: 80px 5%; } .section-content, .section-content.reverse { display: flex; flex-direction: column; gap: 40px; } .section-text { text-align: center; display: flex; flex-direction: column; align-items: center; } .section-content .section-image-wrapper, .section-content.reverse .section-image-wrapper { order: 1; } .section-content .section-text, .section-content.reverse .section-text { order: 2; } }
+        .fade-in-up { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .fade-in-up.visible { opacity: 1; transform: translateY(0); }
-        
         .cursor-dot, .cursor-outline { pointer-events: none; position: fixed; left: 0; top: 0; border-radius: 50%; opacity: 0; z-index: 10000; transform: translate(-50%, -50%); transition: background-color 0.2s ease-out, border-color 0.2s ease-out; }
         .cursor-dot { width: 8px; height: 8px; background-color: var(--color-white); transition-property: transform, background-color; transition-duration: 0.2s; transition-timing-function: ease-out; }
         .cursor-outline { width: 40px; height: 40px; border: 2px solid rgba(255, 255, 255, 0.5); transition-property: top, left, transform, opacity, border-color; transition-duration: 0.03s, 0.03s, 0.2s, 0.2s, 0.2s; transition-timing-function: ease-out; }
@@ -229,60 +156,12 @@
         body.cursor-inverted .cursor-dot { background-color: var(--color-black); }
         body.cursor-inverted .cursor-outline { border-color: rgba(0, 0, 0, 0.5); }
         body.cursor-inverted.cursor-hover .cursor-outline { border-color: rgba(0, 0, 0, 0.8); }
-
-        #preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--color-black);
-            z-index: 99999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
-            visibility: visible;
-            opacity: 1;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        #preloader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        #preloader img {
-            width: 112px;
-            height: auto;
-            filter: invert(1) brightness(150%);
-        }
-
-        .preloader-progress-bar {
-            width: 112px;
-            height: 4px;
-            background-color: rgba(255, 255, 255, 0.3);
-            border-radius: 2px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .preloader-progress-bar::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 100%;
-            background-color: var(--color-white);
-            animation: fillProgress 1s forwards ease-out;
-        }
-
-        @keyframes fillProgress {
-            from { width: 0%; }
-            to { width: 100%; }
-        }
+        #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--color-black); z-index: 99999; display: flex; justify-content: center; align-items: center; transition: opacity 0.5s ease-out, visibility 0.5s ease-out; visibility: visible; opacity: 1; flex-direction: column; gap: 20px; }
+        #preloader.hidden { opacity: 0; visibility: hidden; }
+        #preloader img { width: 112px; height: auto; filter: invert(1) brightness(150%); }
+        .preloader-progress-bar { width: 112px; height: 4px; background-color: rgba(255, 255, 255, 0.3); border-radius: 2px; overflow: hidden; position: relative; }
+        .preloader-progress-bar::after { content: ''; position: absolute; top: 0; left: 0; width: 0%; height: 100%; background-color: var(--color-white); animation: fillProgress 1s forwards ease-out; }
+        @keyframes fillProgress { from { width: 0%; } to { width: 100%; } }
     </style>
 </head>
 <body class="no-scroll">
@@ -308,7 +187,7 @@
         </div>
         <div class="header-item header-logo">
             <a href="#home">
-                <img src="media/Безымянный-2.svg" alt="Логотип Brooklyn Hub Львів" loading="lazy">
+                 <img src="media/Безымянный-2.svg" alt="Логотип Brooklyn Hub Львів">
             </a>
         </div>
         <div class="header-item header-right">
@@ -336,7 +215,7 @@
 
     <main>
         <section class="hero" id="home">
-            <video autoplay loop muted playsinline class="hero-background-video">
+            <video autoplay loop muted playsinline class="hero-background-video" fetchpriority="high">
                 <source src="https://www.emilyresort.com.ua/wp-content/uploads/2025/08/video.mp4" type="video/mp4">
                 Ваш браузер не підтримує тег video.
             </video>
@@ -360,9 +239,9 @@
                  <div class="section-image-wrapper fade-in-up">
                     <div class="swiper">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide"><div class="product-card"><div class="card-image"><img src="https://static.shaketopay.com.ua/menu-prod/dish-1423579.jpg?t=1757509761631" alt="Капучино"></div><div class="card-content"><h4>Капучино</h4><p>Ідеальний баланс еспресо, молока та ніжної молочної піни.</p><span class="card-price">85 грн</span></div></div></div>
-                            <div class="swiper-slide"><div class="product-card"><div class="card-image"><img src="https://static.shaketopay.com.ua/menu-prod/dish-1426763.jpg?t=1757509982676" alt="Флет-вайт"></div><div class="card-content"><h4>Флет-вайт</h4><p>Подвійний шот еспресо та оксамитова текстура молока.</p><span class="card-price">95 грн</span></div></div></div>
-                            <div class="swiper-slide"><div class="product-card"><div class="card-image"><img src="https://static.shaketopay.com.ua/menu-prod/dish-1426984.jpg?t=1757584583789" alt="V60"></div><div class="card-content"><h4>V60</h4><p>Чистий та багатогранний смак кави, завареної вручну.</p><span class="card-price">120 грн</span></div></div></div>
+                            <div class="swiper-slide"><div class="product-card"><div class="card-image"><img src="https://static.shaketopay.com.ua/menu-prod/dish-1423579.jpg?t=1757509761631" alt="Капучино" loading="lazy" decoding="async"></div><div class="card-content"><h4>Капучино</h4><p>Ідеальний баланс еспресо, молока та ніжної молочної піни.</p><span class="card-price">85 грн</span></div></div></div>
+                            <div class="swiper-slide"><div class="product-card"><div class="card-image"><img src="https://static.shaketopay.com.ua/menu-prod/dish-1426763.jpg?t=1757509982676" alt="Флет-вайт" loading="lazy" decoding="async"></div><div class="card-content"><h4>Флет-вайт</h4><p>Подвійний шот еспресо та оксамитова текстура молока.</p><span class="card-price">95 грн</span></div></div></div>
+                            <div class="swiper-slide"><div class="product-card"><div class="card-image"><img src="https://static.shaketopay.com.ua/menu-prod/dish-1426984.jpg?t=1757584583789" alt="V60" loading="lazy" decoding="async"></div><div class="card-content"><h4>V60</h4><p>Чистий та багатогранний смак кави, завареної вручну.</p><span class="card-price">120 грн</span></div></div></div>
                         </div>
                         <div class="swiper-pagination"></div>
                     </div>
@@ -382,16 +261,16 @@
                 <div class="section-image-wrapper fade-in-up">
                     <div class="swiper">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide"><div class="product-card"><div class="card-image"><img src="https://static.shaketopay.com.ua/menu-prod/dish-1408790.jpg?t=1757327759419" alt="Сніданок з авокадо та лососем"></div><div class="card-content"><h4>Сніданок з авокадо та лососем</h4><p>Класичний ситний сніданок, що надасть енергії на весь день.</p><span class="card-price">270 грн</span></div></div></div>
-                            <div class="swiper-slide"><div class="product-card"><div class="card-image"><img src="https://static.shaketopay.com.ua/menu-prod/dish-1417882.jpg?t=1757327642157" alt="Сирники з ягодами"></div><div class="card-content"><h4>Сирники з ягодами</h4><p>Ніжні сирники з домашнім ягідним соусом та сметаною.</p><span class="card-price">255 грн</span></div></div></div>
-                            <div class="swiper-slide"><div class="product-card"><div class="card-image"><img src="https://static.shaketopay.com.ua/menu-prod/dish-1408785.jpg?t=1758369951111" alt="Паста з креветками"></div><div class="card-content"><h4>Паста з креветками</h4><p>Вершкова паста з тигровими креветками та ноткою часнику.</p><span class="card-price">355 грн</span></div></div></div>
+                            <div class="swiper-slide"><div class="product-card"><div class="card-image"><img src="https://static.shaketopay.com.ua/menu-prod/dish-1408790.jpg?t=1757327759419" alt="Сніданок з авокадо та лососем" loading="lazy" decoding="async"></div><div class="card-content"><h4>Сніданок з авокадо та лососем</h4><p>Класичний ситний сніданок, що надасть енергії на весь день.</p><span class="card-price">270 грн</span></div></div></div>
+                            <div class="swiper-slide"><div class="product-card"><div class="card-image"><img src="https://static.shaketopay.com.ua/menu-prod/dish-1417882.jpg?t=1757327642157" alt="Сирники з ягодами" loading="lazy" decoding="async"></div><div class="card-content"><h4>Сирники з ягодами</h4><p>Ніжні сирники з домашнім ягідним соусом та сметаною.</p><span class="card-price">255 грн</span></div></div></div>
+                            <div class="swiper-slide"><div class="product-card"><div class="card-image"><img src="https://static.shaketopay.com.ua/menu-prod/dish-1408785.jpg?t=1758369951111" alt="Паста з креветками" loading="lazy" decoding="async"></div><div class="card-content"><h4>Паста з креветками</h4><p>Вершкова паста з тигровими креветками та ноткою часнику.</p><span class="card-price">355 грн</span></div></div></div>
                         </div>
                         <div class="swiper-pagination"></div>
                     </div>
                 </div>
             </div>
        </section>
-
+        
         <section id="delivery" class="delivery">
             <h2 class="fade-in-up">ДОСТАВКА</h2>
             <div class="section-content">
@@ -433,9 +312,9 @@
                 <div class="section-image-wrapper fade-in-up">
                     <div class="swiper">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide"><div class="product-card"><div class="card-image"><img src="https://images.unsplash.com/photo-1535016120720-40c646be5580?auto=format&fit=crop&w=800&q=80" alt="Показ фільму"></div><div class="card-content"><h4>Показ фільму</h4><p>Затишні вечори з класикою кіно та авторськими коктейлями.</p></div></div></div>
-                            <div class="swiper-slide"><div class="product-card"><div class="card-image"><img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80" alt="Жива музика"></div><div class="card-content"><h4>Жива музика</h4><p>Акустичні вечори з місцевими та запрошеними виконавцями.</p></div></div></div>
-                            <div class="swiper-slide"><div class="product-card"><div class="card-image"><img src="https://static.probusiness.io/n/0f/0/andrey_fedoriv_bid_2.jpg" alt="Майстер-класи"></div><div class="card-content"><h4>Майстер-класи</h4><p>Навчальні воркшопи від експертів у різних сферах — від кави до IT.</p></div></div></div>
+                            <div class="swiper-slide"><div class="product-card"><div class="card-image"><img src="https://images.unsplash.com/photo-1535016120720-40c646be5580?auto=format&fit=crop&w=800&q=80" alt="Показ фільму" loading="lazy" decoding="async"></div><div class="card-content"><h4>Показ фільму</h4><p>Затишні вечори з класикою кіно та авторськими коктейлями.</p></div></div></div>
+                            <div class="swiper-slide"><div class="product-card"><div class="card-image"><img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80" alt="Жива музика" loading="lazy" decoding="async"></div><div class="card-content"><h4>Жива музика</h4><p>Акустичні вечори з місцевими та запрошеними виконавцями.</p></div></div></div>
+                            <div class="swiper-slide"><div class="product-card"><div class="card-image"><img src="https://static.probusiness.io/n/0f/0/andrey_fedoriv_bid_2.jpg" alt="Майстер-класи" loading="lazy" decoding="async"></div><div class="card-content"><h4>Майстер-класи</h4><p>Навчальні воркшопи від експертів у різних сферах — від кави до IT.</p></div></div></div>
                         </div>
                         <div class="swiper-pagination"></div>
                     </div>
@@ -447,7 +326,7 @@
     <footer class="main-footer">
         <div class="footer-grid">
             <div class="footer-col footer-logo-block">
-                <img src="media/Безымянный-2.svg" alt="Логотип Brooklyn Hub у підвалі сайту" loading="lazy">
+                <img src="media/Безымянный-2.svg" alt="Логотип Brooklyn Hub у підвалі сайту" loading="lazy" decoding="async">
                 <p>м. Львів, вул. Малоголосківська, 19, Україна, 79061</p>
                 <div class="social-links">
                     <a href="https://www.instagram.com/brooklynhublviv/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
@@ -486,20 +365,18 @@
         </div>
     </footer>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
             // === СКРИПТ ПРЕЛОАДЕРА ТА АНІМОВАНОГО ФАВІКОНА - ПОЧАТОК ===
             const preloader = document.getElementById('preloader');
             window.addEventListener('load', () => {
-                setTimeout(() => {
-                    if(preloader) {
-                        preloader.classList.add('hidden');
-                        document.body.classList.remove('no-scroll');
-                    }
-                }, 1000); // Затримка 1 секунда
+                // ОПТИМИЗАЦИЯ: Убрана искусственная задержка в 1 секунду. Прелоадер исчезнет сразу после загрузки страницы.
+                if(preloader) {
+                    preloader.classList.add('hidden');
+                    document.body.classList.remove('no-scroll');
+                }
             });
 
             const favicon = document.getElementById('favicon');
@@ -558,14 +435,8 @@
             const closeNavBtn = document.getElementById('close-nav-btn');
             const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
             const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
-            const openNav = () => {
-                mobileNavOverlay.classList.add('open');
-                document.body.classList.add('no-scroll');
-            };
-            const closeNav = () => {
-                mobileNavOverlay.classList.remove('open');
-                document.body.classList.remove('no-scroll');
-            };
+            const openNav = () => { mobileNavOverlay.classList.add('open'); document.body.classList.add('no-scroll'); };
+            const closeNav = () => { mobileNavOverlay.classList.remove('open'); document.body.classList.remove('no-scroll'); };
             openNavBtn.addEventListener('click', openNav);
             closeNavBtn.addEventListener('click', closeNav);
             mobileNavLinks.forEach(link => { link.addEventListener('click', closeNav); });
@@ -575,14 +446,8 @@
                     loop: true,
                     slidesPerView: 1,
                     spaceBetween: 30,
-                    pagination: {
-                        el: swiperElement.querySelector('.swiper-pagination'),
-                        clickable: true,
-                    },
-                    autoplay: {
-                        delay: 5000,
-                        disableOnInteraction: false,
-                    },
+                    pagination: { el: swiperElement.querySelector('.swiper-pagination'), clickable: true, },
+                    autoplay: { delay: 5000, disableOnInteraction: false, },
                 });
             });
             // === ОСНОВНИЙ СКРИПТ САЙТУ - КІНЕЦЬ ===
@@ -597,63 +462,73 @@
                             observer.unobserve(entry.target);
                         }
                     });
-                }, {
-                    threshold: 0.15 
-                });
-
-                animatedElements.forEach(element => {
-                    animationObserver.observe(element);
-                });
+                }, { threshold: 0.15 });
+                animatedElements.forEach(element => { animationObserver.observe(element); });
             }
             // === СКРИПТ ДЛЯ АНІМАЦІЇ ПРИ ПРОКРУТЦІ - КІНЕЦЬ ===
 
-            // === СКРИПТ ДЛЯ КАСТОМНОГО КУРСОРА - ПОЧАТОК ===
-            if ('ontouchstart' in window) {
-                return;
+            // === ОПТИМИЗИРОВАННЫЙ СКРИПТ ДЛЯ КАСТОМНОГО КУРСОРА - ПОЧАТОК ===
+            // Запускаем только на устройствах без сенсорного экрана
+            if (!('ontouchstart' in window)) {
+                const cursorDot = document.querySelector('.cursor-dot');
+                const cursorOutline = document.querySelector('.cursor-outline');
+                
+                // Переменные для хранения текущих и целевых позиций
+                let mouseX = 0, mouseY = 0;
+                let posX = 0, posY = 0;
+
+                // Быстро обновляем целевую позицию при движении мыши
+                window.addEventListener('mousemove', e => {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                });
+
+                // Функция для плавной анимации, которая не перегружает CPU
+                const animateCursor = () => {
+                    // Плавное "следование" курсора за реальной позицией мыши
+                    posX += (mouseX - posX) * 0.12;
+                    posY += (mouseY - posY) * 0.12;
+
+                    cursorDot.style.left = `${posX}px`;
+                    cursorDot.style.top = `${posY}px`;
+                    cursorOutline.style.left = `${posX}px`;
+                    cursorOutline.style.top = `${posY}px`;
+
+                    // Запрашиваем следующий кадр анимации
+                    requestAnimationFrame(animateCursor);
+                };
+                
+                // Запускаем цикл анимации один раз
+                requestAnimationFrame(animateCursor);
+                
+                // Показываем курсор при входе в окно
+                document.addEventListener('mouseenter', () => {
+                    cursorDot.style.opacity = '1';
+                    cursorOutline.style.opacity = '1';
+                });
+                
+                // Скрываем при выходе
+                 document.addEventListener('mouseleave', () => {
+                    cursorDot.style.opacity = '0';
+                    cursorOutline.style.opacity = '0';
+                });
+
+                const interactiveElements = document.querySelectorAll('a, button, .cta-button, .swiper-pagination-bullet, .mobile-icon-circle, .social-icon, .mobile-nav-close');
+                interactiveElements.forEach(el => {
+                    el.addEventListener('mouseover', () => body.classList.add('cursor-hover'));
+                    el.addEventListener('mouseout', () => body.classList.remove('cursor-hover'));
+                });
+
+                header.addEventListener('mouseenter', () => {
+                    if(header.classList.contains('scrolled')) {
+                        body.classList.add('cursor-inverted');
+                    }
+                });
+                header.addEventListener('mouseleave', () => {
+                    body.classList.remove('cursor-inverted');
+                });
             }
-
-            const cursorDot = document.querySelector('.cursor-dot');
-            const cursorOutline = document.querySelector('.cursor-outline');
-
-            window.addEventListener('mousemove', (e) => {
-                const posX = e.clientX;
-                const posY = e.clientY;
-
-                cursorDot.style.left = `${posX}px`;
-                cursorDot.style.top = `${posY}px`;
-                cursorOutline.style.left = `${posX}px`;
-                cursorOutline.style.top = `${posY}px`;
-
-                cursorDot.style.opacity = '1';
-                cursorOutline.style.opacity = '1';
-            });
-
-            const interactiveElements = document.querySelectorAll('a, button, .cta-button, .swiper-pagination-bullet, .mobile-icon-circle, .social-icon, .mobile-nav-close');
-            
-            interactiveElements.forEach(el => {
-                el.addEventListener('mouseover', () => body.classList.add('cursor-hover'));
-                el.addEventListener('mouseout', () => body.classList.remove('cursor-hover'));
-            });
-
-            header.addEventListener('mouseenter', () => {
-                if(header.classList.contains('scrolled')) {
-                    body.classList.add('cursor-inverted');
-                }
-            });
-            header.addEventListener('mouseleave', () => {
-                body.classList.remove('cursor-inverted');
-            });
-
-            document.addEventListener('mouseleave', () => {
-                cursorDot.style.opacity = '0';
-                cursorOutline.style.opacity = '0';
-            });
-
-            document.addEventListener('mouseenter', () => {
-                cursorDot.style.opacity = '1';
-                cursorOutline.style.opacity = '1';
-            });
-            // === СКРИПТ ДЛЯ КАСТОМНОГО КУРСОРА - КІНЕЦЬ ===
+            // === ОПТИМИЗИРОВАННЫЙ СКРИПТ ДЛЯ КАСТОМНОГО КУРСОРА - КІНЕЦЬ ===
         });
     </script>
 </body>
