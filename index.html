@@ -154,46 +154,11 @@
         .mobile-nav-links a:hover { color: var(--color-text-secondary); }
 
         .hero { text-align: center; position: relative; }
-        .hero-background-video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            object-fit: cover;
-            z-index: 1;
-        }
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            z-index: 2;
-        }
-        .hero-content {
-            position: relative;
-            z-index: 3;
-        }
-        .hero-content h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(1.75rem, 5.6vw, 3.5rem);
-            font-weight: 700;
-            text-transform: uppercase;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-        }
-        .hero-content p {
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--color-text-secondary);
-            margin-bottom: 3rem;
-        }
+        .hero-background-video { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); min-width: 100%; min-height: 100%; width: auto; height: auto; object-fit: cover; z-index: 1; }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); z-index: 2; }
+        .hero-content { position: relative; z-index: 3; }
+        .hero-content h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.75rem, 5.6vw, 3.5rem); font-weight: 700; text-transform: uppercase; line-height: 1.2; margin-bottom: 1.5rem; }
+        .hero-content p { font-size: clamp(1rem, 2.5vw, 1.2rem); text-transform: uppercase; letter-spacing: 2px; color: var(--color-text-secondary); margin-bottom: 3rem; }
         
         .menu { background-color: var(--color-black); }
         .kitchen { background-color: var(--color-gray-bg); }
@@ -206,13 +171,16 @@
         .footer-logo-block img { height: 60px; filter: invert(1) brightness(150%); margin-bottom: 20px; }
         .social-links { display: flex; gap: 15px; margin: 20px 0; }
         .social-icon { width: 35px; height: 35px; border: 1px solid #444; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: var(--color-white); transition: all 0.3s; }
-        .social-icon:hover { background-color: var(--color-text-secondary); border-color: var(--color-text-secondary); }
+        /* НОВЫЙ КОД: Добавлен эффект сдвига при наведении */
+        .social-icon:hover { background-color: var(--color-text-secondary); border-color: var(--color-text-secondary); transform: translateY(-3px); }
         .footer-contact-grid strong { font-size: 1.5rem; display: block; margin-bottom: 5px; color: var(--color-white); }
         .footer-bottom { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; text-align: center; color: #555; display: flex; justify-content: space-between; flex-wrap: wrap; }
         .footer-nav-col ul { list-style: none; padding: 0; margin: 0; }
         .footer-nav-col ul li { margin-bottom: 10px; }
-        .footer-nav-col ul li a { color: var(--color-white); text-decoration: none; font-weight: 400; transition: color 0.3s ease; }
-        .footer-nav-col ul li a:hover { color: var(--color-text-secondary); }
+        /* НОВЫЙ КОД: Добавлен display:inline-block и переход для padding-left */
+        .footer-nav-col ul li a { display: inline-block; color: var(--color-white); text-decoration: none; font-weight: 400; transition: color 0.3s ease, padding-left 0.3s ease; }
+        /* НОВЫЙ КОД: Добавлен сдвиг текста при наведении */
+        .footer-nav-col ul li a:hover { color: var(--color-text-secondary); padding-left: 5px; }
 
         .section-image-wrapper { width: 100%; min-height: 450px; display: flex; align-items: center; justify-content: center; }
         .section-image { width: 100%; height: 450px; background-size: cover; background-position: center; border-radius: 8px; }
@@ -226,58 +194,57 @@
         .swiper-pagination-bullet { background-color: rgba(255, 255, 255, 0.5); width: 10px; height: 10px; opacity: 1; }
         .swiper-pagination-bullet-active { background-color: var(--color-white); }
         
-        /* === СТИЛИ ДЛЯ КАСТОМНОГО КУРСОРА - НАЧАЛО === */
-        .cursor-dot, .cursor-outline {
-            pointer-events: none;
-            position: fixed;
-            left: 0;
-            top: 0;
-            border-radius: 50%;
+        /* === НОВЫЙ КОД: СТИЛИ ДЛЯ МОБИЛЬНОЙ ВЕРСИИ - НАЧАЛО === */
+        @media (max-width: 991px) {
+            .section-content, .section-content.reverse {
+                display: flex;
+                flex-direction: column;
+                gap: 40px; 
+            }
+
+            .section-text {
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            /* На мобильных устройствах изображение всегда будет сверху */
+            .section-content .section-image-wrapper,
+            .section-content.reverse .section-image-wrapper {
+                order: 1;
+            }
+
+            /* Текстовый блок с кнопкой будет снизу */
+            .section-content .section-text,
+            .section-content.reverse .section-text {
+                order: 2;
+            }
+        }
+        /* === НОВЫЙ КОД: СТИЛИ ДЛЯ МОБИЛЬНОЙ ВЕРСИИ - КОНЕЦ === */
+
+        /* === НОВЫЙ КОД: СТИЛИ ДЛЯ АНИМАЦИИ ПРИ ПРОКРУТКЕ - НАЧАЛО === */
+        .fade-in-up {
             opacity: 0;
-            z-index: 10000;
-            transform: translate(-50%, -50%);
-            transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .cursor-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--color-white);
-            transition-property: transform, background-color;
-            transition-duration: 0.2s;
-            transition-timing-function: ease-out;
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
-
-        .cursor-outline {
-            width: 40px;
-            height: 40px;
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            transition-property: top, left, transform, opacity, border-color;
-            /* ИЗМЕНЕНО: Уменьшено время для еще более быстрого следования */
-            transition-duration: 0.03s, 0.03s, 0.2s, 0.2s, 0.2s;
-            transition-timing-function: ease-out;
-        }
+        /* === НОВЫЙ КОД: СТИЛИ ДЛЯ АНИМАЦИИ ПРИ ПРОКРУТКЕ - КОНЕЦ === */
         
-        body.cursor-hover .cursor-outline {
-            transform: translate(-50%, -50%) scale(1.5);
-            border-color: rgba(255, 255, 255, 0.8);
-        }
-        
-        body.cursor-hover .cursor-dot {
-            transform: translate(-50%, -50%) scale(0.5);
-        }
-
-        body.cursor-inverted .cursor-dot {
-            background-color: var(--color-black);
-        }
-        
-        body.cursor-inverted .cursor-outline {
-            border-color: rgba(0, 0, 0, 0.5);
-        }
-
-        body.cursor-inverted.cursor-hover .cursor-outline {
-            border-color: rgba(0, 0, 0, 0.8);
-        }
+        /* === СТИЛИ ДЛЯ КАСТОМНОГО КУРСОРА - НАЧАЛО === */
+        .cursor-dot, .cursor-outline { pointer-events: none; position: fixed; left: 0; top: 0; border-radius: 50%; opacity: 0; z-index: 10000; transform: translate(-50%, -50%); transition: background-color 0.2s ease-out, border-color 0.2s ease-out; }
+        .cursor-dot { width: 8px; height: 8px; background-color: var(--color-white); transition-property: transform, background-color; transition-duration: 0.2s; transition-timing-function: ease-out; }
+        .cursor-outline { width: 40px; height: 40px; border: 2px solid rgba(255, 255, 255, 0.5); transition-property: top, left, transform, opacity, border-color; transition-duration: 0.03s, 0.03s, 0.2s, 0.2s, 0.2s; transition-timing-function: ease-out; }
+        body.cursor-hover .cursor-outline { transform: translate(-50%, -50%) scale(1.5); border-color: rgba(255, 255, 255, 0.8); }
+        body.cursor-hover .cursor-dot { transform: translate(-50%, -50%) scale(0.5); }
+        body.cursor-inverted .cursor-dot { background-color: var(--color-black); }
+        body.cursor-inverted .cursor-outline { border-color: rgba(0, 0, 0, 0.5); }
+        body.cursor-inverted.cursor-hover .cursor-outline { border-color: rgba(0, 0, 0, 0.8); }
         /* === СТИЛИ ДЛЯ КАСТОМНОГО КУРСОРА - КОНЕЦ === */
     </style>
 </head>
@@ -340,47 +307,20 @@
         </section>
 
         <section id="menu" class="menu">
-             <h2>НАША КАВА</h2>
+             <h2 class="fade-in-up">НАША КАВА</h2>
              <div class="section-content">
-                 <div class="section-text">
+                 <div class="section-text fade-in-up">
                      <h3>Якість Black Honey у кожній чашці</h3>
                      <p>Ми віримо, що досконалість починається з зерна. Саме тому ми з гордістю співпрацюємо з Black Honey — лідерами української кавової сцени.</p>
                      <p>Наші бариста розкривають багатство смаку в кожному напої: від класики до альтернативних методів заварювання. Поруч ви можете побачити декілька наших хітів.</p>
                      <a href="https://expz.menu/delivery/cd8b3814-8263-4ce8-8e63-445e8c37e8a4" target="_blank" rel="noopener noreferrer" class="cta-button">Повне меню</a>
                  </div>
-                 <div class="section-image-wrapper">
+                 <div class="section-image-wrapper fade-in-up">
                     <div class="swiper">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="product-card">
-                                    <div class="card-image"><img src="https://static.shaketopay.com.ua/menu-prod/dish-1423579.jpg?t=1757509761631" alt="Капучино"></div>
-                                    <div class="card-content">
-                                        <h4>Капучино</h4>
-                                        <p>Ідеальний баланс еспресо, молока та ніжної молочної піни.</p>
-                                        <span class="card-price">85 грн</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="product-card">
-                                    <div class="card-image"><img src="https://static.shaketopay.com.ua/menu-prod/dish-1426763.jpg?t=1757509982676" alt="Флет-вайт"></div>
-                                    <div class="card-content">
-                                        <h4>Флет-вайт</h4>
-                                        <p>Подвійний шот еспресо та оксамитова текстура молока.</p>
-                                        <span class="card-price">95 грн</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="product-card">
-                                    <div class="card-image"><img src="https://static.shaketopay.com.ua/menu-prod/dish-1426984.jpg?t=1757584583789" alt="V60"></div>
-                                    <div class="card-content">
-                                        <h4>V60</h4>
-                                        <p>Чистий та багатогранний смак кави, завареної вручну.</p>
-                                        <span class="card-price">120 грн</span>
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="swiper-slide"><div class="product-card"><div class="card-image"><img src="https://static.shaketopay.com.ua/menu-prod/dish-1423579.jpg?t=1757509761631" alt="Капучино"></div><div class="card-content"><h4>Капучино</h4><p>Ідеальний баланс еспресо, молока та ніжної молочної піни.</p><span class="card-price">85 грн</span></div></div></div>
+                            <div class="swiper-slide"><div class="product-card"><div class="card-image"><img src="https://static.shaketopay.com.ua/menu-prod/dish-1426763.jpg?t=1757509982676" alt="Флет-вайт"></div><div class="card-content"><h4>Флет-вайт</h4><p>Подвійний шот еспресо та оксамитова текстура молока.</p><span class="card-price">95 грн</span></div></div></div>
+                            <div class="swiper-slide"><div class="product-card"><div class="card-image"><img src="https://static.shaketopay.com.ua/menu-prod/dish-1426984.jpg?t=1757584583789" alt="V60"></div><div class="card-content"><h4>V60</h4><p>Чистий та багатогранний смак кави, завареної вручну.</p><span class="card-price">120 грн</span></div></div></div>
                         </div>
                         <div class="swiper-pagination"></div>
                     </div>
@@ -389,47 +329,20 @@
         </section>
 
         <section id="kitchen" class="kitchen">
-            <h2>НАША КУХНЯ</h2>
+            <h2 class="fade-in-up">НАША КУХНЯ</h2>
             <div class="section-content reverse">
-                <div class="section-text">
+                <div class="section-text fade-in-up">
                     <h3>Сніданки весь день та авторські страви</h3>
                     <p>Наша кухня — це ідеальний супровід до вашої улюбленої кави. Ми готуємо сніданки протягом усього дня, бо знаємо, що натхнення не живе за розкладом. </p>
                     <p>В основі меню — свіжі локальні продукти, збалансовані смаки та сучасний підхід. Скуштуйте наші фірмові страви, що стали хітами.</p>
                     <a href="https://expz.menu/delivery/cd8b3814-8263-4ce8-8e63-445e8c37e8a4" target="_blank" rel="noopener noreferrer" class="cta-button">Переглянути меню кухні</a>
                 </div>
-                <div class="section-image-wrapper">
+                <div class="section-image-wrapper fade-in-up">
                     <div class="swiper">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="product-card">
-                                    <div class="card-image"><img src="https://static.shaketopay.com.ua/menu-prod/dish-1408790.jpg?t=1757327759419" alt="Сніданок з авокадо та лососем"></div>
-                                    <div class="card-content">
-                                        <h4>Сніданок з авокадо та лососем</h4>
-                                        <p>Класичний ситний сніданок, що надасть енергії на весь день.</p>
-                                        <span class="card-price">270 грн</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="product-card">
-                                    <div class="card-image"><img src="https://static.shaketopay.com.ua/menu-prod/dish-1417882.jpg?t=1757327642157" alt="Сирники з ягодами"></div>
-                                    <div class="card-content">
-                                        <h4>Сирники з ягодами</h4>
-                                        <p>Ніжні сирники з домашнім ягідним соусом та сметаною.</p>
-                                        <span class="card-price">255 грн</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="product-card">
-                                    <div class="card-image"><img src="https://static.shaketopay.com.ua/menu-prod/dish-1408785.jpg?t=1758369951111" alt="Паста з креветками"></div>
-                                    <div class="card-content">
-                                        <h4>Паста з креветками</h4>
-                                        <p>Вершкова паста з тигровими креветками та ноткою часнику.</p>
-                                        <span class="card-price">355 грн</span>
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="swiper-slide"><div class="product-card"><div class="card-image"><img src="https://static.shaketopay.com.ua/menu-prod/dish-1408790.jpg?t=1757327759419" alt="Сніданок з авокадо та лососем"></div><div class="card-content"><h4>Сніданок з авокадо та лососем</h4><p>Класичний ситний сніданок, що надасть енергії на весь день.</p><span class="card-price">270 грн</span></div></div></div>
+                            <div class="swiper-slide"><div class="product-card"><div class="card-image"><img src="https://static.shaketopay.com.ua/menu-prod/dish-1417882.jpg?t=1757327642157" alt="Сирники з ягодами"></div><div class="card-content"><h4>Сирники з ягодами</h4><p>Ніжні сирники з домашнім ягідним соусом та сметаною.</p><span class="card-price">255 грн</span></div></div></div>
+                            <div class="swiper-slide"><div class="product-card"><div class="card-image"><img src="https://static.shaketopay.com.ua/menu-prod/dish-1408785.jpg?t=1758369951111" alt="Паста з креветками"></div><div class="card-content"><h4>Паста з креветками</h4><p>Вершкова паста з тигровими креветками та ноткою часнику.</p><span class="card-price">355 грн</span></div></div></div>
                         </div>
                         <div class="swiper-pagination"></div>
                     </div>
@@ -438,73 +351,49 @@
        </section>
 
         <section id="delivery" class="delivery">
-            <h2>ДОСТАВКА</h2>
+            <h2 class="fade-in-up">ДОСТАВКА</h2>
             <div class="section-content">
-                <div class="section-text">
+                <div class="section-text fade-in-up">
                     <h3>Смак Brooklyn Hub у вас вдома</h3>
                     <p>Немає часу завітати? Не проблема. Насолоджуйтесь улюбленими стравами та напоями, де б ви не були. Все наше меню доступне для замовлення через провідні сервіси доставки.</p>
                     <p>Обирайте зручний для вас і будьте певні: якість, свіжість та смак залишаться незмінними, наче ви сидите за столиком у нашому закладі.</p>
                     <a href="#" class="cta-button">Замовити доставку</a>
                 </div>
-                <div class="section-image-wrapper">
+                <div class="section-image-wrapper fade-in-up">
                     <div class="section-image" style="background-image: url('https://ibf.ua//uploads/fm/images/rthrt.png');"></div>
                 </div>
             </div>
         </section>
 
         <section id="rooms" class="rooms">
-            <h2>MEETING ROOM</h2>
+            <h2 class="fade-in-up">MEETING ROOM</h2>
             <div class="section-content reverse">
-                <div class="section-text">
+                <div class="section-text fade-in-up">
                     <h3>Простір для ваших ідей</h3>
                     <p>Шукаєте ідеальне місце для ділової зустрічі, брейншторму чи важливих переговорів? Наші мітинг-руми — це поєднання комфорту, функціональності та стилю.</p>
                     <p>Ми забезпечимо вас усім необхідним: від швидкісного Wi-Fi та зручних меблів до професійного обслуговування та, звісно, найкращої кави. Створюйте майбутнє у просторі, що надихає.</p>
                     <a href="#" class="cta-button">Забронювати</a>
                 </div>
-                <div class="section-image-wrapper">
+                <div class="section-image-wrapper fade-in-up">
                     <div class="section-image" style="background-image: url('https://blog.spacematrix.com/wp-content/uploads/2024/06/phone-booths-office-design.jpg');"></div>
                 </div>
             </div>
         </section>
 
         <section id="events" class="events">
-            <h2>ПОДІЇ</h2>
+            <h2 class="fade-in-up">ПОДІЇ</h2>
             <div class="section-content">
-                <div class="section-text">
+                <div class="section-text fade-in-up">
                     <h3>Центр спільноти та натхнення</h3>
                     <p>Brooklyn Hub — це не просто кав'ярня, а точка тяжіння для креативних та активних людей. Ми регулярно проводимо лекції, воркшопи, презентації та неформальні зустрічі, що об'єднують нашу спільноту.</p>
                      <a href="#" class="cta-button">Календар подій</a>
                 </div>
-                <div class="section-image-wrapper">
+                <div class="section-image-wrapper fade-in-up">
                     <div class="swiper">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="product-card">
-                                    <div class="card-image"><img src="https://images.unsplash.com/photo-1535016120720-40c646be5580?auto=format&fit=crop&w=800&q=80" alt="Показ фільму"></div>
-                                    <div class="card-content">
-                                        <h4>Показ фільму</h4>
-                                        <p>Затишні вечори з класикою кіно та авторськими коктейлями.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="product-card">
-                                    <div class="card-image"><img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80" alt="Жива музика"></div>
-                                    <div class="card-content">
-                                        <h4>Жива музика</h4>
-                                        <p>Акустичні вечори з місцевими та запрошеними виконавцями.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="product-card">
-                                    <div class="card-image"><img src="https://static.probusiness.io/n/0f/0/andrey_fedoriv_bid_2.jpg" alt="Майстер-класи"></div>
-                                    <div class="card-content">
-                                        <h4>Майстер-класи</h4>
-                                        <p>Навчальні воркшопи від експертів у різних сферах — від кави до IT.</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="swiper-slide"><div class="product-card"><div class="card-image"><img src="https://images.unsplash.com/photo-1535016120720-40c646be5580?auto=format&fit=crop&w=800&q=80" alt="Показ фільму"></div><div class="card-content"><h4>Показ фільму</h4><p>Затишні вечори з класикою кіно та авторськими коктейлями.</p></div></div></div>
+                            <div class="swiper-slide"><div class="product-card"><div class="card-image"><img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80" alt="Жива музика"></div><div class="card-content"><h4>Жива музика</h4><p>Акустичні вечори з місцевими та запрошеними виконавцями.</p></div></div></div>
+                            <div class="swiper-slide"><div class="product-card"><div class="card-image"><img src="https://static.probusiness.io/n/0f/0/andrey_fedoriv_bid_2.jpg" alt="Майстер-класи"></div><div class="card-content"><h4>Майстер-класи</h4><p>Навчальні воркшопи від експертів у різних сферах — від кави до IT.</p></div></div></div>
                         </div>
                         <div class="swiper-pagination"></div>
                     </div>
@@ -527,7 +416,7 @@
             <div class="footer-col">
                 <div class="footer-contact-grid">
                     <div class="contact-item">
-                        <p>Быльше ніж кавʼярня</p>
+                        <p>Більше ніж кавʼярня</p>
                         <strong><a href="tel:+380633883737" style="color: var(--color-white);">+38 (063) 388 37 37</a></strong>
                     </div>
                 </div>
@@ -559,80 +448,100 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         // === ОСНОВНОЙ СКРИПТ САЙТА - НАЧАЛО ===
-        const header = document.querySelector('.header');
-        const body = document.body; 
+        document.addEventListener('DOMContentLoaded', () => {
+            const header = document.querySelector('.header');
+            const body = document.body; 
 
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 5) { 
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-                body.classList.remove('cursor-inverted');
-            }
-        });
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 5) { 
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                    body.classList.remove('cursor-inverted');
+                }
+            });
 
-        const sections = document.querySelectorAll('main section');
-        const navLinks = document.querySelectorAll('.nav-links-main a');
-        const options = { root: null, threshold: 0.35, rootMargin: '0px 0px -50% 0px' };
-        const sectionObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const targetId = entry.target.id;
-                    navLinks.forEach(link => {
-                        link.classList.remove('active-link');
-                        if (link.getAttribute('href') === `#${targetId}`) {
-                            link.classList.add('active-link');
+            const sections = document.querySelectorAll('main section');
+            const navLinks = document.querySelectorAll('.nav-links-main a');
+            const options = { root: null, threshold: 0.35, rootMargin: '0px 0px -50% 0px' };
+            const sectionObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const targetId = entry.target.id;
+                        navLinks.forEach(link => {
+                            link.classList.remove('active-link');
+                            if (link.getAttribute('href') === `#${targetId}`) {
+                                link.classList.add('active-link');
+                            }
+                        });
+                    }
+                });
+            }, options);
+            sections.forEach(section => { sectionObserver.observe(section); });
+            
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    if (this.getAttribute('href').length > 1 && document.querySelector(this.getAttribute('href'))) {
+                        e.preventDefault();
+                        document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+            
+            const openNavBtn = document.getElementById('open-nav-btn');
+            const closeNavBtn = document.getElementById('close-nav-btn');
+            const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+            const openNav = () => {
+                mobileNavOverlay.classList.add('open');
+                document.body.classList.add('no-scroll');
+            };
+            const closeNav = () => {
+                mobileNavOverlay.classList.remove('open');
+                document.body.classList.remove('no-scroll');
+            };
+            openNavBtn.addEventListener('click', openNav);
+            closeNavBtn.addEventListener('click', closeNav);
+            mobileNavLinks.forEach(link => { link.addEventListener('click', closeNav); });
+            
+            document.querySelectorAll('.swiper').forEach(function(swiperElement) {
+                new Swiper(swiperElement, {
+                    loop: true,
+                    slidesPerView: 1,
+                    spaceBetween: 30,
+                    pagination: {
+                        el: swiperElement.querySelector('.swiper-pagination'),
+                        clickable: true,
+                    },
+                    autoplay: {
+                        delay: 5000,
+                        disableOnInteraction: false,
+                    },
+                });
+            });
+            // === ОСНОВНОЙ СКРИПТ САЙТА - КОНЕЦ ===
+
+            // === НОВЫЙ КОД: СКРИПТ ДЛЯ АНИМАЦИИ ПРИ ПРОКРУТКЕ - НАЧАЛО ===
+            const animatedElements = document.querySelectorAll('.fade-in-up');
+            if (animatedElements.length > 0) {
+                const animationObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target);
                         }
                     });
-                }
-            });
-        }, options);
-        sections.forEach(section => { sectionObserver.observe(section); });
-        
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                if (this.getAttribute('href').length > 1 && document.querySelector(this.getAttribute('href'))) {
-                    e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-        
-        const openNavBtn = document.getElementById('open-nav-btn');
-        const closeNavBtn = document.getElementById('close-nav-btn');
-        const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
-        const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
-        const openNav = () => {
-            mobileNavOverlay.classList.add('open');
-            document.body.classList.add('no-scroll');
-        };
-        const closeNav = () => {
-            mobileNavOverlay.classList.remove('open');
-            document.body.classList.remove('no-scroll');
-        };
-        openNavBtn.addEventListener('click', openNav);
-        closeNavBtn.addEventListener('click', closeNav);
-        mobileNavLinks.forEach(link => { link.addEventListener('click', closeNav); });
-        document.querySelectorAll('.swiper').forEach(function(swiperElement) {
-            new Swiper(swiperElement, {
-                loop: true,
-                slidesPerView: 1,
-                spaceBetween: 30,
-                pagination: {
-                    el: swiperElement.querySelector('.swiper-pagination'),
-                    clickable: true,
-                },
-                autoplay: {
-                    delay: 5000,
-                    disableOnInteraction: false,
-                },
-            });
-        });
-        // === ОСНОВНОЙ СКРИПТ САЙТА - КОНЕЦ ===
+                }, {
+                    threshold: 0.15 // Элемент начнет появляться, когда будет виден на 15%
+                });
 
+                animatedElements.forEach(element => {
+                    animationObserver.observe(element);
+                });
+            }
+            // === НОВЫЙ КОД: СКРИПТ ДЛЯ АНИМАЦИИ ПРИ ПРОКРУТКЕ - КОНЕЦ ===
 
-        // === СКРИПТ ДЛЯ КАСТОМНОГО КУРСОРА - НАЧАЛО ===
-        document.addEventListener('DOMContentLoaded', () => {
+            // === СКРИПТ ДЛЯ КАСТОМНОГО КУРСОРА - НАЧАЛО ===
             if ('ontouchstart' in window) {
                 return;
             }
@@ -678,9 +587,8 @@
                 cursorDot.style.opacity = '1';
                 cursorOutline.style.opacity = '1';
             });
+            // === СКРИПТ ДЛЯ КАСТОМНОГО КУРСОРА - КОНЕЦ ===
         });
-        // === СКРИПТ ДЛЯ КАСТОМНОГО КУРСОРА - КОНЕЦ ===
-
     </script>
 </body>
 </html>
