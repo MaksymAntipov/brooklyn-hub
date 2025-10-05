@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="icon" href="media/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="media/favicon.ico" type="image/x-icon">
+    <link id="favicon" rel="icon" href="media/favicon-1.ico" type="image/x-icon">
     
     <title>Brooklyn Hub | Кав'ярня, Кухня, Коворкінг та Події у Львові</title>
     <meta name="description" content="Brooklyn Hub у Львові — це простір, де поєднуються смачна кава від Black Honey, авторська кухня, затишний коворкінг та яскраві події. Ваше місце сили на Малоголосківській.">
@@ -171,15 +170,22 @@
         .footer-logo-block img { height: 60px; filter: invert(1) brightness(150%); margin-bottom: 20px; }
         .social-links { display: flex; gap: 15px; margin: 20px 0; }
         .social-icon { width: 35px; height: 35px; border: 1px solid #444; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: var(--color-white); transition: all 0.3s; }
-        /* НОВЫЙ КОД: Добавлен эффект сдвига при наведении */
         .social-icon:hover { background-color: var(--color-text-secondary); border-color: var(--color-text-secondary); transform: translateY(-3px); }
         .footer-contact-grid strong { font-size: 1.5rem; display: block; margin-bottom: 5px; color: var(--color-white); }
         .footer-bottom { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; text-align: center; color: #555; display: flex; justify-content: space-between; flex-wrap: wrap; }
+        
+        /* === НОВИЙ КОД: Стилі для заголовків та списків у футері === */
+        .footer-nav-col h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px; /* Додано відступ знизу */
+            color: var(--color-white);
+        }
         .footer-nav-col ul { list-style: none; padding: 0; margin: 0; }
         .footer-nav-col ul li { margin-bottom: 10px; }
-        /* НОВЫЙ КОД: Добавлен display:inline-block и переход для padding-left */
         .footer-nav-col ul li a { display: inline-block; color: var(--color-white); text-decoration: none; font-weight: 400; transition: color 0.3s ease, padding-left 0.3s ease; }
-        /* НОВЫЙ КОД: Добавлен сдвиг текста при наведении */
         .footer-nav-col ul li a:hover { color: var(--color-text-secondary); padding-left: 5px; }
 
         .section-image-wrapper { width: 100%; min-height: 450px; display: flex; align-items: center; justify-content: center; }
@@ -194,49 +200,27 @@
         .swiper-pagination-bullet { background-color: rgba(255, 255, 255, 0.5); width: 10px; height: 10px; opacity: 1; }
         .swiper-pagination-bullet-active { background-color: var(--color-white); }
         
-        /* === НОВЫЙ КОД: СТИЛИ ДЛЯ МОБИЛЬНОЙ ВЕРСИИ - НАЧАЛО === */
         @media (max-width: 991px) {
+            section {
+                padding: 80px 5%;
+            }
+
             .section-content, .section-content.reverse {
-                display: flex;
-                flex-direction: column;
-                gap: 40px; 
+                display: flex; flex-direction: column; gap: 40px; 
             }
-
             .section-text {
-                text-align: center;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
+                text-align: center; display: flex; flex-direction: column; align-items: center;
             }
-
-            /* На мобильных устройствах изображение всегда будет сверху */
-            .section-content .section-image-wrapper,
-            .section-content.reverse .section-image-wrapper {
-                order: 1;
-            }
-
-            /* Текстовый блок с кнопкой будет снизу */
-            .section-content .section-text,
-            .section-content.reverse .section-text {
-                order: 2;
-            }
+            .section-content .section-image-wrapper, .section-content.reverse .section-image-wrapper { order: 1; }
+            .section-content .section-text, .section-content.reverse .section-text { order: 2; }
         }
-        /* === НОВЫЙ КОД: СТИЛИ ДЛЯ МОБИЛЬНОЙ ВЕРСИИ - КОНЕЦ === */
-
-        /* === НОВЫЙ КОД: СТИЛИ ДЛЯ АНИМАЦИИ ПРИ ПРОКРУТКЕ - НАЧАЛО === */
+        
         .fade-in-up {
-            opacity: 0;
-            transform: translateY(40px);
+            opacity: 0; transform: translateY(40px);
             transition: opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-
-        .fade-in-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        /* === НОВЫЙ КОД: СТИЛИ ДЛЯ АНИМАЦИИ ПРИ ПРОКРУТКЕ - КОНЕЦ === */
+        .fade-in-up.visible { opacity: 1; transform: translateY(0); }
         
-        /* === СТИЛИ ДЛЯ КАСТОМНОГО КУРСОРА - НАЧАЛО === */
         .cursor-dot, .cursor-outline { pointer-events: none; position: fixed; left: 0; top: 0; border-radius: 50%; opacity: 0; z-index: 10000; transform: translate(-50%, -50%); transition: background-color 0.2s ease-out, border-color 0.2s ease-out; }
         .cursor-dot { width: 8px; height: 8px; background-color: var(--color-white); transition-property: transform, background-color; transition-duration: 0.2s; transition-timing-function: ease-out; }
         .cursor-outline { width: 40px; height: 40px; border: 2px solid rgba(255, 255, 255, 0.5); transition-property: top, left, transform, opacity, border-color; transition-duration: 0.03s, 0.03s, 0.2s, 0.2s, 0.2s; transition-timing-function: ease-out; }
@@ -245,11 +229,69 @@
         body.cursor-inverted .cursor-dot { background-color: var(--color-black); }
         body.cursor-inverted .cursor-outline { border-color: rgba(0, 0, 0, 0.5); }
         body.cursor-inverted.cursor-hover .cursor-outline { border-color: rgba(0, 0, 0, 0.8); }
-        /* === СТИЛИ ДЛЯ КАСТОМНОГО КУРСОРА - КОНЕЦ === */
+
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--color-black);
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+            visibility: visible;
+            opacity: 1;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        #preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        #preloader img {
+            width: 112px;
+            height: auto;
+            filter: invert(1) brightness(150%);
+        }
+
+        .preloader-progress-bar {
+            width: 112px;
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .preloader-progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background-color: var(--color-white);
+            animation: fillProgress 1s forwards ease-out;
+        }
+
+        @keyframes fillProgress {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
     </style>
 </head>
-<body>
-
+<body class="no-scroll">
+    
+    <div id="preloader">
+        <img src="media/Безымянный-2.svg" alt="Brooklyn Hub Logo">
+        <div class="preloader-progress-bar"></div>
+    </div>
+    
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
     
@@ -447,8 +489,32 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // === ОСНОВНОЙ СКРИПТ САЙТА - НАЧАЛО ===
         document.addEventListener('DOMContentLoaded', () => {
+
+            // === СКРИПТ ПРЕЛОАДЕРА ТА АНІМОВАНОГО ФАВІКОНА - ПОЧАТОК ===
+            const preloader = document.getElementById('preloader');
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    if(preloader) {
+                        preloader.classList.add('hidden');
+                        document.body.classList.remove('no-scroll');
+                    }
+                }, 1000); // Затримка 1 секунда
+            });
+
+            const favicon = document.getElementById('favicon');
+            if (favicon) {
+                const faviconFrames = ['media/favicon-1.ico', 'media/favicon-2.ico', 'media/favicon-3.ico'];
+                let currentFrame = 0;
+                setInterval(() => {
+                    currentFrame = (currentFrame + 1) % faviconFrames.length;
+                    favicon.href = faviconFrames[currentFrame];
+                }, 800);
+            }
+            // === СКРИПТ ПРЕЛОАДЕРА ТА АНІМОВАНОГО ФАВІКОНА - КІНЕЦЬ ===
+
+
+            // === ОСНОВНИЙ СКРИПТ САЙТУ - ПОЧАТОК ===
             const header = document.querySelector('.header');
             const body = document.body; 
 
@@ -519,9 +585,9 @@
                     },
                 });
             });
-            // === ОСНОВНОЙ СКРИПТ САЙТА - КОНЕЦ ===
+            // === ОСНОВНИЙ СКРИПТ САЙТУ - КІНЕЦЬ ===
 
-            // === НОВЫЙ КОД: СКРИПТ ДЛЯ АНИМАЦИИ ПРИ ПРОКРУТКЕ - НАЧАЛО ===
+            // === СКРИПТ ДЛЯ АНІМАЦІЇ ПРИ ПРОКРУТЦІ - ПОЧАТОК ===
             const animatedElements = document.querySelectorAll('.fade-in-up');
             if (animatedElements.length > 0) {
                 const animationObserver = new IntersectionObserver((entries, observer) => {
@@ -532,16 +598,16 @@
                         }
                     });
                 }, {
-                    threshold: 0.15 // Элемент начнет появляться, когда будет виден на 15%
+                    threshold: 0.15 
                 });
 
                 animatedElements.forEach(element => {
                     animationObserver.observe(element);
                 });
             }
-            // === НОВЫЙ КОД: СКРИПТ ДЛЯ АНИМАЦИИ ПРИ ПРОКРУТКЕ - КОНЕЦ ===
+            // === СКРИПТ ДЛЯ АНІМАЦІЇ ПРИ ПРОКРУТЦІ - КІНЕЦЬ ===
 
-            // === СКРИПТ ДЛЯ КАСТОМНОГО КУРСОРА - НАЧАЛО ===
+            // === СКРИПТ ДЛЯ КАСТОМНОГО КУРСОРА - ПОЧАТОК ===
             if ('ontouchstart' in window) {
                 return;
             }
@@ -587,7 +653,7 @@
                 cursorDot.style.opacity = '1';
                 cursorOutline.style.opacity = '1';
             });
-            // === СКРИПТ ДЛЯ КАСТОМНОГО КУРСОРА - КОНЕЦ ===
+            // === СКРИПТ ДЛЯ КАСТОМНОГО КУРСОРА - КІНЕЦЬ ===
         });
     </script>
 </body>
