@@ -369,26 +369,28 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
-            // === СКРИПТ ПРЕЛОАДЕРА ТА АНІМОВАНОГО ФАВІКОНА - ПОЧАТОК ===
-            const preloader = document.getElementById('preloader');
-            window.addEventListener('load', () => {
-                // ОПТИМИЗАЦИЯ: Убрана искусственная задержка в 1 секунду. Прелоадер исчезнет сразу после загрузки страницы.
-                if(preloader) {
-                    preloader.classList.add('hidden');
-                    document.body.classList.remove('no-scroll');
-                }
-            });
+// === СКРИПТ ПРЕЛОАДЕРА ТА АНІМОВАНОГО ФАВІКОНА - ПОЧАТОК ===
+const preloader = document.getElementById('preloader');
+window.addEventListener('load', () => {
+    // Добавляем задержку в 1 секунду перед скрытием прелоадера
+    setTimeout(() => {
+        if(preloader) {
+            preloader.classList.add('hidden');
+            document.body.classList.remove('no-scroll');
+        }
+    }, 1000); // 1000 миллисекунд = 1 секунда
+});
 
-            const favicon = document.getElementById('favicon');
-            if (favicon) {
-                const faviconFrames = ['media/favicon-3.ico', 'media/favicon-2.ico', 'media/favicon-1.ico'];
-                let currentFrame = 0;
-                setInterval(() => {
-                    currentFrame = (currentFrame + 1) % faviconFrames.length;
-                    favicon.href = faviconFrames[currentFrame];
-                }, 800);
-            }
-            // === СКРИПТ ПРЕЛОАДЕРА ТА АНІМОВАНОГО ФАВІКОНА - КІНЕЦЬ ===
+const favicon = document.getElementById('favicon');
+if (favicon) {
+    const faviconFrames = ['media/favicon-3.ico', 'media/favicon-2.ico', 'media/favicon-1.ico'];
+    let currentFrame = 0;
+    setInterval(() => {
+        currentFrame = (currentFrame + 1) % faviconFrames.length;
+        favicon.href = faviconFrames[currentFrame];
+    }, 800);
+}
+// === СКРИПТ ПРЕЛОАДЕРА ТА АНІМОВАНОГО ФАВІКОНА - КІНЕЦЬ ===
 
 
             // === ОСНОВНИЙ СКРИПТ САЙТУ - ПОЧАТОК ===
