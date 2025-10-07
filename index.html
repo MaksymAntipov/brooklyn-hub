@@ -10,9 +10,7 @@
     <meta name="description" content="Brooklyn Hub у Львові — це простір, де поєднуються смачна кава від Black Honey, авторська кухня, затишний коворкінг та яскраві події. Ваше місце сили на Малоголосківській.">
     <meta name="keywords" content="кав'ярня Львів, кухня Львів, коворкінг Львів, Brooklyn Hub, Black Honey Львів, мітинг-рум, івенти Львів, сніданки Львів">
 
-    <meta name="robots" content="noindex, nofollow">
-    <link rel="canonical" href="https://www.yourwebsite.com" />
-    <meta property="og:type" content="website">
+    <meta name="robots" content="index, follow"> <link rel="canonical" href="https://www.yourwebsite.com/index.html" /> <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.yourwebsite.com">
     <meta property="og:title" content="Brooklyn Hub | Кав'ярня, Кухня, Коворкінг у Львові">
     <meta property="og:description" content="Ваше місце сили на Малоголосківській. Кава від Black Honey, авторська кухня, мітинг-руми та події.">
@@ -55,7 +53,7 @@
     </noscript>
 
     <style>
-        /* Весь ваш CSS-код остается здесь без изменений */
+        /* CSS без змін */
         :root {
             --color-black: #000000;
             --color-white: #FFFFFF;
@@ -68,7 +66,7 @@
         body.no-scroll { overflow: hidden; }
         body, a, button, .swiper-pagination-bullet, .mobile-icon-circle { cursor: none; }
         section { padding: 120px 5%; min-height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; overflow: hidden; }
-        a { text-decoration: none; transition: color var(--transition-time) ease; }
+        a { text-decoration: none; transition: color var(--transition-time) ease; color: var(--color-white); }
         h2 { font-size: clamp(2.5rem, 6vw, 4.5rem); text-align: center; margin-bottom: 5rem; color: var(--color-white); font-weight: 700; letter-spacing: 3px; text-transform: uppercase; }
         .section-content { display: grid; grid-template-columns: 1fr; gap: 60px; align-items: center; max-width: 1200px; width: 100%; }
         @media (min-width: 992px) {
@@ -167,7 +165,7 @@
 <body class="no-scroll">
     
     <div id="preloader">
-        <img src="media/Безымянный-2.svg" alt="Brooklyn Hub Logo">
+        <img src="media/logo.svg" alt="Brooklyn Hub Logo">
         <div class="preloader-progress-bar"></div>
     </div>
     
@@ -187,7 +185,7 @@
         </div>
         <div class="header-item header-logo">
             <a href="#home">
-                 <img src="media/Безымянный-2.svg" alt="Логотип Brooklyn Hub Львів">
+                 <img src="media/logo.svg" alt="Логотип Brooklyn Hub Львів">
             </a>
         </div>
         <div class="header-item header-right">
@@ -326,7 +324,7 @@
     <footer class="main-footer">
         <div class="footer-grid">
             <div class="footer-col footer-logo-block">
-                <img src="media/Безымянный-2.svg" alt="Логотип Brooklyn Hub у підвалі сайту" loading="lazy" decoding="async">
+                <img src="media/logo.svg" alt="Логотип Brooklyn Hub у підвалі сайту" loading="lazy" decoding="async">
                 <p>м. Львів, вул. Малоголосківська, 19, Україна, 79061</p>
                 <div class="social-links">
                     <a href="https://www.instagram.com/brooklynhublviv/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
@@ -355,7 +353,9 @@
             <div class="footer-col footer-nav-col">
                 <h4>Інформація</h4>
                 <ul>
-                    <li><a href="#">Вакансії</a></li>
+                    <li><a href="about.html">Про нас</a></li>
+                    <li><a href="careers.html">Вакансії</a></li>
+                    <li><a href="faq.html">FAQs</a></li>
                 </ul>
             </div>
         </div>
@@ -367,31 +367,31 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
     <script>
+        // JS с изменениями
         document.addEventListener('DOMContentLoaded', () => {
 
-// === СКРИПТ ПРЕЛОАДЕРА ТА АНІМОВАНОГО ФАВІКОНА - ПОЧАТОК ===
-const preloader = document.getElementById('preloader');
-window.addEventListener('load', () => {
-    // Добавляем задержку в 1 секунду перед скрытием прелоадера
-    setTimeout(() => {
-        if(preloader) {
-            preloader.classList.add('hidden');
-            document.body.classList.remove('no-scroll');
-        }
-    }, 1000); // 1000 миллисекунд = 1 секунда
-});
+            // === СКРИПТ ПРЕЛОАДЕРА ТА АНІМОВАНОГО ФАВІКОНА - ПОЧАТОК ===
+            const preloader = document.getElementById('preloader');
+            window.addEventListener('load', () => {
+                // Добавляем задержку в 1 секунду перед скрытием прелоадера
+                setTimeout(() => {
+                    if(preloader) {
+                        preloader.classList.add('hidden');
+                        document.body.classList.remove('no-scroll');
+                    }
+                }, 1000); // 1000 миллисекунд = 1 секунда
+            });
 
-const favicon = document.getElementById('favicon');
-if (favicon) {
-    const faviconFrames = ['media/favicon-3.ico', 'media/favicon-2.ico', 'media/favicon-1.ico'];
-    let currentFrame = 0;
-    setInterval(() => {
-        currentFrame = (currentFrame + 1) % faviconFrames.length;
-        favicon.href = faviconFrames[currentFrame];
-    }, 800);
-}
-// === СКРИПТ ПРЕЛОАДЕРА ТА АНІМОВАНОГО ФАВІКОНА - КІНЕЦЬ ===
-
+            const favicon = document.getElementById('favicon');
+            if (favicon) {
+                const faviconFrames = ['media/favicon-3.ico', 'media/favicon-2.ico', 'media/favicon-1.ico'];
+                let currentFrame = 0;
+                setInterval(() => {
+                    currentFrame = (currentFrame + 1) % faviconFrames.length;
+                    favicon.href = faviconFrames[currentFrame];
+                }, 800);
+            }
+            // === СКРИПТ ПРЕЛОАДЕРА ТА АНІМОВАНОГО ФАВІКОНА - КІНЕЦЬ ===
 
             // === ОСНОВНИЙ СКРИПТ САЙТУ - ПОЧАТОК ===
             const header = document.querySelector('.header');
@@ -414,9 +414,12 @@ if (favicon) {
                     if (entry.isIntersecting) {
                         const targetId = entry.target.id;
                         navLinks.forEach(link => {
-                            link.classList.remove('active-link');
-                            if (link.getAttribute('href') === `#${targetId}`) {
-                                link.classList.add('active-link');
+                            // Игнорируем ссылки, которые ведут на другие страницы
+                            if (link.getAttribute('href').startsWith('#')) {
+                                link.classList.remove('active-link');
+                                if (link.getAttribute('href') === `#${targetId}`) {
+                                    link.classList.add('active-link');
+                                }
                             }
                         });
                     }
@@ -441,7 +444,12 @@ if (favicon) {
             const closeNav = () => { mobileNavOverlay.classList.remove('open'); document.body.classList.remove('no-scroll'); };
             openNavBtn.addEventListener('click', openNav);
             closeNavBtn.addEventListener('click', closeNav);
-            mobileNavLinks.forEach(link => { link.addEventListener('click', closeNav); });
+            mobileNavLinks.forEach(link => { 
+                // Закрываем меню только если это якорная ссылка
+                if(link.getAttribute('href').startsWith('#')) {
+                    link.addEventListener('click', closeNav);
+                }
+            });
             
             document.querySelectorAll('.swiper').forEach(function(swiperElement) {
                 new Swiper(swiperElement, {
@@ -475,41 +483,36 @@ if (favicon) {
                 const cursorDot = document.querySelector('.cursor-dot');
                 const cursorOutline = document.querySelector('.cursor-outline');
                 
-                // Переменные для хранения текущих и целевых позиций
                 let mouseX = 0, mouseY = 0;
                 let posX = 0, posY = 0;
 
-                // Быстро обновляем целевую позицию при движении мыши
                 window.addEventListener('mousemove', e => {
                     mouseX = e.clientX;
                     mouseY = e.clientY;
                 });
 
-                // Функция для плавной анимации, которая не перегружает CPU
                 const animateCursor = () => {
-                    // Плавное "следование" курсора за реальной позицией мыши
+                    // Точка (dot) следует за курсором мгновенно
+                    cursorDot.style.left = `${mouseX}px`;
+                    cursorDot.style.top = `${mouseY}px`;
+                    
+                    // Круг (outline) следует с плавным замедлением
                     posX += (mouseX - posX) * 0.12;
                     posY += (mouseY - posY) * 0.12;
 
-                    cursorDot.style.left = `${posX}px`;
-                    cursorDot.style.top = `${posY}px`;
                     cursorOutline.style.left = `${posX}px`;
                     cursorOutline.style.top = `${posY}px`;
 
-                    // Запрашиваем следующий кадр анимации
                     requestAnimationFrame(animateCursor);
                 };
                 
-                // Запускаем цикл анимации один раз
                 requestAnimationFrame(animateCursor);
                 
-                // Показываем курсор при входе в окно
                 document.addEventListener('mouseenter', () => {
                     cursorDot.style.opacity = '1';
                     cursorOutline.style.opacity = '1';
                 });
                 
-                // Скрываем при выходе
                  document.addEventListener('mouseleave', () => {
                     cursorDot.style.opacity = '0';
                     cursorOutline.style.opacity = '0';
