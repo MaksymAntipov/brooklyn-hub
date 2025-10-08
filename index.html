@@ -376,7 +376,7 @@
         
         <div id="coming-soon-modal" class="modal-overlay">
             <div class="modal-content">
-                <span class="modal-close-btn">&times;</span>
+                <span class="modal-close-btn">×</span>
                 <p>Упс, вже скоро буде доступна ця можливість</p>
             </div>
         </div>
@@ -433,12 +433,12 @@
             // === СКРИПТ ПРЕЛОАДЕРА ТА АНІМОВАНОГО ФАВІКОНА - ПОЧАТОК ===
             const preloader = document.getElementById('preloader');
             window.addEventListener('load', () => {
-                setTimeout(() => {
+                // setTimeout(() => { // <<< ЗАКОММЕНТИРОВАНО ИЛИ УДАЛЕНО
                     if(preloader) {
                         preloader.classList.add('hidden');
                         document.body.classList.remove('no-scroll');
                     }
-                }, 1000);
+                // }, 1000); // <<< ЗАКОММЕНТИРОВАНО ИЛИ УДАЛЕНО
             });
 
             const favicon = document.getElementById('favicon');
