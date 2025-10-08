@@ -1,0 +1,6 @@
+# Allow all crawlers to access the entire site
+User-agent: *
+Allow: /
+
+# Provide the location of the sitemap
+Sitemap: https://brooklynhub.com.ua/sitemap.xml
