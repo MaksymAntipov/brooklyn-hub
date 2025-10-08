@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link id="favicon" rel="icon" href="media/favicon-1.ico" type="image/x-icon">
     
-    <title>Brooklyn Hub | Про нас — Наша історія та цінності</title>
+    <title>Brooklyn Hub — Кав'ярня, кухня та плейс для роботи й відпочинку у Львові</title>
     <meta name="description" content="Дізнайтесь історію створення Brooklyn Hub у Львові. Наша філософія, любов до кави та прагнення створити унікальний простір для роботи та відпочинку.">
     <meta name="keywords" content="про Brooklyn Hub, історія кав'ярні, філософія закладу, кав'ярня Львів, про нас">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://www.yourwebsite.com/about.html" />
+    <link rel="canonical" href="https://brooklynhub.com.ua/about.html" />
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.yourwebsite.com/about.html">
-    <meta property="og:title" content="Brooklyn Hub | Про нас — Наша історія та цінності">
+    <meta property="og:url" content="https://brooklynhub.com.ua/about.html">
+    <meta property="og:title" content="Brooklyn Hub — Кав'ярня, кухня та плейс для роботи й відпочинку у Львові">
     <meta property="og:description" content="Ми створили не просто кав'ярню, а місце сили та натхнення у Львові. Дізнайтесь більше про нашу історію та команду.">
-    <meta property="og:image" content="https://www.yourwebsite.com/og-image-about.jpg">
+    <meta property="og:image" content="media/brooklyn-hub-logo-og.jpg">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        /* Повністю синхронізований CSS з index.html */
+        /* CSS без змін */
         :root {
             --color-black: #000000;
             --color-white: #FFFFFF;
@@ -71,28 +71,14 @@
         body.cursor-inverted .cursor-dot { background-color: var(--color-black); }
         body.cursor-inverted .cursor-outline { border-color: rgba(0, 0, 0, 0.5); }
         body.cursor-inverted.cursor-hover .cursor-outline { border-color: rgba(0, 0, 0, 0.8); }
-
-        /* === НОВІ СТИЛІ ДЛЯ СТОРІНКИ "ПРО НАС" === */
-        .about-section { padding: 140px 5% 80px; max-width: 1100px; margin: 0 auto; }
-        .about-section h1 { font-size: clamp(2.5rem, 6vw, 4rem); text-align: center; margin-bottom: 4rem; text-transform: uppercase; letter-spacing: 2px; }
-        .about-content { display: flex; flex-direction: column; gap: 3rem; }
-        .about-block { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; }
-        @media (min-width: 768px) {
-            .about-block { grid-template-columns: repeat(2, 1fr); gap: 4rem; }
-            .about-block.reverse { grid-template-columns: repeat(2, 1fr); }
-            .about-block.reverse .about-image { grid-column: 2 / 3; grid-row: 1 / 2; }
-            .about-block.reverse .about-text { grid-column: 1 / 2; grid-row: 1 / 2; }
-        }
-        .about-text h2 { font-size: 2rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px; }
-        .about-text p { color: var(--color-text-secondary); margin-bottom: 1rem; font-size: 1.05rem; }
-        .about-image img { width: 100%; height: auto; object-fit: cover; max-height: 450px; }
-        .values-section { margin-top: 5rem; text-align: center; }
-        .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; text-align: left; }
+        .about-section { padding: 140px 5% 80px; max-width: 900px; margin: 0 auto; }
+        .about-section h1 { font-size: clamp(2.5rem, 6vw, 4rem); text-align: center; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 2px; }
+        .about-section h2 { font-size: 2rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 3rem; text-align: center; }
+        .about-section p { color: var(--color-text-secondary); margin-bottom: 1rem; font-size: 1.1rem; text-align: center; max-width: 750px; margin-left: auto; margin-right: auto; }
+        .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem; text-align: left; }
         .value-item { border-top: 1px solid #333; padding-top: 1.5rem; }
         .value-item h3 { font-size: 1.3rem; margin-bottom: 1rem; }
-        .value-item p { color: var(--color-text-secondary); }
-        /* === КІНЕЦЬ НОВИХ СТИЛІВ === */
-
+        .value-item p { color: var(--color-text-secondary); text-align: left; }
         .main-footer { background-color: var(--color-black); padding: 80px 5% 20px; color: var(--color-white); font-size: 0.9rem; border-top: 1px solid #222;}
         .footer-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px; max-width: 1400px; margin: 0 auto; }
         .footer-logo-block img { height: 60px; filter: invert(1) brightness(150%); margin-bottom: 20px; }
@@ -155,32 +141,24 @@
     <main>
         <section class="about-section">
             <h1>Більше ніж кав'ярня</h1>
-            <div class="about-content">
-                <div class="about-block">
-                    <div class="about-text">
-                        <h2>Наша історія</h2>
-                        <p>Ідея Brooklyn Hub народилася з любові до динамічної атмосфери Брукліну та затишку старого Львова. Ми мріяли створити місце, де кожен зможе знайти щось для себе: ідеальний еспресо для бадьорого ранку, тихий куточок для продуктивної роботи або комфортний простір для зустрічі з друзями.</p>
-                        <p>Відкрившись у 2024 році, ми прагнули поєднати найкращі кавові традиції з сучасним підходом до гастрономії та сервісу. Наша мета — бути не просто черговою точкою на карті, а справжнім хабом для креативних та прогресивних людей міста.</p>
-                    </div>
-                    <div class="about-image">
-                        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2047&auto=format&fit=crop" alt="Інтер'єр кав'ярні Brooklyn Hub" loading="lazy">
-                    </div>
-                </div>
+            <p>Brooklyn Hub — це кав’ярня повного циклу у Львові, де поєднуються кава, повноцінна кухня та простір для роботи й відпочинку. Тут можна провести цілий день: розпочати ранок з ароматної кави, піднятися у переговорну кабінку для онлайн-дзвінка чи зустрічі, пообідати або повечеряти стравами з нашої кухні, а потім розслабитися в м’якій зоні з книгою чи келихом вина.</p>
+            <p>Ми створили місце, де ранкова продуктивність природно переходить у вечірній відпочинок — простір, що надихає жити у своєму ритмі.</p>
 
+            <div class="about-content">
                 <div class="values-section">
                     <h2>Наша Філософія</h2>
                     <div class="values-grid">
                         <div class="value-item">
                             <h3>Якість у кожній деталі</h3>
-                            <p>Ми ретельно відбираємо кавові зерна, працюємо з локальними постачальниками продуктів та приділяємо максимум уваги кожній страві, що виходить з нашої кухні.</p>
+                            <p>Ми готуємо сніданки цілий день, бо натхнення не має розкладу. У меню — свіжі локальні продукти, збалансовані смаки та авторський підхід до кожної страви. Ми співпрацюємо з українськими обсмажчиками Black Honey і використовуємо зерна класу Specialty.</p>
                         </div>
                         <div class="value-item">
-                            <h3>Комфортний простір</h3>
-                            <p>Стабільний Wi-Fi, велика кількість розеток, зручні меблі та зоноване освітлення створюють ідеальні умови як для роботи, так і для відпочинку.</p>
+                            <h3>Простір для роботи та відпочинку</h3>
+                            <p>Стабільний Wi-Fi, зручні меблі, переговорні кабінки, багато розеток і зоноване освітлення створюють ідеальні умови як для роботи, так і для релаксу. Brooklyn Hub — це місце, де можна провести день із комфортом: від першої кави до вечірнього десерту.</p>
                         </div>
                         <div class="value-item">
-                            <h3>Спільнота та атмосфера</h3>
-                            <p>Brooklyn Hub — це місце для людей. Ми організовуємо події, підтримуємо місцеві ініціативи та завжди раді бачити у нас гостей з їхніми чотирилапими друзями.</p>
+                            <h3>Спільнота та події</h3>
+                            <p>Ми віримо, що кава об’єднує людей. Тому Brooklyn Hub — це центр подій та спільноти: ми проводимо кінопокази, живі музичні виступи, лекції та івенти, які роблять будні яскравішими. Brooklyn Hub — це не просто кав’ярня, а місце зустрічей, натхнення та відчуття дому.</p>
                         </div>
                     </div>
                 </div>
@@ -272,22 +250,23 @@
                 const cursorOutline = document.querySelector('.cursor-outline');
                 let mouseX = 0, mouseY = 0, posX = 0, posY = 0;
 
+                cursorDot.style.opacity = '1';
+                cursorOutline.style.opacity = '1';
+
                 window.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
 
-const animateCursor = () => {
-    // Точка (dot) следует за курсором мгновенно
-    cursorDot.style.left = `${mouseX}px`;
-    cursorDot.style.top = `${mouseY}px`;
-    
-    // Круг (outline) следует с плавным замедлением
-    posX += (mouseX - posX) * 0.12;
-    posY += (mouseY - posY) * 0.12;
+                const animateCursor = () => {
+                    cursorDot.style.left = `${mouseX}px`;
+                    cursorDot.style.top = `${mouseY}px`;
+                    
+                    posX += (mouseX - posX) * 0.12;
+                    posY += (mouseY - posY) * 0.12;
 
-    cursorOutline.style.left = `${posX}px`;
-    cursorOutline.style.top = `${posY}px`;
+                    cursorOutline.style.left = `${posX}px`;
+                    cursorOutline.style.top = `${posY}px`;
 
-    requestAnimationFrame(animateCursor);
-};
+                    requestAnimationFrame(animateCursor);
+                };
                 requestAnimationFrame(animateCursor);
                 
                 document.addEventListener('mouseenter', () => { cursorDot.style.opacity = '1'; cursorOutline.style.opacity = '1'; });
