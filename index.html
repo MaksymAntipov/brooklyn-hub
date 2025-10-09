@@ -472,7 +472,7 @@
     <div id="booking-widget-overlay">
         <div class="booking-widget-container">
             <a id="close-booking-btn" class="booking-close-btn">×</a>
-            <iframe src="https://booking.easyweek.com.ua/brooklyn-hub" style="border: 0; display: block; width: 100%; height: 100%;" frameborder="0" referrerpolicy="origin"></iframe>
+            <iframe id="booking-iframe" src="https://booking.easyweek.com.ua/brooklyn-hub" style="border: 0; display: block; width: 100%; height: 100%;" frameborder="0" referrerpolicy="origin"></iframe>
         </div>
         <script>
         ;(function(w, l) {
@@ -657,7 +657,6 @@
                 openBookingBtn.addEventListener('click', openBooking);
                 closeBookingBtn.addEventListener('click', closeBooking);
                 
-                // Закриття по кліку на фон
                 bookingOverlay.addEventListener('click', (e) => {
                     if (e.target === bookingOverlay) {
                         closeBooking();
@@ -671,6 +670,20 @@
                 });
             }
             // === СКРИПТ ДЛЯ ВІДЖЕТА БРОНЮВАННЯ - КІНЕЦЬ ===
+            
+            // === СКРИПТ ДЛЯ ОБНОВЛЕНИЯ ВИДЖЕТА ПРИ ФОКУСЕ ВКЛАДКИ - НАЧАЛО ===
+            window.addEventListener('focus', () => {
+                const bookingOverlay = document.getElementById('booking-widget-overlay');
+                // Проверяем, открыто ли модальное окно
+                if (bookingOverlay && bookingOverlay.classList.contains('visible')) {
+                    const bookingIframe = document.getElementById('booking-iframe');
+                    if (bookingIframe) {
+                        // Перезагружаем iframe, чтобы обновить статус бронирования
+                        bookingIframe.src = bookingIframe.src;
+                    }
+                }
+            });
+            // === СКРИПТ ДЛЯ ОБНОВЛЕНИЯ ВИДЖЕТА ПРИ ФОКУСЕ ВКЛАДКИ - КОНЕЦ ===
 
             // === ОПТИМИЗИРОВАННЫЙ СКРИПТ ДЛЯ КАСТОМНОГО КУРСОРА - ПОЧАТОК ===
             if (!('ontouchstart' in window)) {
