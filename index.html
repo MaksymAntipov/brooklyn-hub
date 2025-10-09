@@ -234,75 +234,6 @@
             display: block;
         }
         /* === СТИЛІ ДЛЯ КНОПКИ З ПІДЗАГОЛОВКОМ - КІНЕЦЬ === */
-
-        /* === СТИЛІ ДЛЯ ВІДЖЕТА БРОНЮВАННЯ (MODAL) - ПОЧАТОК === */
-        #booking-widget-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent backdrop */
-            z-index: 10001;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.4s ease, visibility 0s 0.4s linear;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
-        #booking-widget-overlay.visible {
-            opacity: 1;
-            visibility: visible;
-            transition: opacity 0.4s ease;
-        }
-        .booking-widget-container {
-            position: relative;
-            width: 100%;
-            max-width: 900px;
-            height: 90vh;
-            max-height: 700px;
-            background-color: var(--color-gray-bg);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 35px rgba(255, 255, 255, 0.08);
-            overflow: hidden;
-            transform: scale(0.95);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        #booking-widget-overlay.visible .booking-widget-container {
-            transform: scale(1);
-        }
-        .booking-widget-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        .booking-close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 26px;
-            color: var(--color-white);
-            z-index: 10002;
-            cursor: pointer;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-            font-family: Arial, sans-serif;
-            line-height: 1;
-            border-radius: 50%;
-            background-color: rgba(0, 0, 0, 0.3);
-        }
-        .booking-close-btn:hover {
-            transform: rotate(90deg);
-            background-color: rgba(255, 255, 255, 0.15);
-        }
-        /* === СТИЛІ ДЛЯ ВІДЖЕТА БРОНЮВАННЯ (MODAL) - КІНЕЦЬ === */
     </style>
 </head>
 <body class="no-scroll">
@@ -372,7 +303,7 @@
                      <p>Ми віримо, що досконалість починається з зерна. Разом із Black Honey, українськими майстрами обсмаження, ми обираємо лише зерна класу Specialty — фермерську каву з окремих плантацій, де кожне зерно має свій теруар, історію та характер.</p>
                      <p>У Brooklyn Hub ми варимо каву з добірних зерен Specialty, де кожен лот має свою історію, аромат і характер. Спробуйте Rwanda Muhondo — зелений виноград, карамель, порічка, лимон, мигдаль. Або Burundi Busasa — журавлина, вишня, зелене яблуко, лічі, карамель.</p>
                      <p>Наші бариста розкривають потенціал кожного зерна — від класики до альтернативних методів заварювання V60, Chemex…</p>
-                     <a href="https://expz.menu/delivery/cd8b3814-8263-4ce8-8e63-445e8c37e8a4" target="_blank" rel="noopener noreferrer" class="cta-button">Повне меню</a>
+                     <a href="https://expz.menu/delivery/cd8b3814-8263-4ce8-8e63-445e8c37e8a4/menu?menuId=34424" target="_blank" rel="noopener noreferrer" class="cta-button">Повне меню</a>
                  </div>
                  <div class="section-image-wrapper fade-in-up">
                     <div class="swiper">
@@ -395,7 +326,7 @@
                     <p>У Brooklyn Hub можна смачно поїсти в будь-який час дня. Ми готуємо сніданки протягом усього дня — навіть після обіду можна замовити шакшуку з хумусом, сирники з лососем, або тост з яйцями «Бенедикт».</p>
                     <p>Наша повноцінна кухня працює цілий день — у меню є паста з креветками, паста “Карбонара”, сендвіч “Крок Мадам”, курячий шніцель із пюре, зелений салат з авокадо та круасани з прошутто чи лососем.</p>
                     <p>Ми готуємо зі свіжих локальних продуктів, поєднуючи європейські та авторські рецепти, щоб кожна страва виглядала естетично й залишала після себе лише приємний післясмак.</p>
-                    <a href="https://expz.menu/delivery/cd8b3814-8263-4ce8-8e63-445e8c37e8a4" target="_blank" rel="noopener noreferrer" class="cta-button">Переглянути меню кухні</a>
+                    <a href="https://expz.menu/delivery/cd8b3814-8263-4ce8-8e63-445e8c37e8a4/menu?menuId=34904" target="_blank" rel="noopener noreferrer" class="cta-button">Переглянути меню кухні</a>
                 </div>
                 <div class="section-image-wrapper fade-in-up">
                     <div class="swiper">
@@ -436,9 +367,9 @@
                 <div class="section-text fade-in-up">
                     <h3>Простір для роботи та зустрічей</h3>
                     <p>Шукаєте meeting room у Львові або місце для роботи й зустрічей у спокійній атмосфері? Brooklyn Hub — це простір, де можна провести ділову зустріч, брейншторм або просто попрацювати в тиші.</p>
-                    <p>Наші мітинг-руми поєднують комфорт, функціональність і стиль. Тут є все необхідне: швидкісний Wi-Fi, зручні меблі, якісне освітлення та атмосфера, що надих-ає на ідеї й рішення.</p>
+                    <p>Наші мітинг-руми поєднують комфорт, функціональність і стиль. Тут є все необхідне: швидкісний Wi-Fi, зручні меблі, якісне освітлення та атмосфера, що надихає на ідеї й рішення.</p>
                     <p>Brooklyn Hub — це сучасний простір у Львові для роботи, відпочинку та важливих моментів.</p>
-                    <a href="#" id="open-booking-btn" class="cta-button">Забронювати</a>
+                    <a href="https://booking.easyweek.com.ua/brooklyn-hub" target="_blank" rel="noopener noreferrer" class="cta-button">Забронювати</a>
                 </div>
                 <div class="section-image-wrapper fade-in-up">
                     <div class="section-image" style="background-image: url('media/office-design.jpg');"></div>
@@ -468,24 +399,6 @@
             </div>
         </section>
     </main>
-
-    <div id="booking-widget-overlay">
-        <div class="booking-widget-container">
-            <a id="close-booking-btn" class="booking-close-btn">×</a>
-            <iframe id="booking-iframe" src="https://booking.easyweek.com.ua/brooklyn-hub" style="border: 0; display: block; width: 100%; height: 100%;" frameborder="0" referrerpolicy="origin"></iframe>
-        </div>
-        <script>
-        ;(function(w, l) {
-            w.addEventListener("message", function(e) {
-                if (/(easyweek|eswk)\./.test(e.origin) && e.data && e.data.type === "redirect") {
-                    // Cтандартное поведение (заменяет текущую вкладку): l.replace(e.data.url);
-                    // Новое поведение (открывает в новой вкладке):
-                    window.open(e.data.url, '_blank');
-                }
-            })
-        })(window, location);
-        </script>
-    </div>
 
     <footer class="main-footer">
         <div class="footer-grid">
@@ -637,61 +550,6 @@
             }
             // === СКРИПТ ДЛЯ АНІМАЦІЇ ПРИ ПРОКРУТЦІ - КІНЕЦЬ ===
 
-            // === СКРИПТ ДЛЯ ВІДЖЕТА БРОНЮВАННЯ - ПОЧАТОК ===
-            const openBookingBtn = document.getElementById('open-booking-btn');
-            const bookingOverlay = document.getElementById('booking-widget-overlay');
-            const closeBookingBtn = document.getElementById('close-booking-btn');
-
-            if (openBookingBtn && bookingOverlay && closeBookingBtn) {
-                const openBooking = (e) => {
-                    e.preventDefault();
-                    bookingOverlay.classList.add('visible');
-                    document.body.classList.add('no-scroll');
-                };
-
-                const closeBooking = () => {
-                    bookingOverlay.classList.remove('visible');
-                    document.body.classList.remove('no-scroll');
-                };
-
-                openBookingBtn.addEventListener('click', openBooking);
-                closeBookingBtn.addEventListener('click', closeBooking);
-                
-                bookingOverlay.addEventListener('click', (e) => {
-                    if (e.target === bookingOverlay) {
-                        closeBooking();
-                    }
-                });
-
-                window.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && bookingOverlay.classList.contains('visible')) {
-                        closeBooking();
-                    }
-                });
-            }
-            // === СКРИПТ ДЛЯ ВІДЖЕТА БРОНЮВАННЯ - КІНЕЦЬ ===
-            
-            // === СКРИПТ ДЛЯ ОБНОВЛЕНИЯ ВИДЖЕТА ПРИ ФОКУСЕ ВКЛАДКИ - НАЧАЛО ===
-            window.addEventListener('focus', () => {
-                const bookingOverlay = document.getElementById('booking-widget-overlay');
-                // Проверяем, открыто ли модальное окно
-                if (bookingOverlay && bookingOverlay.classList.contains('visible')) {
-                    const bookingIframe = document.getElementById('booking-iframe');
-                    if (bookingIframe) {
-                        // "Взламываем" кеш, добавляя уникальный параметр времени к URL
-                        // Это заставит браузер гарантированно перезагрузить iframe
-                        try {
-                            let url = new URL(bookingIframe.src);
-                            url.searchParams.set('_cache', Date.now());
-                            bookingIframe.src = url.toString();
-                        } catch (e) {
-                            console.error("Failed to update iframe src:", e);
-                        }
-                    }
-                }
-            });
-            // === СКРИПТ ДЛЯ ОБНОВЛЕНИЯ ВИДЖЕТА ПРИ ФОКУСЕ ВКЛАДКИ - КОНЕЦ ===
-
             // === ОПТИМИЗИРОВАННЫЙ СКРИПТ ДЛЯ КАСТОМНОГО КУРСОРА - ПОЧАТОК ===
             if (!('ontouchstart' in window)) {
                 const cursorDot = document.querySelector('.cursor-dot');
@@ -733,7 +591,7 @@
                     cursorOutline.style.opacity = '0';
                 });
 
-                const interactiveElements = document.querySelectorAll('a, button, .cta-button, .swiper-pagination-bullet, .mobile-icon-circle, .social-icon, .mobile-nav-close, .booking-close-btn');
+                const interactiveElements = document.querySelectorAll('a, button, .cta-button, .swiper-pagination-bullet, .mobile-icon-circle, .social-icon, .mobile-nav-close');
                 interactiveElements.forEach(el => {
                     el.addEventListener('mouseover', () => body.classList.add('cursor-hover'));
                     el.addEventListener('mouseout', () => body.classList.remove('cursor-hover'));
