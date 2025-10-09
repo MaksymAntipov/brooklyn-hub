@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1H0GYPZ2H5"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -29,27 +28,67 @@
     <meta property="og:title" content="Brooklyn Hub — Кав'ярня, кухня та плейс для роботи й відпочинку у Львові">
     <meta property="og:description" content="Атмосферна кав'ярня у Львові з meeting room, сніданками весь день та подіями.">
     <meta property="og:image" content="https://brooklynhub.com.ua/media/brooklyn-hub-logo-og.jpg">
+    
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "CafeOrCoffeeShop",
-      "name": "Brooklyn Hub",
-      "description": "Простір у Львові, де поєднуються спешелті кава, авторська кухня, коворкінг та події.",
-      "telephone": "+380633883737",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "вул. Малоголосківська, 19",
-        "addressLocality": "Львів",
-        "addressRegion": "Львівська область",
-        "postalCode": "79061",
-        "addressCountry": "UA"
-      },
-      "url": "https://brooklynhub.com.ua/",
-      "openingHours": "Mo-Su 09:00-21:00",
-      "servesCuisine": "Сучасна європейська",
-      "priceRange": "$$",
-      "hasMenu": "https://expz.menu/delivery/cd8b3814-8263-4ce8-8e63-445e8c37e8a4",
-      "image": "media/logo.svg"
+      "@graph": [
+        {
+          "@type": ["CafeOrCoffeeShop", "LocalBusiness"],
+          "@id": "https://brooklynhub.com.ua/#organization",
+          "name": "Brooklyn Hub",
+          "description": "Brooklyn Hub — атмосферна кав'ярня повного циклу у Львові на Малоголосківській. Спешелті кава, сніданки весь день, авторська кухня, meeting room та центр подій.",
+          "url": "https://brooklynhub.com.ua/",
+          "logo": "https://brooklynhub.com.ua/media/brooklyn-hub-logo-og.jpg",
+          "image": "https://brooklynhub.com.ua/media/brooklyn-hub-logo-og.jpg",
+          "telephone": "+380633883737",
+          "priceRange": "$$",
+          "servesCuisine": ["Coffee", "Breakfast", "European", "Local"],
+          "hasMenu": "https://expz.menu/delivery/cd8b3814-8263-4ce8-8e63-445e8c37e8a4",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "вул. Малоголосківська, 19",
+            "addressLocality": "Львів",
+            "addressRegion": "Львівська область",
+            "postalCode": "79061",
+            "addressCountry": "UA"
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+              "opens": "09:00",
+              "closes": "21:00"
+            }
+          ],
+          "sameAs": [
+            "https://www.instagram.com/brooklynhublviv/",
+            "https://t.me/brooklynhublviv",
+            "https://www.tiktok.com/@brooklynhublviv",
+            "https://brooklynhub.com.ua/about.html" 
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "url": "https://brooklynhub.com.ua/",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://brooklynhub.com.ua/?s={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+            "@type": "CollectionPage",
+            "url": "https://brooklynhub.com.ua/",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://brooklynhub.com.ua/"
+            }
+        }
+      ]
     }
     </script>
     
@@ -258,7 +297,7 @@
             <div class="phone">
                 <a href="tel:+380633883737">+38 (063) 388 37 37</a>
             </div>
-            <a href="https://maps.app.goo.gl/FnrBnZLPMEKzx9RLA" target="_blank" class="route-button">
+            <a href="https://maps.app.goo.gl/FnrBnZLPMEKzx9RLA" target="_blank" rel="noopener noreferrer" class="route-button">
                 ПРОКЛАСТИ МАРШРУТ <i class="fas fa-arrow-right"></i>
             </a>
             <a href="https://maps.app.goo.gl/FnrBnZLPMEKzx9RLA" target="_blank" rel="noopener noreferrer" class="mobile-icon-circle"> <i class="fas fa-directions"></i> </a>
@@ -400,9 +439,9 @@
                 <img src="media/logo.svg" alt="Логотип Brooklyn Hub у підвалі сайту" loading="lazy" decoding="async">
                 <p>м. Львів, вул. Малоголосківська, 19, Україна, 79061</p>
                 <div class="social-links">
-                    <a href="https://www.instagram.com/brooklynhublviv/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
-                    <a href="https://t.me/brooklynhublviv" target="_blank" class="social-icon"><i class="fab fa-telegram-plane"></i></a>
-                    <a href="https://www.tiktok.com/@brooklynhublviv" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.instagram.com/brooklynhublviv/" target="_blank" class="social-icon" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                    <a href="https://t.me/brooklynhublviv" target="_blank" class="social-icon" rel="noopener noreferrer"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="https://www.tiktok.com/@brooklynhublviv" target="_blank" class="social-icon" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
                 </div>
             </div>
             <div class="footer-col">
