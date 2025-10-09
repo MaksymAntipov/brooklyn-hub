@@ -436,7 +436,7 @@
                 <div class="section-text fade-in-up">
                     <h3>Простір для роботи та зустрічей</h3>
                     <p>Шукаєте meeting room у Львові або місце для роботи й зустрічей у спокійній атмосфері? Brooklyn Hub — це простір, де можна провести ділову зустріч, брейншторм або просто попрацювати в тиші.</p>
-                    <p>Наші мітинг-руми поєднують комфорт, функціональність і стиль. Тут є все необхідне: швидкісний Wi-Fi, зручні меблі, якісне освітлення та атмосфера, що надихає на ідеї й рішення.</p>
+                    <p>Наші мітинг-руми поєднують комфорт, функціональність і стиль. Тут є все необхідне: швидкісний Wi-Fi, зручні меблі, якісне освітлення та атмосфера, що надих-ає на ідеї й рішення.</p>
                     <p>Brooklyn Hub — це сучасний простір у Львові для роботи, відпочинку та важливих моментів.</p>
                     <a href="#" id="open-booking-btn" class="cta-button">Забронювати</a>
                 </div>
@@ -678,8 +678,15 @@
                 if (bookingOverlay && bookingOverlay.classList.contains('visible')) {
                     const bookingIframe = document.getElementById('booking-iframe');
                     if (bookingIframe) {
-                        // Перезагружаем iframe, чтобы обновить статус бронирования
-                        bookingIframe.src = bookingIframe.src;
+                        // "Взламываем" кеш, добавляя уникальный параметр времени к URL
+                        // Это заставит браузер гарантированно перезагрузить iframe
+                        try {
+                            let url = new URL(bookingIframe.src);
+                            url.searchParams.set('_cache', Date.now());
+                            bookingIframe.src = url.toString();
+                        } catch (e) {
+                            console.error("Failed to update iframe src:", e);
+                        }
                     }
                 }
             });
