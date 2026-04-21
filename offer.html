@@ -34,9 +34,17 @@
         html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
         body { background-color: var(--color-bg-dark); color: var(--color-white); line-height: 1.6; overflow-x: hidden; }
 
-        /* АНІМАЦІЇ ПРИ СКРОЛІ */
-        .fade-in-up { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
-        .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+/* АНІМАЦІЇ ПРИ СКРОЛІ */
+.fade-in-up { 
+    opacity: 0; 
+    transform: translateY(50px); 
+    /* Використовуємо більш м'яку та довгу криву анімації */
+    transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1); 
+}
+.fade-in-up.visible { 
+    opacity: 1; 
+    transform: translateY(0); 
+}
 
         /* ШАПКА */
         .header { 
@@ -272,7 +280,11 @@
 
     <header class="header">
         <div class="header-item left"><span>Confidential</span></div>
-        <div class="header-logo"><img src="media/logo.svg" alt="Brooklyn Hub Logo"></div>
+<div class="header-logo">
+    <a href="https://brooklynhub.com.ua/" target="_blank" rel="noopener noreferrer">
+        <img src="media/logo.svg" alt="Brooklyn Hub Logo">
+    </a>
+</div>
         <div class="header-item right"><span>Offer</span></div>
     </header>
 
@@ -447,9 +459,11 @@
 
     <footer class="main-footer">
         <div class="footer-grid">
-            <div class="footer-col footer-logo-block">
-                <img src="media/logo.svg" alt="Brooklyn Hub Logo">
-            </div>
+<div class="footer-col footer-logo-block">
+    <a href="https://brooklynhub.com.ua/" target="_blank" rel="noopener noreferrer">
+        <img src="media/logo.svg" alt="Brooklyn Hub Logo">
+    </a>
+</div>
             <div class="footer-col">
                 <div style="text-align: right;">
                     <p style="color: var(--color-text-secondary); letter-spacing: 1px; text-transform: uppercase; font-size: 0.9rem;">Більше ніж кавʼярня</p>
@@ -482,12 +496,21 @@
                 }
             });
 
-            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.3 };
+/* Зменшили threshold до 0.2, щоб анімація починалась трохи раніше при скролі */
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.2 };
             const sectionObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const animatedElements = entry.target.querySelectorAll('.fade-in-up');
-                        animatedElements.forEach(el => el.classList.add('visible'));
+                        
+                        /* Додаємо каскадну затримку: кожен наступний блок з'являється на 0.15с пізніше */
+                        animatedElements.forEach((el, idx) => {
+                            el.style.transitionDelay = `${idx * 0.15}s`;
+                            /* Використовуємо setTimeout, щоб браузер встиг застосувати delay перед додаванням класу */
+                            setTimeout(() => {
+                                el.classList.add('visible');
+                            }, 50);
+                        });
 
                         const index = Array.from(sections).indexOf(entry.target);
                         currentSectionIndex = index;
