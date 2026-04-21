@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Brooklyn Hub — Комерційна пропозиція</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1"></script>
+
+    <style>
+        :root {
+            --color-black: #000000;
+            --color-bg-dark: #050505;
+            --color-white: #FFFFFF;
+            --color-text-secondary: rgba(255, 255, 255, 0.55);
+            --color-text-muted: rgba(255, 255, 255, 0.4);
+            --color-accent-green: #00E676;
+            --color-card-bg: rgba(15, 15, 15, 0.95);
+            --color-card-border: rgba(255, 255, 255, 0.08);
+            --color-card-hover: rgba(255, 255, 255, 0.15);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        
+        /* НАЛАШТУВАННЯ СЛАЙДЕР-СКРОЛУ */
+        html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+        body { background-color: var(--color-bg-dark); color: var(--color-white); line-height: 1.6; overflow-x: hidden; }
+
+        /* АНІМАЦІЇ ПРИ СКРОЛІ */
+        .fade-in-up { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+
+        /* ШАПКА */
+        .header { 
+            position: fixed; width: 100%; z-index: 1000; top: 0;
+            background: rgba(5, 5, 5, 0.7); 
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.05); 
+            padding: 1.2rem 5%;
+            display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+        }
+        .header-item.left { justify-self: start; }
+        .header-logo { justify-self: center; }
+        .header-item.right { justify-self: end; }
+        .header-logo img { height: 35px; filter: invert(1) brightness(150%); transition: transform 0.3s; }
+        .header-logo:hover img { transform: scale(1.05); }
+        .header-item span { text-transform: uppercase; letter-spacing: 2px; font-size: 12px; color: var(--color-text-secondary); font-weight: 500; }
+
+        /* ПРАВИЙ ІНДИКАТОР ПРОГРЕСУ */
+        .scroll-indicator {
+            position: fixed; right: 25px; top: 50%; transform: translateY(-50%);
+            display: flex; flex-direction: column; gap: 15px; z-index: 1001;
+        }
+        .progress-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background-color: var(--color-text-muted);
+            transition: all 0.3s ease; cursor: pointer;
+            position: relative;
+        }
+        .progress-dot:hover { background-color: var(--color-white); transform: scale(1.2); }
+        .progress-dot.active {
+            background-color: var(--color-accent-green);
+            transform: scale(1.5);
+            box-shadow: 0 0 12px rgba(0, 230, 118, 0.6);
+        }
+
+        /* ІНДИКАТОР НАСТУПНОГО СЛАЙДУ ВНИЗУ */
+        .next-slide-indicator {
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+            color: var(--color-text-secondary); font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+            cursor: pointer; z-index: 1001; transition: opacity 0.5s ease, color 0.3s ease;
+            animation: bounce 2s infinite;
+        }
+        .next-slide-indicator i { font-size: 16px; }
+        .next-slide-indicator:hover { color: var(--color-white); }
+        .next-slide-indicator.hidden { opacity: 0; pointer-events: none; }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-10px) translateX(-50%); }
+            60% { transform: translateY(-5px) translateX(-50%); }
+        }
+
+        /* СЕКЦІЇ-СЛАЙДИ */
+        .snap-section {
+            scroll-snap-align: start; min-height: 100vh;
+            display: flex; flex-direction: column; justify-content: center;
+            padding-top: 100px; padding-bottom: 40px; position: relative;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 5%; width: 100%; position: relative; z-index: 2; }
+
+        /* ВІДЕО-ФОН ДЛЯ ПЕРШОГО СЛАЙДА */
+        #slide-0 { overflow: hidden; }
+        .bg-video {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            min-width: 100%; min-height: 100%; width: auto; height: auto;
+            z-index: 0; object-fit: cover; opacity: 0.8;
+        }
+        .bg-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5, 5, 5, 0.75);
+            z-index: 1;
+        }
+
+        /* HERO BLOCK */
+        .hero-mini { text-align: center; margin-bottom: 30px; text-shadow: 0 4px 20px rgba(0,0,0,0.8); }
+        .hero-mini p.subtitle { letter-spacing: 5px; color: var(--color-accent-green); margin-bottom: 15px; text-transform: uppercase; font-size: 0.85rem; font-weight: 700; }
+        .hero-mini h1 { font-size: clamp(2rem, 5vw, 4.2rem); font-weight: 900; text-transform: uppercase; margin-bottom: 20px; line-height: 1.1; }
+        .hero-mini p.description { font-size: 1.15rem; color: rgba(255,255,255,0.9); max-width: 700px; margin: 0 auto; line-height: 1.6; font-weight: 500; }
+        
+        /* КНОПКА ВІДЕОРУМУ */
+        .video-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.25);
+            color: var(--color-white); padding: 16px 35px; border-radius: 50px;
+            font-weight: 600; text-transform: uppercase; text-decoration: none;
+            transition: all 0.3s ease; font-size: 0.95rem; letter-spacing: 1px;
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            margin-top: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .video-btn:hover {
+            background: var(--color-accent-green); color: var(--color-black);
+            border-color: var(--color-accent-green); transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,230,118,0.25);
+        }
+        .video-btn i { font-size: 1.2rem; }
+
+        /* ЗАГОЛОВКИ БЛОКІВ */
+        .section-header { font-size: 1.8rem; font-weight: 700; margin-bottom: 35px; border-bottom: 1px solid var(--color-card-border); padding-bottom: 15px; display: inline-block; color: var(--color-white); }
+        
+        /* СІТКИ */
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 30px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+
+        /* БЛОКИ ЗІ СПИСКАМИ */
+        .detail-block { 
+            background: linear-gradient(145deg, rgba(15,15,15,0.75), rgba(5,5,5,0.85)); 
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            padding: 40px 35px; border-radius: 16px; 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            transition: border-color 0.4s ease, box-shadow 0.4s ease; height: 100%; 
+        }
+        .detail-block:hover { border-color: rgba(255, 255, 255, 0.2); box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
+        .detail-block h3 { 
+            font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; 
+            margin-bottom: 30px; color: var(--color-white);
+            display: flex; align-items: center; gap: 12px;
+        }
+        .detail-block h3::before {
+            content: ''; display: block; width: 4px; height: 18px; 
+            background-color: var(--color-accent-green); border-radius: 2px;
+        }
+        
+        .detail-item { 
+            display: flex; align-items: baseline; justify-content: space-between;
+            padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.05); 
+            font-size: 15px; line-height: 1.5;
+        }
+        .detail-item:last-child { border-bottom: none; padding-bottom: 0; }
+        
+        .detail-item span:first-child { 
+            color: rgba(255,255,255,0.7); flex: 0 0 45%; 
+            padding-right: 20px; font-weight: 400;
+        }
+        .detail-item span:last-child { 
+            font-weight: 500; color: var(--color-white); 
+            flex: 1; text-align: left;
+        }
+        .detail-item span.green-text { color: var(--color-accent-green); font-weight: 600; text-shadow: 0 0 10px rgba(0, 230, 118, 0.3); }
+
+        /* СТИЛЬ ДЛЯ ПОСИЛАННЯ В ТАБЛИЦІ */
+        .address-link {
+            color: var(--color-white); text-decoration: underline;
+            text-decoration-color: rgba(0, 230, 118, 0.5); text-underline-offset: 4px;
+            transition: all 0.3s ease;
+        }
+        .address-link:hover { color: var(--color-accent-green); text-decoration-color: var(--color-accent-green); }
+
+        /* КАРТКИ МЕТРИК */
+        .metric-card { 
+            background: linear-gradient(180deg, rgba(20,20,20,0.8) 0%, rgba(10,10,10,0.9) 100%);
+            border: 1px solid var(--color-card-border); padding: 35px; border-radius: 16px; 
+            transition: all 0.4s ease; height: 100%;
+        }
+        .metric-card:hover { border-color: rgba(0,230,118,0.4); transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,230,118,0.08); }
+        .metric-label { font-size: 12px; text-transform: uppercase; color: var(--color-text-secondary); letter-spacing: 1.5px; margin-bottom: 12px; font-weight: 600; }
+        .metric-value { font-size: 2.2rem; font-weight: 700; margin-bottom: 10px; color: var(--color-white); }
+        .metric-sub { font-size: 14px; color: var(--color-text-muted); line-height: 1.6; font-weight: 400; }
+
+        /* БЛОК З ГРАФІКОМ */
+        .chart-section { 
+            background: var(--color-card-bg); border: 1px solid var(--color-card-border); 
+            border-radius: 16px; padding: 40px; width: 100%; 
+        }
+        .chart-header { margin-bottom: 30px; }
+        .chart-header h2 { font-size: 1.6rem; text-transform: uppercase; margin-bottom: 8px; }
+        
+        /* ОБГОРТКА ДЛЯ МОБІЛЬНОГО СКРОЛУ ГРАФІКА */
+        .chart-scroll-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 10px; }
+        .chart-scroll-wrapper::-webkit-scrollbar { height: 6px; }
+        .chart-scroll-wrapper::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 10px; }
+        .chart-scroll-wrapper::-webkit-scrollbar-thumb { background: rgba(0,230,118,0.3); border-radius: 10px; }
+        .chart-scroll-wrapper::-webkit-scrollbar-thumb:hover { background: rgba(0,230,118,0.6); }
+        .chart-container { position: relative; height: 400px; width: 100%; }
+        .mobile-swipe-hint { display: none; color: var(--color-accent-green); font-size: 12px; margin-top: 10px; text-align: right; font-weight: 600; }
+
+        /* КНОПКА ЗВ'ЯЗКУ ТА ЦІНА */
+        .cta-section { 
+            background: radial-gradient(circle at center, rgba(30,30,30,0.5) 0%, rgba(10,10,10,0.8) 100%); 
+            padding: 80px 40px; border-radius: 20px; text-align: center; 
+            border: 1px solid rgba(0,230,118,0.25);
+            margin: 0 auto; max-width: 900px;
+        }
+        .price-tag { display: inline-block; background: rgba(0, 230, 118, 0.08); color: var(--color-accent-green); border: 1px solid rgba(0, 230, 118, 0.4); padding: 12px 40px; border-radius: 50px; font-size: 2.5rem; font-weight: 900; margin-bottom: 35px; }
+        .cta-btn { display: inline-block; background: var(--color-accent-green); color: #000; padding: 20px 50px; border-radius: 8px; font-weight: 700; text-transform: uppercase; text-decoration: none; transition: 0.4s; font-size: 1.1rem; letter-spacing: 1px; box-sizing: border-box;}
+        .cta-btn:hover { background: #00c853; transform: scale(1.04); box-shadow: 0 15px 30px rgba(0,230,118,0.2); }
+
+        /* ФУТЕР */
+        .main-footer { background-color: var(--color-bg-dark); padding: 50px 5% 30px; border-top: 1px solid rgba(255,255,255,0.05); scroll-snap-align: end; }
+        .footer-grid { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 40px; max-width: 1400px; margin: 0 auto; }
+        .footer-logo-block img { height: 45px; filter: invert(1) brightness(150%); opacity: 0.6; transition: 0.3s; }
+        .footer-logo-block:hover img { opacity: 1; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px; margin-top: 30px; text-align: center; color: var(--color-text-muted); display: flex; justify-content: space-between; font-size: 0.85rem; }
+
+        /* МЕДІАЗАПИТИ ДЛЯ МОБІЛЬНИХ (АДАПТИВНІСТЬ) */
+        @media (max-width: 768px) {
+            /* Вимикаємо жорсткий снепінг, щоб легше читати на мобільному */
+            html { scroll-snap-type: none; }
+            .snap-section { min-height: auto; scroll-snap-align: none; padding-top: 80px; padding-bottom: 30px; }
+            
+            /* Ховаємо зайве */
+            .header-item span, .scroll-indicator, .next-slide-indicator { display: none; }
+            
+            /* Сітки та відступи */
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; gap: 15px; }
+            .detail-block { padding: 25px 20px; }
+            .metric-card { padding: 25px 20px; }
+            .chart-section { padding: 25px 15px; }
+            .cta-section { padding: 40px 20px; }
+
+            /* Типографіка */
+            .hero-mini h1 { font-size: 2.2rem; margin-bottom: 15px; }
+            .hero-mini p.description { font-size: 1rem; }
+            .section-header { font-size: 1.4rem; margin-bottom: 25px; }
+            .price-tag { font-size: 2rem; padding: 10px 30px; }
+
+            /* Списки - зручний вигляд для вузьких екранів */
+            .detail-item { flex-direction: column; align-items: flex-start; gap: 6px; padding: 12px 0; }
+            .detail-item span:first-child { flex: auto; padding-right: 0; font-size: 13px; margin-bottom: 2px; }
+            .detail-item span:last-child { font-size: 15px; }
+
+            /* Кнопки - на всю ширину */
+            .video-btn, .cta-btn { width: 100%; justify-content: center; text-align: center; padding: 16px 20px; }
+
+            /* Графік - горизонтальний скрол */
+            .chart-container { min-width: 600px; height: 350px; } /* Фіксуємо ширину для скролу */
+            .mobile-swipe-hint { display: block; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-item left"><span>Confidential</span></div>
+        <div class="header-logo"><img src="media/logo.svg" alt="Brooklyn Hub Logo"></div>
+        <div class="header-item right"><span>Offer</span></div>
+    </header>
+
+    <nav class="scroll-indicator">
+        <div class="progress-dot active" data-index="0" title="Головна"></div>
+        <div class="progress-dot" data-index="1" title="Графік"></div>
+        <div class="progress-dot" data-index="2" title="Економіка"></div>
+        <div class="progress-dot" data-index="3" title="Активи"></div>
+        <div class="progress-dot" data-index="4" title="Контакти"></div>
+    </nav>
+
+    <div class="next-slide-indicator" id="scrollIndicator">
+        <span>Наступний слайд</span>
+        <i class="fas fa-chevron-down"></i>
+    </div>
+
+    <main>
+        <section class="snap-section" id="slide-0">
+            <video autoplay muted loop playsinline class="bg-video">
+                <source src="media/IMG_4175.mov" type="video/mp4">
+            </video>
+            <div class="bg-overlay"></div>
+            
+            <div class="container">
+                <div class="hero-mini fade-in-up">
+                    <p class="subtitle">Комерційна пропозиція</p>
+                    <h1>Продаж готового бізнесу</h1>
+                    <p class="description">Повністю укомплектована локація з автономною командою та стабільним трафіком.</p>
+                    <a href="https://youtube.com/shorts/9o-IpWNr1lY" class="video-btn" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-play-circle"></i> Відеоогляд закладу
+                    </a>
+                </div>
+
+                <div class="grid-2 fade-in-up">
+                    <div class="detail-block">
+                        <h3>Локація та інфраструктура</h3>
+                        <div class="detail-item">
+                            <span>Адреса</span>
+                            <span>
+                                <a href="google.com/maps/place/Brooklyn+Hub+Львів/data=!4m2!3m1!1s0x473add12db6407b3:0x7cffec5fc310f176?sa=X&ved=1t:242&ictx=111" target="_blank" rel="noopener noreferrer" class="address-link">
+                                    м. Львів, вул. Малоголосківська, 19
+                                </a>
+                            </span>
+                        </div>
+                        <div class="detail-item"><span>Площа</span><span>216.4 кв.м (2 поверхи)</span></div>
+                        <div class="detail-item"><span>Потужність світла</span><span>60 кВт</span></div>
+                        <div class="detail-item"><span>Автономність</span><span class="green-text">Дизель-генераторна станція EMSA 44 kVA</span></div>
+                        <div class="detail-item"><span>Зручності</span><span>Тераса з перголою, швидкий Wi-Fi для коворкінгу та meeting room</span></div>
+                        <div class="detail-item"><span>Онлайн активи</span><span>Веб-сайт та налаштовані соцмережі</span></div>
+                    </div>
+
+                    <div class="detail-block">
+                        <h3>Команда та процеси</h3>
+                        <div class="detail-item"><span>Формат управління</span><span>Повна автономія, власник залучений ~10 год/тиждень</span></div>
+                        <div class="detail-item"><span>Загальний штат</span><span>7 працівників</span></div>
+                        <div class="detail-item"><span>Баристи</span><span>3 особи (старший відповідає за закупівлі)</span></div>
+                        <div class="detail-item"><span>Кухня</span><span>2 кухарі (старший відповідає за закупівлі)</span></div>
+                        <div class="detail-item"><span>Клінінг / Посуд</span><span>2 особи</span></div>
+                        <div class="detail-item"><span>Система обліку</span><span>Прозора внутрішня звітність у системі Poster</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="snap-section" id="slide-1">
+            <div class="container">
+                <div class="chart-section fade-in-up">
+                    <div class="chart-header">
+                        <h2>Фінансова динаміка (2025-2026)</h2>
+                        <p style="color: var(--color-text-secondary); font-size: 14px;">Показники виторгу та чистого прибутку у розрізі місяців</p>
+                    </div>
+                    
+                    <div class="chart-scroll-wrapper">
+                        <div class="chart-container">
+                            <canvas id="financeChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="mobile-swipe-hint"><i class="fas fa-arrows-alt-h"></i> Свайпніть графік</div>
+                    
+                    <p style="margin-top: 20px; font-size: 13px; color: var(--color-text-muted); line-height: 1.6; border-left: 2px solid rgba(255,255,255,0.1); padding-left: 15px;">
+                        * У січні та лютому зафіксовано об'єктивну сезонну просадку. Вже у березні бізнес повертається до високої маржинальності.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="snap-section" id="slide-2">
+            <div class="container">
+                <h2 class="section-header fade-in-up">Фінансові показники та економіка</h2>
+                <div class="grid-2 fade-in-up">
+                    <div class="grid-3" style="grid-template-columns: 1fr;">
+                        <div class="metric-card" style="background: var(--color-card-bg);">
+                            <div class="metric-label">Середній виторг</div>
+                            <div class="metric-value">~ 550 000 ₴</div>
+                            <div class="metric-sub">Діапазон 447 000 - 591 000 ₴. Швидке відновлення показників після сезонної просадки.</div>
+                        </div>
+                    </div>
+                    <div class="detail-block" style="background: var(--color-card-bg); backdrop-filter: none;">
+                        <h3>Структура щомісячних витрат</h3>
+                        <div class="detail-item"><span>ЗП працівників</span><span>151 000 - 176 000 ₴</span></div>
+                        <div class="detail-item"><span>Оренда</span><span>63 000 - 88 000 ₴ (поступове зростання за договором)</span></div>
+                        <div class="detail-item"><span>Комунальні платежі</span><span>38 000 - 76 000 ₴ (залежить від погодного сезону)</span></div>
+                        <div class="detail-item"><span>Собівартість (Foodcost)</span><span class="green-text">~ 35%</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="snap-section" id="slide-3">
+            <div class="container">
+                <h2 class="section-header fade-in-up">Матеріальні активи</h2>
+                <div class="grid-4 fade-in-up" style="margin-bottom: 50px;">
+                    <div class="metric-card" style="padding: 25px;">
+                        <div class="metric-label">Кава</div>
+                        <div style="font-weight: 700; font-size: 16px; margin-bottom: 8px; color: var(--color-white);">La Marzocco GB5</div>
+                        <div class="metric-sub">Преміальна 3-групна кавомашина + 3 гріндери</div>
+                    </div>
+                    <div class="metric-card" style="padding: 25px;">
+                        <div class="metric-label">Кухня</div>
+                        <div style="font-weight: 700; font-size: 16px; margin-bottom: 8px; color: var(--color-white);">Пароконвектомат UNOX</div>
+                        <div class="metric-sub">Професійне серце повноцінної кухні</div>
+                    </div>
+                    <div class="metric-card" style="padding: 25px;">
+                        <div class="metric-label">Автономність</div>
+                        <div style="font-weight: 700; font-size: 16px; margin-bottom: 8px; color: var(--color-white);">EMSA 44 kVA</div>
+                        <div class="metric-sub">Потужна дизель-генераторна станція</div>
+                    </div>
+                    <div class="metric-card" style="padding: 25px; border-color: rgba(0,230,118,0.2);">
+                        <div class="metric-label">Інше обладнання</div>
+                        <div style="font-weight: 700; font-size: 18px; margin-bottom: 8px; color: var(--color-accent-green);">+ ~ 135 позицій</div>
+                        <div class="metric-sub">Меблі, холодильне обладнання, техніка, клімат.</div>
+                    </div>
+                </div>
+
+                <h2 class="section-header fade-in-up">Ваш наступний крок</h2>
+                <div class="grid-3 fade-in-up">
+                    <div class="metric-card" style="padding: 25px;">
+                        <div class="metric-label">Крок 1</div>
+                        <div style="font-weight: 700; font-size: 16px; margin-bottom: 12px; color: var(--color-white);">Аналітика</div>
+                        <div class="metric-sub">Запит продажів з Poster для повної прозорості.</div>
+                    </div>
+                    <div class="metric-card" style="padding: 25px;">
+                        <div class="metric-label">Крок 2</div>
+                        <div style="font-weight: 700; font-size: 16px; margin-bottom: 12px; color: var(--color-white);">Огляд локації</div>
+                        <div class="metric-sub">Зустріч на місці, знайомство з операційними процесами, огляд активів.</div>
+                    </div>
+                    <div class="metric-card" style="padding: 25px; border-color: rgba(0,230,118,0.5);">
+                        <div class="metric-label">Крок 3</div>
+                        <div style="font-weight: 700; font-size: 16px; margin-bottom: 12px; color: var(--color-white);">Угода</div>
+                        <div class="metric-sub">Узгодження вартості, підписання договору купівлі-продажу та переоформлення оренди.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="snap-section" id="slide-4">
+            <div class="container">
+                <div class="cta-section fade-in-up">
+                    <div class="price-tag">115 000 $</div>
+                    <h2 style="text-transform: uppercase; margin-bottom: 20px; font-size: 2.2rem; font-weight: 800;">Готові до діалогу?</h2>
+                    <p style="color: var(--color-text-secondary); margin-bottom: 35px; font-size: 1.15rem;">
+                        Зв'яжіться зі мною, щоб розпочати з першого кроку.
+                    </p>
+                    <a href="https://t.me/OGreek26" target="_blank" class="cta-btn"><i class="fab fa-telegram-plane" style="margin-right: 10px;"></i> Написати Олегу в Telegram</a>
+                    <p style="margin-top: 35px; font-size: 1.15rem; color: var(--color-text-muted);">
+                        Або телефонуйте: <a href="tel:+380989430317" style="color: var(--color-white); font-weight: 600; text-decoration: none; padding-bottom: 2px;">+38 (098) 943 03 17</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-grid">
+            <div class="footer-col footer-logo-block">
+                <img src="media/logo.svg" alt="Brooklyn Hub Logo">
+            </div>
+            <div class="footer-col">
+                <div style="text-align: right;">
+                    <p style="color: var(--color-text-secondary); letter-spacing: 1px; text-transform: uppercase; font-size: 0.9rem;">Більше ніж кавʼярня</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Brooklyn Hub. Confidential Proposal.</p>
+            <p>Designed in Lviv</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.snap-section');
+            const dots = document.querySelectorAll('.progress-dot');
+            const scrollIndicator = document.getElementById('scrollIndicator');
+            let currentSectionIndex = 0;
+            
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    const index = dot.getAttribute('data-index');
+                    sections[index].scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+
+            scrollIndicator.addEventListener('click', () => {
+                if (currentSectionIndex < sections.length - 1) {
+                    sections[currentSectionIndex + 1].scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.3 };
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const animatedElements = entry.target.querySelectorAll('.fade-in-up');
+                        animatedElements.forEach(el => el.classList.add('visible'));
+
+                        const index = Array.from(sections).indexOf(entry.target);
+                        currentSectionIndex = index;
+                        
+                        dots.forEach(d => d.classList.remove('active'));
+                        if(dots[index]) dots[index].classList.add('active');
+
+                        if (index === sections.length - 1) {
+                            scrollIndicator.classList.add('hidden');
+                        } else {
+                            scrollIndicator.classList.remove('hidden');
+                        }
+                    }
+                });
+            }, observerOptions);
+            
+            sections.forEach(sec => sectionObserver.observe(sec));
+        });
+
+        Chart.register(ChartDataLabels, window['chartjs-plugin-annotation']);
+
+        const ctx = document.getElementById('financeChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Вересень', 'Жовтень', 'Листопад', 'Грудень', 'Січень', 'Лютий', 'Березень'],
+                datasets: [
+                    {
+                        label: 'Виторг (грн)',
+                        data: [461658, 581877, 557332, 519442, 470821, 447590, 591280],
+                        borderColor: '#FFFFFF',
+                        backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                        borderWidth: 3,
+                        tension: 0.4,
+                        fill: true,
+                        clip: false,
+                        datalabels: {
+                            color: '#FFFFFF', align: 'top', anchor: 'end', offset: 12,
+                            font: { size: 12, weight: 'bold', family: 'Montserrat' },
+                            formatter: function(value) { return value.toLocaleString('uk-UA'); }
+                        }
+                    },
+                    {
+                        label: 'Чистий прибуток (грн)',
+                        data: [48077, 92220, 76265, 36637, -8966, -20066, 58332],
+                        borderColor: '#00E676',
+                        backgroundColor: '#00E676',
+                        borderWidth: 3,
+                        tension: 0.4,
+                        clip: false,
+                        pointBackgroundColor: '#00E676', pointRadius: 4,
+                        datalabels: {
+                            color: '#00E676', align: 'bottom', anchor: 'start', offset: 12,
+                            font: { size: 12, weight: 'bold', family: 'Montserrat' },
+                            formatter: function(value) { return value.toLocaleString('uk-UA'); }
+                        }
+                    }
+                ]
+            },
+            options: {
+                layout: { padding: { top: 40, bottom: 30, left: 10, right: 20 } },
+                responsive: true, maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { color: 'rgba(255,255,255,0.5)', font: { family: 'Montserrat', size: 12 }, padding: 20 } },
+                    tooltip: { enabled: true },
+                    annotation: {
+                        annotations: {
+                            seasonalityBox: {
+                                type: 'box', xMin: 'Січень', xMax: 'Лютий',
+                                backgroundColor: 'rgba(255, 235, 59, 0.05)', borderColor: 'rgba(255, 235, 59, 0.2)', borderWidth: 1,
+                                drawTime: 'beforeDatasetsDraw',
+                                label: {
+                                    display: true, content: 'Сезонне явище', color: 'rgba(255, 235, 59, 0.8)',
+                                    font: { family: 'Montserrat', size: 11, weight: '600' },
+                                    position: { x: 'center', y: 'center' }
+                                }
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: 'rgba(255,255,255,0.4)', font: { size: 11 } } },
+                    x: { offset: true, grid: { display: false }, ticks: { color: 'rgba(255,255,255,0.5)', font: { size: 12 } } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
