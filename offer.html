@@ -665,41 +665,66 @@
         // 3. Ініціалізація: отримуємо дані
         userInfoStr = getBasicInfo(); 
 
-        // Використовуємо ipwho.is для точної геолокації
-        fetch('https://ipwho.is/')
-            .then(res => res.json())
-            .then(data => {
-                if(data.success) {
-                    // Перевіряємо, чи є IP у вашому списку виключень
-                    if (excludedIPs.includes(data.ip)) {
-                        isMyIP = true; 
-                        console.log('Скрипт вимкнено для вашого IP:', data.ip);
-                    } else {
-                        // Формуємо текст локації
-                        let locationText = `${data.city || 'Невідомо'}, ${data.region || ''}, ${data.country || ''}`;
-                        
-                        // Якщо є координати, робимо клікабельне посилання на карту
-                        if (data.latitude && data.longitude) {
-                            // Найбільш стабільний формат посилання на Google Maps
-                            const mapUrl = `https://maps.google.com/?q=${data.latitude},${data.longitude}`;
-                            locationText = `<a href="${mapUrl}">${locationText}</a>`;
-                        }
+        // 4. Функція для запиту з резервним API (обхід AdBlock/помилок)
+        async function fetchIPData() {
+            try {
+                // Спроба 1: ipwho.is
+                const res = await fetch('https://ipwho.is/');
+                const data = await res.json();
+                if (data.success) return data;
+                throw new Error('ipwho.is повернув помилку');
+            } catch (err) {
+                console.log('ipwho.is заблоковано. Пробуємо ipapi.co...');
+                // Спроба 2: Резервний сервіс (ipapi.co)
+                const res2 = await fetch('https://ipapi.co/json/');
+                const data2 = await res2.json();
+                
+                if (data2.ip) {
+                    return {
+                        success: true,
+                        ip: data2.ip,
+                        city: data2.city,
+                        region: data2.region,
+                        country: data2.country_name,
+                        latitude: data2.latitude,
+                        longitude: data2.longitude,
+                        connection: { isp: data2.org }
+                    };
+                }
+                throw new Error('Всі API заблоковані');
+            }
+        }
 
-                        userInfoStr += `\n📍 Локація: ${locationText}`;
-                        userInfoStr += `\n📡 Провайдер: ${data.connection.isp || 'Невідомо'}`;
-                        userInfoStr += `\n🌐 IP: ${data.ip}`;
-                    }
+        // 5. Отримуємо геолокацію та відправляємо стартове повідомлення
+        fetchIPData()
+            .then(data => {
+                // Перевіряємо, чи є IP у вашому списку виключень
+                if (excludedIPs.includes(data.ip)) {
+                    isMyIP = true; 
+                    console.log('Скрипт вимкнено для вашого IP:', data.ip);
                 } else {
-                    throw new Error('Помилка API');
+                    // Формуємо текст локації
+                    let locationText = `${data.city || 'Невідомо'}, ${data.region || ''}, ${data.country || ''}`;
+                    
+                    // Якщо є координати, робимо клікабельне посилання на карту
+                    if (data.latitude && data.longitude) {
+                        // Надійне та правильне посилання на Google Maps
+                        const mapUrl = `https://www.google.com/maps?q=${data.latitude},${data.longitude}`;
+                        locationText = `<a href="${mapUrl}">${locationText}</a>`;
+                    }
+
+                    userInfoStr += `\n📍 Локація: ${locationText}`;
+                    userInfoStr += `\n📡 Провайдер: ${data.connection.isp || 'Невідомо'}`;
+                    userInfoStr += `\n🌐 IP: ${data.ip}`;
                 }
             })
             .catch(err => {
                 console.log('Не вдалося отримати IP або блокується AdBlock', err);
-                userInfoStr += `\n📍 Локація: Приховано (VPN/AdBlock)`;
+                userInfoStr += `\n📍 Локація: Приховано (Суворий AdBlock/VPN)`;
             })
             .finally(() => {
                 // Відправляємо пуш про захід ТІЛЬКИ якщо це не ви
-                sendToTelegram('👀 <b>Новий відвідувач!</b> Відкрив комерційну пропозицію.');
+                sendToTelegram('👀 <b>Новий відвідувач!</b> Відкрив сторінку.');
             });
 
         // --- ВІДСТЕЖЕННЯ КЛІКІВ ---
