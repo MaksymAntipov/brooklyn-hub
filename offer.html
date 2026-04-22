@@ -656,7 +656,8 @@
                 body: JSON.stringify({ 
                     chat_id: chatId, 
                     text: fullMessage,
-                    parse_mode: 'HTML'
+                    parse_mode: 'HTML',
+                    disable_web_page_preview: true // Вимикаємо величезне прев'ю карти в Telegram
                 })
             }).catch(error => console.error('Помилка відправки в Telegram:', error));
         }
@@ -664,22 +665,36 @@
         // 3. Ініціалізація: отримуємо дані
         userInfoStr = getBasicInfo(); 
 
-        // Використовуємо ipinfo.io, бо він надійніший
-        fetch('https://ipinfo.io/json')
+        // Використовуємо ipwho.is для точної геолокації
+        fetch('https://ipwho.is/')
             .then(res => res.json())
             .then(data => {
-                if(data.ip) {
+                if(data.success) {
                     // Перевіряємо, чи є IP у вашому списку виключень
                     if (excludedIPs.includes(data.ip)) {
                         isMyIP = true; 
                         console.log('Скрипт вимкнено для вашого IP:', data.ip);
                     } else {
-                        userInfoStr += `\n📍 Локація: ${data.city || 'Невідомо'}, ${data.country || ''}\n🌐 IP: ${data.ip}`;
+                        // Формуємо текст локації
+                        let locationText = `${data.city || 'Невідомо'}, ${data.region || ''}, ${data.country || ''}`;
+                        
+                        // Якщо є координати, робимо клікабельне посилання на карту
+                        if (data.latitude && data.longitude) {
+                            // Найбільш стабільний формат посилання на Google Maps
+                            const mapUrl = `https://maps.google.com/?q=${data.latitude},${data.longitude}`;
+                            locationText = `<a href="${mapUrl}">${locationText}</a>`;
+                        }
+
+                        userInfoStr += `\n📍 Локація: ${locationText}`;
+                        userInfoStr += `\n📡 Провайдер: ${data.connection.isp || 'Невідомо'}`;
+                        userInfoStr += `\n🌐 IP: ${data.ip}`;
                     }
+                } else {
+                    throw new Error('Помилка API');
                 }
             })
             .catch(err => {
-                console.log('Не вдалося отримати IP');
+                console.log('Не вдалося отримати IP або блокується AdBlock', err);
                 userInfoStr += `\n📍 Локація: Приховано (VPN/AdBlock)`;
             })
             .finally(() => {
@@ -710,7 +725,6 @@
             });
         });
 
-        // 5. Кліки на логотип у шапці та футері
         const logoLinks = document.querySelectorAll('.header-logo a, .footer-logo-block a');
         logoLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -718,7 +732,8 @@
             });
         });
     });
-    </script>
+</script>
+
 
 
 </body>
