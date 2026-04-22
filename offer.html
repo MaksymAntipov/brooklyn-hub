@@ -606,5 +606,108 @@
             }
         });
     </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const botToken = '8797867631:AAHg9a8PaMkgiY1S90oVafo4EatU_0M47hU'; 
+        const chatId = '-5022043125'; // <--- ВСТАВТЕ СЮДИ ID ВАШОЇ ГРУПИ
+
+        // Впишіть сюди свої IP-адреси (домашню, робочу, телефонний інтернет тощо)
+        const excludedIPs = ['1', '2']; 
+        
+        let isMyIP = false;
+        let userInfoStr = "";
+
+        // 1. Збираємо базові дані (Пристрій та UTM)
+        function getBasicInfo() {
+            const ua = navigator.userAgent;
+            const isMobile = /Mobile|Android|iP(hone|od|ad)/.test(ua) ? 'Мобільний' : 'Комп\'ютер';
+            
+            const urlParams = new URLSearchParams(window.location.search);
+            const utmSource = urlParams.get('utm_source') || 'Прямий захід / Невідомо';
+            const utmCampaign = urlParams.get('utm_campaign') || '-';
+            
+            return `📱 Пристрій: ${isMobile}\n🔗 Джерело: ${utmSource} (Кампанія: ${utmCampaign})`;
+        }
+
+        // 2. Базова функція відправки повідомлення
+        function sendToTelegram(actionText) {
+            // Якщо це ваш IP - просто припиняємо роботу функції, повідомлення НЕ відправиться
+            if (isMyIP) return; 
+
+            const fullMessage = `${actionText}\n\n<b>Інформація про відвідувача:</b>\n${userInfoStr}`;
+            
+            const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+            fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    chat_id: chatId, 
+                    text: fullMessage,
+                    parse_mode: 'HTML'
+                })
+            }).catch(error => console.error('Помилка відправки в Telegram:', error));
+        }
+
+        // 3. Ініціалізація: отримуємо дані
+        userInfoStr = getBasicInfo(); 
+
+        // Використовуємо ipinfo.io, бо він надійніший
+        fetch('https://ipinfo.io/json')
+            .then(res => res.json())
+            .then(data => {
+                if(data.ip) {
+                    // Перевіряємо, чи є IP у вашому списку виключень
+                    if (excludedIPs.includes(data.ip)) {
+                        isMyIP = true; 
+                        console.log('Скрипт вимкнено для вашого IP:', data.ip);
+                    } else {
+                        userInfoStr += `\n📍 Локація: ${data.city || 'Невідомо'}, ${data.country || ''}\n🌐 IP: ${data.ip}`;
+                    }
+                }
+            })
+            .catch(err => {
+                console.log('Не вдалося отримати IP');
+                userInfoStr += `\n📍 Локація: Приховано (VPN/AdBlock)`;
+            })
+            .finally(() => {
+                // Відправляємо пуш про захід ТІЛЬКИ якщо це не ви
+                sendToTelegram('👀 <b>Новий відвідувач!</b> Відкрив комерційну пропозицію.');
+            });
+
+        // --- ВІДСТЕЖЕННЯ КЛІКІВ ---
+
+        const videoBtn = document.querySelector('.video-btn');
+        if (videoBtn) {
+            videoBtn.addEventListener('click', () => {
+                sendToTelegram('🎥 Відвідувач почав дивитися <b>Відеоогляд закладу</b>.');
+            });
+        }
+
+        const tgLinks = document.querySelectorAll('a[href*="t.me/"]');
+        tgLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                sendToTelegram('✈️ <b>Увага!</b> Відвідувач натиснув <b>"Написати в Telegram"</b>. Перевіряйте повідомлення!');
+            });
+        });
+
+        const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+        phoneLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                sendToTelegram('📞 <b>Гарячий лід!</b> Відвідувач клікнув на <b>номер телефону</b>.');
+            });
+        });
+
+        // 5. Кліки на логотип у шапці та футері
+        const logoLinks = document.querySelectorAll('.header-logo a, .footer-logo-block a');
+        logoLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                sendToTelegram('🏠 <b>Клік на логотип!</b> Відвідувач перейшов на головну сторінку сайту.');
+            });
+        });
+    });
+    </script>
+
+
 </body>
 </html>
