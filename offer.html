@@ -291,7 +291,7 @@
             .video-btn, .cta-btn { width: 100%; justify-content: center; text-align: center; padding: 16px 20px; }
 
             /* Графік - горизонтальний скрол */
-            .chart-container { min-width: 600px; height: 350px; } /* Фіксуємо ширину для скролу */
+            .chart-container { min-width: 900px; height: 350px; } /* Фіксуємо ширину для скролу */
             .mobile-swipe-hint { display: block; }
         }
     </style>
@@ -385,7 +385,7 @@
                     <div class="mobile-swipe-hint"><i class="fas fa-arrows-alt-h"></i> Свайпніть графік</div>
                     
                     <p style="margin-top: 20px; font-size: 13px; color: var(--color-text-muted); line-height: 1.6; border-left: 2px solid rgba(255,255,255,0.1); padding-left: 15px;">
-                        * У січні та лютому зафіксовано об'єктивну сезонну просадку. Вже у березні бізнес повертається до високої маржинальності.
+                        * У січні та лютому — сезонна просадка з відновленням у березні. У квітні–липні виторг знову коливався; з липня оренда зросла до 2500 $, що тимчасово тисне на маржинальність.
                     </p>
                 </div>
             </div>
@@ -398,14 +398,14 @@
                     <div class="grid-3" style="grid-template-columns: 1fr;">
                         <div class="metric-card" style="background: var(--color-card-bg);">
                             <div class="metric-label">Середній виторг</div>
-                            <div class="metric-value">~ 550 000 ₴</div>
-                            <div class="metric-sub">Діапазон 447 000 - 591 000 ₴. Швидке відновлення показників після сезонної просадки.</div>
+                            <div class="metric-value">~ 490 000 ₴</div>
+                            <div class="metric-sub">Діапазон 403 000 - 591 000 ₴. Після сезонної просадки — відновлення в березні та подальші коливання виторгу.</div>
                         </div>
                     </div>
                     <div class="detail-block" style="background: var(--color-card-bg); backdrop-filter: none;">
                         <h3>Структура щомісячних витрат</h3>
                         <div class="detail-item"><span>ЗП працівників</span><span>151 000 - 176 000 ₴</span></div>
-                        <div class="detail-item"><span>Оренда</span><span>1500 - 2500 $ (поступове зростання за договором, наразі 2к$)</span></div>
+                        <div class="detail-item"><span>Оренда</span><span>1500 - 2500 $ (поступове зростання за договором, наразі 2,5к$)</span></div>
                         <div class="detail-item"><span>Комунальні платежі</span><span>38 000 - 76 000 ₴ (залежить від погодного сезону)</span></div>
                         <div class="detail-item"><span>Собівартість (Foodcost)</span><span class="green-text">~ 35%</span></div>
                     </div>
@@ -556,11 +556,11 @@
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['Вересень', 'Жовтень', 'Листопад', 'Грудень', 'Січень', 'Лютий', 'Березень'],
+                labels: ['Вересень', 'Жовтень', 'Листопад', 'Грудень', 'Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень'],
                 datasets: [
                     {
                         label: 'Виторг (грн)',
-                        data: [461658, 581877, 557332, 519442, 470821, 447590, 591280],
+                        data: [461658, 581877, 557332, 519442, 470821, 447590, 591280, 415186, 505030, 463802, 403045],
                         borderColor: '#FFFFFF',
                         backgroundColor: 'rgba(255, 255, 255, 0.05)',
                         borderWidth: 3,
@@ -575,7 +575,7 @@
                     },
                     {
                         label: 'Чистий прибуток (грн)',
-                        data: [48077, 92220, 76265, 36637, -8966, -20066, 58332],
+                        data: [48077, 92220, 76265, 36637, -8966, -20066, 58332, -32000, 22000, -3000, -68726],
                         borderColor: '#00E676',
                         backgroundColor: '#00E676',
                         borderWidth: 3,
@@ -583,7 +583,10 @@
                         clip: false,
                         pointBackgroundColor: '#00E676', pointRadius: 4,
                         datalabels: {
-                            color: '#00E676', align: 'bottom', anchor: 'start', offset: 12,
+                            color: '#00E676',
+                            align: function(ctx) { return ctx.dataset.data[ctx.dataIndex] < 0 ? 'top' : 'bottom'; },
+                            anchor: function(ctx) { return ctx.dataset.data[ctx.dataIndex] < 0 ? 'end' : 'start'; },
+                            offset: 12,
                             font: { size: 12, weight: 'bold', family: 'Montserrat' },
                             formatter: function(value) { return value.toLocaleString('uk-UA'); }
                         }
@@ -591,7 +594,7 @@
                 ]
             },
             options: {
-                layout: { padding: { top: 40, bottom: 30, left: 10, right: 20 } },
+                layout: { padding: { top: 40, bottom: 40, left: 10, right: 20 } },
                 responsive: true, maintainAspectRatio: false,
                 plugins: {
                     legend: { position: 'bottom', labels: { color: 'rgba(255,255,255,0.5)', font: { family: 'Montserrat', size: 12 }, padding: 20 } },
