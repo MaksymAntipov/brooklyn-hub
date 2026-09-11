@@ -1,0 +1,11 @@
+/offer
+  Cache-Control: no-store
+
+/offer-2
+  Cache-Control: no-store
+
+/offer.html
+  Cache-Control: no-store
+
+/offer-2.html
+  Cache-Control: no-store
